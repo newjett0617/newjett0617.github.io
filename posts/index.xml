@@ -1,4 +1,82 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 29 Sep 2018 11:36:33 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Typography</title><link>https://newjett0617.github.io/posts/typography/</link><pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate><guid>https://newjett0617.github.io/posts/typography/</guid><description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 04 Oct 2020 12:00:48 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Ping Reply</title><link>https://newjett0617.github.io/posts/ping-reply/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/ping-reply/</guid><description>關掉主機的 ICMP1 回應 (ping reply) 主機預設是開啟 (0) ，關閉 (1) 暫時地禁止 ping reply 重新啟動後仍會得到 ping reply echo &amp;#34;1&amp;#34; | sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all 永久地禁止 ping reply 重新啟動後無法得到 ping reply echo &amp;#34;net.ipv4.icmp_echo_ignore_all = 1&amp;#34; | sudo</description><content type="html"><![CDATA[<p>關掉主機的 ICMP<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 回應 (ping reply)
+主機預設是開啟 (0) ，關閉 (1)</p>
+<h2 id="暫時地禁止-ping-reply">暫時地禁止 ping reply</h2>
+<blockquote>
+<p>重新啟動後仍會得到 ping reply</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;1&#34;</span> <span class="p">|</span> sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all
+</code></pre></div><h2 id="永久地禁止-ping-reply">永久地禁止 ping reply</h2>
+<blockquote>
+<p>重新啟動後無法得到 ping reply</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;net.ipv4.icmp_echo_ignore_all = 1&#34;</span> <span class="p">|</span> sudo tee /etc/sysctl.d/icmp_echo_ignore_all.conf
+</code></pre></div><section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol">https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></content></item><item><title>[Commands] tar 打包、壓縮指令</title><link>https://newjett0617.github.io/posts/commands-tar/</link><pubDate>Sun, 04 Oct 2020 11:59:30 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-tar/</guid><description>打包 壓縮 描述 .tar V 用 tar 打包檔案，沒有使用壓縮 .tar.gz V V 用 tar 打包檔案，使用 gzip 壓縮 .tar tar 打包、解包預設操作使用相對路徑，使用絕對路徑路徑需加上 -P, --absolute-paths 參數 #!/bin/bash</description><content type="html"><![CDATA[<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">打包</th>
+<th align="center">壓縮</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.tar</td>
+<td align="center">V</td>
+<td align="center"></td>
+<td>用 tar 打包檔案，沒有使用壓縮</td>
+</tr>
+<tr>
+<td>.tar.gz</td>
+<td align="center">V</td>
+<td align="center">V</td>
+<td>用 tar 打包檔案，使用 gzip 壓縮</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tar">.tar</h2>
+<blockquote>
+<p>tar 打包、解包預設操作使用相對路徑，使用絕對路徑路徑需加上 <code>-P, --absolute-paths</code> 參數</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="c1"># 打包 foo/ 資料夾下所有檔案</span>
+tar -c -v -f foo.tar foo/
+
+<span class="c1"># 解包</span> 
+tar -x -v -f foo.tar
+
+<span class="c1"># 查看包</span>
+tar -t -v -f foo.tar
+</code></pre></div><pre><code>-c, --create:
+    create a new ARCHIVE
+
+-x, --extract: 
+    extract files from an ARCHIVE
+    
+-t, --list
+    list the contents of an ARCHIVE
+
+-f, --file=ARCHIVE:
+    use ARCHIVE file or device ARCHIVE
+
+-v, --verbose: 
+    verbosely list files processed
+</code></pre><h2 id="targz">.tar.gz</h2>
+<blockquote>
+<p>使用 <code>-c, --create</code> 參數時多加上 <code>-z, --gzip</code> 參數 (使用 gzip 方式壓縮)</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">tar -z -c -v -f foo.tar.gz foo/
+</code></pre></div><pre><code>-z, --gzip
+    filter the ARCHIVE through gzip
+</code></pre>]]></content></item><item><title>Typography</title><link>https://newjett0617.github.io/posts/typography/</link><pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate><guid>https://newjett0617.github.io/posts/typography/</guid><description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 An apple is a sweet, edible fruit produced by an apple tree (Malus pumila).</description><content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <blockquote>
 <p>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
