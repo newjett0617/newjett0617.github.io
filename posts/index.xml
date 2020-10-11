@@ -76,7 +76,264 @@ tar -t -v -f foo.tar
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">tar -z -c -v -f foo.tar.gz foo/
 </code></pre></div><pre><code>-z, --gzip
     filter the ARCHIVE through gzip
-</code></pre>]]></content></item><item><title>Typography</title><link>https://newjett0617.github.io/posts/typography/</link><pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate><guid>https://newjett0617.github.io/posts/typography/</guid><description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</code></pre>]]></content></item><item><title>[Commands] man 手冊指令</title><link>https://newjett0617.github.io/posts/commands-man/</link><pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-man/</guid><description>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊 這時需要查一下有哪些 manual # 查手冊名字中</description><content type="html"><![CDATA[<p>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 <code>passwd</code></p>
+<p>這同時有指令 <code>/usr/bin/passwd</code> 的手冊，也是檔案 <code>/etc/passwd</code> 的手冊</p>
+<p>這時需要查一下有哪些 manual</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查手冊名字中有 `passwd` 的手冊</span>
+man -f passwd
+
+<span class="c1"># 查手冊名字中包含 `passwd` 的手冊</span>
+man -k passwd
+<span class="c1">## output</span>
+<span class="c1"># passwd (1)           - change user password</span>
+<span class="c1"># passwd (5)           - the password file</span>
+</code></pre></div><pre><code>-f: 
+    same as whatis(1). 
+    Search for all words in expression in manual page names only.
+-k:
+    same as apropos(1). 
+    Support the full expression syntax. The search is case-insensitive and matches whole words only.
+</code></pre><p>此時會顯示跟 passwd 相關的手冊，括號中的數字表示手冊的 section</p>
+<pre><code>Manual Sections
+the sections of the manual are:
+
+    1. General commands (executable programs or shell commands)
+    2. System calls (functions provided by the kernel)
+    3. Library functions (functions within program libraries)
+    4. Kernel interfaces
+    5. File formats and conventions
+    6. Games
+    7. Miscellaneous information (including macro packages and conventions)
+    8. System manager's
+    8. system administration commands (usually only for root)
+    9. Kernel developer's
+    9. kernel routines [non standard]
+</code></pre><p>上述例子輸出關於 <code>passwd</code> 的結果，session 1 是指令的手冊，session 5 是檔案的手冊</p>
+<p>想看指令的手冊的話</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">1</span> passwd
+</code></pre></div><p>想看檔案的手冊的話</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">5</span> passwd
+</code></pre></div>]]></content></item><item><title>加速 Composer Install</title><link>https://newjett0617.github.io/posts/speed-up-composer-install/</link><pubDate>Tue, 27 Aug 2019 19:34:27 +0800</pubDate><guid>https://newjett0617.github.io/posts/speed-up-composer-install/</guid><description>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝 附上 GitHub Repository Settings 安裝 composer global require hirak/prestissimo 移除 composer global remove hirak/prestissimo 測試 以安裝 Laravel 來當做測試基準，比較是否安裝 Laravel 會需要</description><content type="html"><![CDATA[<p>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝</p>
+<p>附上 <a href="https://github.com/hirak/prestissimo">GitHub Repository Settings</a></p>
+<h2 id="安裝">安裝</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">composer global require hirak/prestissimo
+</code></pre></div><h2 id="移除">移除</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">composer global remove hirak/prestissimo
+</code></pre></div><h2 id="測試">測試</h2>
+<p>以安裝 Laravel 來當做測試基準，比較是否安裝 Laravel 會需要多少時間，而每次安裝都會清 cache</p>
+<h3 id="安裝指令">安裝指令</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">composer clearcache
+composer create-project laravel/laravel laravel1 --no-progress --profile --prefer-dist
+</code></pre></div><h3 id="安裝-plugin-前後比較">安裝 plugin 前後比較</h3>
+<p>安裝 Laravel 所需要花費 240 秒 變成 50 秒，這樣的差異也太大了吧，省去了大多時間</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>記憶體</th>
+<th>時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安裝前</td>
+<td>343.9 MiB</td>
+<td>239.83 s</td>
+</tr>
+<tr>
+<td>安裝後</td>
+<td>344.2 MiB</td>
+<td>49.64 s</td>
+</tr>
+</tbody>
+</table>
+]]></content></item><item><title>[Laravel] Log 與 Slack 串接</title><link>https://newjett0617.github.io/posts/laravel-log-with-slack/</link><pubDate>Mon, 26 Aug 2019 09:10:18 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-log-with-slack/</guid><description>Laravel 有許多 Logger Driver 可以使用，本文用的是 Slack 當作是記錄 Log 的地方，只要完成相關的設定，基本上就完成串接了 設定 Laravel config/logging.php &amp;lt;?php # config/logging.php return [ &amp;#39;default&amp;#39; =&amp;gt; env(&amp;#39;LOG_CHANNEL&amp;#39;, &amp;#39;stack&amp;#39;), &amp;#39;channels&amp;#39; =&amp;gt; [ &amp;#39;stack&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;stack&amp;#39;, &amp;#39;channels&amp;#39; =&amp;gt;</description><content type="html"><![CDATA[<p>Laravel 有許多 Logger Driver 可以使用，本文用的是 Slack 當作是記錄 Log 的地方，只要完成相關的設定，基本上就完成串接了</p>
+<h2 id="設定-laravel">設定 Laravel</h2>
+<h3 id="configloggingphp">config/logging.php</h3>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> <span class="c1"># config/logging.php
+</span><span class="c1"></span>
+<span class="k">return</span> <span class="p">[</span>
+
+    <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_CHANNEL&#39;</span><span class="p">,</span> <span class="s1">&#39;stack&#39;</span><span class="p">),</span>
+
+    <span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;stack&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;daily&#39;</span><span class="p">,</span> <span class="s1">&#39;slack&#39;</span><span class="p">],</span> <span class="c1">// &lt;= 新增 slack
+</span><span class="c1"></span>            <span class="s1">&#39;ignore_exceptions&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">],</span>
+
+        <span class="c1">// Slack 用預設的設定
+</span><span class="c1"></span>        <span class="s1">&#39;slack&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;slack&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_SLACK_WEBHOOK_URL&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Laravel Log&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;emoji&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;💥&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;level&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;critical&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+        
+        <span class="c1">// ...
+</span><span class="c1"></span>    <span class="p">],</span>
+<span class="p">];</span> 
+</code></pre></div><p>channels 原本只有 daily，新增一個 slack，level 依照 log 等級<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>而決定是否要 log 到 Slack，當 log level 是 critical 等級時才會 log 到 Slack</p>
+<h3 id="env">.env</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">LOG_CHANNEL</span><span class="o">=</span>stack
+<span class="nv">LOG_SLACK_WEBHOOK_URL</span><span class="o">=</span>slack_webhook_url
+</code></pre></div><p>LOG_CHANNEL 選擇 stack</p>
+<p>新增 LOG_SLACK_WEBHOOK_URL key，value 等等在 Slack 設定完就可以貼上了</p>
+<h2 id="設定-slack">設定 Slack</h2>
+<p>Slack 的 <a href="https://api.slack.com/incoming-webhooks">incoming-webhooks</a> 相關文件</p>
+<h3 id="註冊-slack-app">註冊 Slack App</h3>
+<ul>
+<li>輸入 App Name 及 選擇 Slack Workspace 後，按下 Create App
+<img src="https://i.imgur.com/bcVw1P1.png" alt=""></li>
+</ul>
+<h3 id="啟動-incoming-webhooks">啟動 Incoming Webhooks</h3>
+<ul>
+<li>按下 on 完成啟動
+<img src="https://i.imgur.com/89GDF5h.png" alt=""></li>
+</ul>
+<h3 id="建立一個-incoming-webhook">建立一個 Incoming Webhook</h3>
+<ul>
+<li>
+<p>按下 <code>Add New Webhook to Workspace</code>
+<img src="https://i.imgur.com/pczufF1.png" alt=""></p>
+</li>
+<li>
+<p>在 Slack 的 Workspace 建立一個 Channel 後，將 Slack App 加到 Channel，按下 <code>Allow</code>，也會看到 Slack App 加入到 Channel 中
+<img src="https://i.imgur.com/4zau2J2.png" alt="">
+<img src="https://i.imgur.com/UDKT4g2.png" alt=""></p>
+</li>
+<li>
+<p>這樣就完成建立 Incoming Webhook，複製 Webhook URL 到 .env 完成設定
+<img src="https://i.imgur.com/DvtlZjJ.png" alt=""></p>
+</li>
+<li>
+<p>複製 sample curl 測試看看 Slack App 是否正常
+<img src="https://i.imgur.com/8h6g35h.png" alt=""></p>
+</li>
+</ul>
+<h2 id="example">Example</h2>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="nx">\Illuminate\Support\Facades\Log</span><span class="o">::</span><span class="na">critical</span><span class="p">(</span><span class="s1">&#39;oops!&#39;</span><span class="p">);</span>
+</code></pre></div><p>或是針對指定的 Channel 記錄 Log</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="nx">\Illuminate\Support\Facades\Log</span><span class="o">::</span><span class="na">channel</span><span class="p">(</span><span class="s1">&#39;slack&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">critical</span><span class="p">(</span><span class="s1">&#39;oops!&#39;</span><span class="p">);</span>
+</code></pre></div><p><img src="https://i.imgur.com/H7HE1S2.png" alt=""></p>
+<p>基本上這樣就完成</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>根據 <a href="https://tools.ietf.org/html/rfc5424">RFC 5424</a> 分別是 emergency、alert、critical、error、warning、notice、info、debug，分成 8 個等級 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></content></item><item><title>[Laravel] Status Code 429, Too Many Request</title><link>https://newjett0617.github.io/posts/laravel-status-code-429-too-many-request/</link><pubDate>Wed, 24 Jul 2019 11:43:43 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-status-code-429-too-many-request/</guid><description>某天前端在串接 API 時，發生 Status Code 429 錯誤，自己使用 Postman 也沒遇過這個錯誤，乾脆就順手把這坑填了吧 👍 Status Code 429 根據 MDN 的說明 429 Too Many The user has sent too many requests in a given amount of time (&amp;ldquo;rate</description><content type="html"><![CDATA[<p>某天前端在串接 API 時，發生 Status Code 429 錯誤，自己使用 Postman 也沒遇過這個錯誤，乾脆就順手把這坑填了吧 👍
+<img src="https://i.imgur.com/YefoEXZ.png" alt=""></p>
+<h2 id="status-code-429">Status Code 429</h2>
+<p>根據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status/429">MDN</a> 的說明</p>
+<blockquote>
+<p><strong>429 Too Many</strong>
+The user has sent too many requests in a given amount of time (&ldquo;rate limiting&rdquo;).</p>
+<p>意思是在限制的時間內，使用者發出太多的請求了</p>
+</blockquote>
+<h2 id="laravel-幫了我什麼">Laravel 幫了我什麼？</h2>
+<p>什麼都沒有設定的話，預設在 <code>app/Http/Kernel.php</code> 中，會限制 1 分鐘只能請求 60 次</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Kernel.php
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Kernel</span> <span class="p">{</span>
+    <span class="c1">// ...
+</span><span class="c1"></span>    <span class="k">protected</span> <span class="nv">$middlewareGroups</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1">// ...
+</span><span class="c1"></span>        <span class="s1">&#39;api&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;throttle:60,1&#39;</span><span class="p">,</span> <span class="c1">// 1 分鐘 60 次請求
+</span><span class="c1"></span>        <span class="p">],</span>
+        <span class="c1">// ...
+</span><span class="c1"></span>    <span class="p">];</span>
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>在請求的 response header 中有提及相關內容</p>
+<pre><code>x-ratelimit-limit: 60
+x-ratelimit-limit: 指定時間內允許最大的請求次數
+
+x-ratelimit-remaining: 0
+x-ratelimit-remaining: 指定時間內剩下的請求次數
+
+retry-after: 15
+retry-after: 距離下次重試請求需要等待的時間（秒）
+</code></pre><p>如果想要自行設定次數的話，在 Route 使用 Middleware 來設定次數 Rate Limiting</p>
+]]></content></item><item><title>[Tools] 刪除多個 GitHub Repositories</title><link>https://newjett0617.github.io/posts/tools-delete-multiple-github-repositories/</link><pubDate>Sun, 07 Jul 2019 21:09:09 +0800</pubDate><guid>https://newjett0617.github.io/posts/tools-delete-multiple-github-repositories/</guid><description>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &amp;hellip; GitHub 有提供 api 方式可以使用，這次使用 shell script 方式刪除 不一定要使用 shell scri</description><content type="html"><![CDATA[<p>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &hellip;</p>
+<p>GitHub 有提供 api 方式可以使用，這次使用 shell script 方式刪除</p>
+<p>不一定要使用 shell script，只要能夠發請求的話，即可達成目的</p>
+<h2 id="建立一個-shell-script">建立一個 shell script</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">touch delete.sh
+chmod u+x delete.sh
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span>
+<span class="nv">token</span><span class="o">=</span><span class="s1">&#39;&lt;your-github-token&gt;&#39;</span>
+
+<span class="nv">repos</span><span class="o">=(</span>
+    <span class="s1">&#39;username/repo-1&#39;</span>
+    <span class="s1">&#39;username/repo-2&#39;</span>
+    <span class="s1">&#39;username/repo-3&#39;</span>
+<span class="o">)</span>
+
+<span class="k">for</span> i in <span class="si">${</span><span class="nv">repos</span><span class="p">[@]</span><span class="si">}</span> <span class="p">;</span> <span class="k">do</span>
+    curl -X DELETE https://api.github.com/repos/<span class="si">${</span><span class="nv">i</span><span class="si">}</span> -H <span class="s2">&#34;Authorization: token </span><span class="si">${</span><span class="nv">token</span><span class="si">}</span><span class="s2">&#34;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;delete https://github.com/</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span>
+<span class="k">done</span>
+</code></pre></div><blockquote>
+<p>Github API 相關文件</p>
+<ul>
+<li><a href="https://developer.github.com/v3/repos/#delete-a-repository">文件</a></li>
+<li><a href="https://developer.github.com/v3/#authentication">Authentication 方式</a></li>
+<li><a href="https://developer.github.com/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/#available-scopes">可用的 scope</a></li>
+</ul>
+</blockquote>
+<h2 id="產生-github-token">產生 Github token</h2>
+<p>Github 有提供畫面可以操作，token scope 需包含 <code>delete_repo</code> scope</p>
+<p>在 Settings / Developer settings / Personal access tokens</p>
+<p><img src="https://i.imgur.com/jUbtXab.png" alt=""></p>
+<p>token 只顯示一次，記得保存好
+<img src="https://i.imgur.com/lFRDDHo.png" alt=""></p>
+<h2 id="執行">執行</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">./delete.sh
+</code></pre></div><h3 id="執行後該注意">執行後該注意</h3>
+<p>因為刪除 repo 的行為太危險了，應該在使用後將這組 token 刪除，確保安全</p>
+]]></content></item><item><title>[Commands] scp 遠程安全地複製文件</title><link>https://newjett0617.github.io/posts/commands-scp/</link><pubDate>Fri, 08 Feb 2019 07:37:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-scp/</guid><description>scp 是在網絡上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸。 remote -&amp;gt; local scp user@remote_host:remote_file local_file local -&amp;gt; remote scp local_file user@remote_host:remote_file</description><content type="html"><![CDATA[<p>scp 是在網絡上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸。</p>
+<h2 id="remote---local">remote -&gt; local</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">scp user@remote_host:remote_file local_file
+</code></pre></div><h2 id="local---remote">local -&gt; remote</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">scp local_file user@remote_host:remote_file
+</code></pre></div>]]></content></item><item><title>Proxy 代理</title><link>https://newjett0617.github.io/posts/proxy/</link><pubDate>Sat, 01 Dec 2018 12:45:50 +0800</pubDate><guid>https://newjett0617.github.io/posts/proxy/</guid><description>Positive Proxy 正向代理 正向代理是一個位於 client 和 server 之間的代理伺服器，client 向代理伺服器發送一個請求，並且指定 server，代理向 server 轉交並且將獲得的內</description><content type="html"><![CDATA[<h2 id="positive-proxy-正向代理">Positive Proxy 正向代理</h2>
+<p><img src="https://i.imgur.com/kELZv9N.png" alt=""></p>
+<ul>
+<li>正向代理是一個位於 client 和 server 之間的代理伺服器，client 向代理伺服器發送一個請求，並且指定 server，代理向 server 轉交並且將獲得的內容返回給 client。</li>
+<li>client 需要設定向哪臺代理伺服器發請求。</li>
+<li>正向代理是代理 client 端，為 client 發請求，使得真實 client 對伺服器不可見。</li>
+<li>正向代理中，proxy 和 client 同屬一個 LAN，對 server 透明。</li>
+</ul>
+<h2 id="reverse-proxy-反向代理">Reverse Proxy 反向代理</h2>
+<p><img src="https://i.imgur.com/CuEnudf.png" alt=""></p>
+<ul>
+<li>反向代理對於 client 來說，反向代理就好像 server。</li>
+<li>client 向反向代理伺服器發送請求，接著反向代理伺服器判斷請求走向何處，並將請求轉交給 client，使得這些內容就好似他自己一樣，client 並不會知道反向代理後面的服務，也因此不需要 client 做任何設置，只需要把反向代理伺服器當成真正的 server 就好了。</li>
+<li>反向代理是代理 server 端，為 server 收發請求，使真實 server 對 client 不可見。</li>
+<li>反向代理中，proxy 和 server 同屬一個 LAN，對 client 透明。</li>
+</ul>
+<h2 id="從用途上區分">從用途上區分</h2>
+<ul>
+<li>正向代理：正向代理用途是為了在防火牆內的局域網提供訪問 internet 的途徑。</li>
+<li>反向代理：反向代理的用途是將防火牆後面的服務器提供給 internet 用戶訪問。同時還可以完成像是負載均衡等功能。</li>
+</ul>
+<h2 id="從安全性來講">從安全性來講</h2>
+<ul>
+<li>正向代理：正向代理允許客戶端通過它訪問任意網站並且隱蔽客戶端自身，因此你必須採取安全措施來確保僅為經過授權的客戶端提供服務。</li>
+<li>反向代理：對外是透明的，訪問者並不知道自己訪問的是代理。對訪問者而言，他以為訪問的就是原始服務器。</li>
+</ul>
+]]></content></item><item><title>Typography</title><link>https://newjett0617.github.io/posts/typography/</link><pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate><guid>https://newjett0617.github.io/posts/typography/</guid><description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 An apple is a sweet, edible fruit produced by an apple tree (Malus pumila).</description><content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <blockquote>
 <p>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
