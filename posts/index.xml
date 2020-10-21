@@ -90,9 +90,9 @@ tar -t -v -f foo.tar
 <p>如果使用 slash <code>/</code> 當作 separator，當在正規表示式中有用到 slash <code>/</code> 的部分，會需要使用 backslash <code>\</code> 來跳脫，但會造成很難閱讀</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s/\/home\/example/\/usr\/local\/example/&#39;</span>
 </code></pre></div><p>可以更改用其他的 separator 來代替（<code>|</code>, <code>#</code>, <code>@</code>）</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s#/home/example#/usr/local/example#&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s|/home/example|/usr/local/example|&#39;</span>
+<span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s#/home/example#/usr/local/example#&#39;</span>
 <span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s@/home/example@/usr/local/example@&#39;</span>
-<span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s|/home/example|/usr/local/example|&#39;</span>
 </code></pre></div>]]></content></item><item><title>[Commands] man 手冊指令</title><link>https://newjett0617.github.io/posts/commands-man/</link><pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-man/</guid><description>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊 這時需要查一下有哪些 manual # 查手冊名字中</description><content type="html"><![CDATA[<p>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 <code>passwd</code></p>
 <p>這同時有指令 <code>/usr/bin/passwd</code> 的手冊，也是檔案 <code>/etc/passwd</code> 的手冊</p>
 <p>這時需要查一下有哪些 manual</p>
