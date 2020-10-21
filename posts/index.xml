@@ -130,7 +130,51 @@ the sections of the manual are:
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">1</span> passwd
 </code></pre></div><p>想看檔案的手冊的話</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">5</span> passwd
-</code></pre></div>]]></content></item><item><title>加速 Composer Install</title><link>https://newjett0617.github.io/posts/speed-up-composer-install/</link><pubDate>Tue, 27 Aug 2019 19:34:27 +0800</pubDate><guid>https://newjett0617.github.io/posts/speed-up-composer-install/</guid><description>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝 附上 GitHub Repository Settings 安裝 composer global require hirak/prestissimo 移除 composer global remove hirak/prestissimo 測試 以安裝 Laravel 來當做測試基準，比較是否安裝 Laravel 會需要</description><content type="html"><![CDATA[<p>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝</p>
+</code></pre></div>]]></content></item><item><title>[Laravel] 使用 Laradock 搭配 xdebug phpunit phpstorm</title><link>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</link><pubDate>Tue, 21 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</guid><description>修改 Laradock .env sed -i &amp;#39;&amp;#39; \ -e &amp;#39;s/WORKSPACE_INSTALL_XDEBUG=false/WORKSPACE_INSTALL_XDEBUG=true/g&amp;#39; \ -e &amp;#39;s/PHP_FPM_INSTALL_XDEBUG=false/PHP_FPM_INSTALL_XDEBUG=true/g&amp;#39; \ .env 重新建置 Laradock services images docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm ss 設定 phpstorm config PHP Preferences | Languages &amp;amp; Frameworks | PHP PHP Language level: choose you want CLI Interpreter: click ... create a cli interpreter, from docker &amp;hellip; Path mappings: OK Servers Preferences | Languages &amp;amp;</description><content type="html"><![CDATA[<h2 id="修改-laradock-env">修改 Laradock .env</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s/WORKSPACE_INSTALL_XDEBUG=false/WORKSPACE_INSTALL_XDEBUG=true/g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s/PHP_FPM_INSTALL_XDEBUG=false/PHP_FPM_INSTALL_XDEBUG=true/g&#39;</span> <span class="se">\
+</span><span class="se"></span>    .env
+</code></pre></div><h2 id="重新建置-laradock-services-images">重新建置 Laradock services images</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm
+</code></pre></div><ul>
+<li>ss</li>
+</ul>
+<h2 id="設定-phpstorm-config">設定 phpstorm config</h2>
+<h3 id="php">PHP</h3>
+<p>Preferences | Languages &amp; Frameworks | PHP</p>
+<ul>
+<li>PHP Language level: choose you want</li>
+<li>CLI Interpreter: click <code>...</code>
+<ul>
+<li>create a cli interpreter, from docker &hellip;</li>
+<li><img src="/images/gVgSvNDom2J2PpWv/8bYCkdR.png" alt=""></li>
+<li><img src="/images/gVgSvNDom2J2PpWv/pTPnihF.png" alt=""></li>
+<li><img src="/images/gVgSvNDom2J2PpWv/to2UDGb.png" alt=""></li>
+</ul>
+</li>
+<li>Path mappings:
+<ul>
+<li><img src="/images/gVgSvNDom2J2PpWv/DTVpqW5.png" alt=""></li>
+</ul>
+</li>
+<li>OK
+<ul>
+<li><img src="/images/gVgSvNDom2J2PpWv/1ESF1wz.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h3 id="servers">Servers</h3>
+<p>Preferences | Languages &amp; Frameworks | PHP | Servers</p>
+<ul>
+<li>create a server call <code>laradock</code>
+<ul>
+<li><img src="/images/gVgSvNDom2J2PpWv/2RBIfzm.png" alt=""></li>
+</ul>
+</li>
+<li>OK</li>
+</ul>
+]]></content></item><item><title>加速 Composer Install</title><link>https://newjett0617.github.io/posts/speed-up-composer-install/</link><pubDate>Tue, 27 Aug 2019 19:34:27 +0800</pubDate><guid>https://newjett0617.github.io/posts/speed-up-composer-install/</guid><description>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝 附上 GitHub Repository Settings 安裝 composer global require hirak/prestissimo 移除 composer global remove hirak/prestissimo 測試 以安裝 Laravel 來當做測試基準，比較是否安裝 Laravel 會需要</description><content type="html"><![CDATA[<p>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝</p>
 <p>附上 <a href="https://github.com/hirak/prestissimo">GitHub Repository Settings</a></p>
 <h2 id="安裝">安裝</h2>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">composer global require hirak/prestissimo
