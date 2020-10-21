@@ -76,7 +76,24 @@ tar -t -v -f foo.tar
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">tar -z -c -v -f foo.tar.gz foo/
 </code></pre></div><pre><code>-z, --gzip
     filter the ARCHIVE through gzip
-</code></pre>]]></content></item><item><title>[Commands] man 手冊指令</title><link>https://newjett0617.github.io/posts/commands-man/</link><pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-man/</guid><description>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊 這時需要查一下有哪些 manual # 查手冊名字中</description><content type="html"><![CDATA[<p>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 <code>passwd</code></p>
+</code></pre>]]></content></item><item><title>[Commands] sed 指令</title><link>https://newjett0617.github.io/posts/commands-sed/</link><pubDate>Thu, 10 Sep 2020 15:15:08 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-sed/</guid><description>-i 的差異 在 macOS 中 sed 指令是使用 BSD 版本，但在 Ubuntu 是使用 GNU 版本，指令之間存著一些差異，用法也會有些許不同 最常見的就是 -i，如果沒有提供後綴，則原始文件</description><content type="html"><![CDATA[<h2 id="-i-的差異"><code>-i</code> 的差異</h2>
+<p>在 macOS 中 sed 指令是使用 BSD 版本，但在 Ubuntu 是使用 GNU 版本，指令之間存著一些差異，用法也會有些許不同</p>
+<p>最常見的就是 <code>-i</code>，如果沒有提供後綴，則原始文件將被覆蓋而不進行備份（in place）</p>
+<p>macOS</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed -i <span class="s1">&#39;&#39;</span> -e <span class="s1">&#39;s/foo/bar/g&#39;</span> test.txt
+</code></pre></div><p>指令在 macOS 環境中執行是可以的，但是在 Ubuntu 卻會噴錯</p>
+<pre><code>sed: can't read : No such file or directory
+</code></pre><p>Ubuntu</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed -i -e <span class="s1">&#39;s/foo/bar/g&#39;</span> test.txt
+</code></pre></div><h2 id="更改-separator">更改 separator</h2>
+<p>另外一個技巧就是更換 separator <code>s/regular expression/replacement/flags</code></p>
+<p>如果使用 slash <code>/</code> 當作 separator，當在正規表示式中有用到 slash <code>/</code> 的部分，會需要使用 backslash <code>\</code> 來跳脫，但會造成很難閱讀</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s/\/home\/example/\/usr\/local\/example/&#39;</span>
+</code></pre></div><p>可以更改用其他的 separator 來代替（<code>|</code>, <code>#</code>, <code>@</code>）</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s#/home/example#/usr/local/example#&#39;</span>
+<span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s@/home/example@/usr/local/example@&#39;</span>
+<span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s|/home/example|/usr/local/example|&#39;</span>
+</code></pre></div>]]></content></item><item><title>[Commands] man 手冊指令</title><link>https://newjett0617.github.io/posts/commands-man/</link><pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-man/</guid><description>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊 這時需要查一下有哪些 manual # 查手冊名字中</description><content type="html"><![CDATA[<p>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 <code>passwd</code></p>
 <p>這同時有指令 <code>/usr/bin/passwd</code> 的手冊，也是檔案 <code>/etc/passwd</code> 的手冊</p>
 <p>這時需要查一下有哪些 manual</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查手冊名字中有 `passwd` 的手冊</span>
