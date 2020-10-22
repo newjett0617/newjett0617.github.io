@@ -130,6 +130,142 @@ the sections of the manual are:
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">1</span> passwd
 </code></pre></div><p>想看檔案的手冊的話</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">5</span> passwd
+</code></pre></div>]]></content></item><item><title>[Laravel] 使用 Laradock 搭配 xdebug phpunit phpstorm</title><link>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</link><pubDate>Tue, 21 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</guid><description>修改 Laradock .env sed -i &amp;#39;&amp;#39; \ -e &amp;#39;s/WORKSPACE_INSTALL_XDEBUG=false/WORKSPACE_INSTALL_XDEBUG=true/g&amp;#39; \ -e &amp;#39;s/PHP_FPM_INSTALL_XDEBUG=false/PHP_FPM_INSTALL_XDEBUG=true/g&amp;#39; \ .env 重新建置 Laradock images docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm 設定 phpstorm config Preferences | Languages &amp;amp; Frameworks | PHP PHP Language level: choose you want CLI Interpreter: click ... create a cli interpreter, from docker &amp;hellip; Path mappings: OK Preferences | Languages &amp;amp; Frameworks | PHP |</description><content type="html"><![CDATA[<h2 id="修改-laradock-env">修改 Laradock .env</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s/WORKSPACE_INSTALL_XDEBUG=false/WORKSPACE_INSTALL_XDEBUG=true/g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s/PHP_FPM_INSTALL_XDEBUG=false/PHP_FPM_INSTALL_XDEBUG=true/g&#39;</span> <span class="se">\
+</span><span class="se"></span>    .env
+</code></pre></div><h2 id="重新建置-laradock-images">重新建置 Laradock images</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm
+</code></pre></div><h2 id="設定-phpstorm-config">設定 phpstorm config</h2>
+<h3 id="preferences--languages--frameworks--php">Preferences | Languages &amp; Frameworks | PHP</h3>
+<ul>
+<li>PHP Language level: choose you want</li>
+<li>CLI Interpreter: click <code>...</code>
+<ul>
+<li>create a cli interpreter, from docker &hellip;</li>
+<li><img src="/images/gVgSvNDom2J2PpWv/8bYCkdR.png" alt=""></li>
+<li><img src="/images/gVgSvNDom2J2PpWv/pTPnihF.png" alt=""></li>
+<li><img src="/images/gVgSvNDom2J2PpWv/to2UDGb.png" alt=""></li>
+</ul>
+</li>
+<li>Path mappings:
+<ul>
+<li><img src="/images/gVgSvNDom2J2PpWv/DTVpqW5.png" alt=""></li>
+</ul>
+</li>
+<li>OK
+<ul>
+<li><img src="/images/gVgSvNDom2J2PpWv/1ESF1wz.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h3 id="preferences--languages--frameworks--php--servers">Preferences | Languages &amp; Frameworks | PHP | Servers</h3>
+<ul>
+<li>create a server call <code>laradock</code>
+<ul>
+<li><img src="/images/gVgSvNDom2J2PpWv/2RBIfzm.png" alt=""></li>
+</ul>
+</li>
+<li>OK</li>
+</ul>
+]]></content></item><item><title>[Laravel] Laradock</title><link>https://newjett0617.github.io/posts/laravel-laradock/</link><pubDate>Sat, 11 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-laradock/</guid><description>使用 Laradock 來建置 Laravel 專案的環境 必要工具 Git Docker （版本 &amp;gt;= 17.12 ） 安裝 單個專案 多個專案 會使用 多個專案 方式進行安裝 檔案目錄結構 . ├── ./laradock ├── laradock ├── proj1 ├── ...</description><content type="html"><![CDATA[<p>使用 <a href="https://github.com/laradock/laradock">Laradock</a> 來建置 Laravel 專案的環境</p>
+<h2 id="必要工具">必要工具</h2>
+<ul>
+<li>Git</li>
+<li>Docker （版本 &gt;= 17.12 ）</li>
+</ul>
+<h2 id="安裝">安裝</h2>
+<ul>
+<li>單個專案</li>
+<li>多個專案</li>
+</ul>
+<p>會使用 <code>多個專案</code> 方式進行安裝</p>
+<h3 id="檔案目錄結構">檔案目錄結構</h3>
+<pre><code>.
+├── ./laradock
+├── laradock
+├── proj1
+├── ...
+└── proj2
+</code></pre><h2 id="getting-started">Getting Started</h2>
+<h3 id="clone-laradock">Clone Laradock</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/Laradock/laradock.git
+</code></pre></div><h3 id="改變目錄到-laradock-後複製-env-example-成-env">改變目錄到 laradock 後複製 <code>env-example</code> 成 <code>.env</code></h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> laradock
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cp env-example .env
+</code></pre></div><h3 id="設定-laradock-的-docker-image">設定 Laradock 的 docker image</h3>
+<p>設定 docker image 要安裝該軟體及軟體版本</p>
+<p>這邊的 <code>.env</code> 是 docker-compose 所需要的檔案</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|DATA_PATH_HOST=~/.laradock/data|DATA_PATH_HOST=../.laradock/data|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|PHP_VERSION=7.3|PHP_VERSION=7.4|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_COMPOSER_REPO_PACKAGIST=|WORKSPACE_COMPOSER_REPO_PACKAGIST=https://packagist.jp|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_NODE=true|WORKSPACE_INSTALL_NODE=false|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_YARN=true|WORKSPACE_INSTALL_YARN=false|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_NPM_GULP=true|WORKSPACE_INSTALL_NPM_GULP=false|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_NPM_VUE_CLI=true|WORKSPACE_INSTALL_NPM_VUE_CLI=false|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_PRESTISSIMO=false|WORKSPACE_INSTALL_PRESTISSIMO=true|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_MYSQL_CLIENT=false|WORKSPACE_INSTALL_MYSQL_CLIENT=true|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|PHP_FPM_INSTALL_MYSQLI=true|PHP_FPM_INSTALL_MYSQLI=false|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_VERSION=latest|MYSQL_VERSION=5.7|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_DATABASE=default|MYSQL_DATABASE=|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_USER=default|MYSQL_USER=|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_PASSWORD=secret|MYSQL_PASSWORD=|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    .env
+</code></pre></div><h3 id="設定-nginx-config">設定 Nginx config</h3>
+<p>這個做法限定是給 laravel 的專案</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cp nginx/sites/laravel.conf.example nginx/sites/laravel.conf
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|laravel.test|~(?&lt;domain&gt;.+)(\.test)$|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|/var/www/laravel/public|/var/www/$domain/public|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|laravel_|$domain.|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    nginx/sites/laravel.conf
+</code></pre></div><p>依照專案名稱來當作 Virtual Host 的配置</p>
+<h3 id="建立-laradock-services-images">建立 Laradock services images</h3>
+<p>這個步驟會花費大量時間抓取 docker image 及 build image</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace nginx php-fpm mysql
+</code></pre></div><h3 id="啟動-laradock-services">啟動 Laradock services</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose up --detach workspace nginx php-fpm mysql
+</code></pre></div><h3 id="關閉-laradock-services">關閉 Laradock services</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose down --timeout <span class="m">1</span>
+</code></pre></div><h3 id="map-to-localhost-dns">Map to localhost DNS</h3>
+<p>在 macOS 的 <code>/etc/hosts</code> 新增 dns record</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo -- bash -c <span class="s2">&#34;echo &#39;127.0.0.1 proj1.test&#39; &gt;&gt; /etc/hosts&#34;</span>
+</code></pre></div><h3 id="設定-laravel-專案">設定 Laravel 專案</h3>
+<p>操作指令都會需要進入 workspace container 進行操作</p>
+<p>這邊的 .env 是 laravel 專案所需要的檔案</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose <span class="nb">exec</span> --user<span class="o">=</span>laradock workspace bash
+<span class="nv">PROJECT_NAME</span><span class="o">=</span>proj1
+git clone https://github.com/laravel/laravel.git <span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+composer install
+cp .env.example .env
+sed -i <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s/DB_HOST=127.0.0.1/DB_HOST=mysql/g&#39;</span> .env <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s/DB_PASSWORD=/DB_PASSWORD=root/g&#39;</span> .env <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s/DB_DATABASE=laravel/DB_DATABASE=&#39;</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span><span class="s1">&#39;/g&#39;</span> <span class="se">\
+</span><span class="se"></span>    .env
+mysql --host<span class="o">=</span>mysql --user<span class="o">=</span>root --password<span class="o">=</span>root --execute<span class="o">=</span><span class="s2">&#34;CREATE DATABASE IF NOT EXISTS \`</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span><span class="s2">\` CHARACTER SET \`utf8mb4\` COLLATE \`utf8mb4_unicode_ci\`;&#34;</span><span class="p">;</span>
+php artisan key:generate
+php artisan migrate
+<span class="nb">exit</span>
+</code></pre></div><h3 id="測試">測試</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">curl -v -I -L -X GET <span class="s1">&#39;http://proj1.test&#39;</span>
+</code></pre></div><h2 id="faq">FAQ</h2>
+<h3 id="where-is-nginx-log">Where is Nginx log?</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker <span class="nb">exec</span> <span class="k">$(</span>docker ps --quiet --filter <span class="s2">&#34;name=nginx&#34;</span><span class="k">)</span> ls -al /var/log/nginx
+<span class="c1"># or</span>
+ls -al laradock/logs/
+</code></pre></div><h3 id="how-to-reload-nginx">How to reload Nginx?</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker <span class="nb">exec</span> <span class="k">$(</span>docker ps --quiet --filter <span class="s2">&#34;name=nginx&#34;</span><span class="k">)</span> nginx -t
+docker <span class="nb">exec</span> <span class="k">$(</span>docker ps --quiet --filter <span class="s2">&#34;name=nginx&#34;</span><span class="k">)</span> nginx -s reload
+</code></pre></div><h3 id="how-to-run-artisan-command">How to run artisan command?</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose <span class="nb">exec</span> --user<span class="o">=</span>laradock workspace php artisan ...
+</code></pre></div><h3 id="how-to-connect-mysql-database-on-macos">How to connect MySQL database on macOS?</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">mysql --host<span class="o">=</span>127.0.0.1 --user<span class="o">=</span>root --password<span class="o">=</span>root
+</code></pre></div><h3 id="how-to-reload-supervisor">How to reload supervisor</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose <span class="nb">exec</span> php-worker supervisorctl reload
 </code></pre></div>]]></content></item><item><title>加速 Composer Install</title><link>https://newjett0617.github.io/posts/speed-up-composer-install/</link><pubDate>Tue, 27 Aug 2019 19:34:27 +0800</pubDate><guid>https://newjett0617.github.io/posts/speed-up-composer-install/</guid><description>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝 附上 GitHub Repository Settings 安裝 composer global require hirak/prestissimo 移除 composer global remove hirak/prestissimo 測試 以安裝 Laravel 來當做測試基準，比較是否安裝 Laravel 會需要</description><content type="html"><![CDATA[<p>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝</p>
 <p>附上 <a href="https://github.com/hirak/prestissimo">GitHub Repository Settings</a></p>
 <h2 id="安裝">安裝</h2>
