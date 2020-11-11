@@ -1,4 +1,22 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 04 Oct 2020 12:00:48 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>關閉 Ping Reply</title><link>https://newjett0617.github.io/posts/disable-ping-reply/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/disable-ping-reply/</guid><description>關掉主機的 ICMP1 回應 (ping reply) 主機預設是開啟 (0) ，關閉 (1) 暫時地禁止 ping reply 重新啟動後仍會得到 ping reply echo &amp;#34;1&amp;#34; | sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all 永久地禁止 ping reply 重新啟動後無法得到 ping reply echo &amp;#34;net.ipv4.icmp_echo_ignore_all = 1&amp;#34; | sudo</description><content type="html"><![CDATA[<p>關掉主機的 ICMP<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 回應 (ping reply)
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Nov 2020 16:18:04 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Mac] DIY GameToGo</title><link>https://newjett0617.github.io/posts/mac-diy-gametogo/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/posts/mac-diy-gametogo/</guid><description>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能</description><content type="html"><![CDATA[<p>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能的遊戲，因此打算使用 MacOS 的硬體加上外接硬碟，讓開機選單選擇 Windows 的硬碟，這樣玩遊戲應該綽綽有餘。</p>
+<p>剛好查到這篇 <a href="https://medium.com/@upchen_/%E5%9C%A8-mac-%E4%B8%8B-%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%9D-bootcamp-win10-%E5%88%B0%E5%A4%96%E6%8E%A5%E7%A1%AC%E7%A2%9F-%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84-gametogo-76c31896588">Medium</a>，這篇寫的很棒也很詳細，順便記錄下實作的差異。</p>
+<h2 id="第一部分">第一部分</h2>
+<h3 id="第三點">第三點</h3>
+<p>打開 MacOS 的 <code>磁碟工具程式</code> 後，將顯示方式選擇 <code>顯示所有裝置</code>，針對外接硬碟進行格式化，點擊 <code>清除</code>，格式選擇 <code>MacOS 擴充格式（日誌式）</code>，架構選擇 <code>GUID 分割區配置表</code>，選擇完成後按下 <code>清除</code>
+<img src="/images/qGIuYBQAnl63tyUH/rHrp85FWkg1MXcvp.png" alt=""></p>
+<p>點擊 <code>分割</code>，點擊 <code>＋</code>，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 <code>ExFAT</code>，按下 <code>套用</code>，按下 <code>分割</code>。
+<img src="/images/qGIuYBQAnl63tyUH/ge0m0Aest2la2A43.png" alt=""></p>
+<h3 id="第六點">第六點</h3>
+<p>在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 <code>~/bootcamp.vmdk</code></p>
+<h3 id="第七點">第七點</h3>
+<p>在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 <code>WIN10</code></p>
+<h2 id="第二部分">第二部分</h2>
+<p>下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 <code>WindowsSupport.zip</code> 壓縮檔，把該壓縮檔丟到之前分割的 <code>DATA</code> 磁區（假如沒有看到的話，回到 <code>磁碟工具程式</code>，選擇 <code>DATA</code> 後點擊 <code>裝載</code>）</p>
+<h2 id="補充">補充</h2>
+<p>由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案</p>
+<p>順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭
+<img src="/images/qGIuYBQAnl63tyUH/screencapture-medium-upchen-mac-bootcamp-win10-gametogo-76c31896588-2020-11-12-00_24_57.png" alt=""></p>
+]]></content></item><item><title>關閉 Ping Reply</title><link>https://newjett0617.github.io/posts/disable-ping-reply/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/disable-ping-reply/</guid><description>關掉主機的 ICMP1 回應 (ping reply) 主機預設是開啟 (0) ，關閉 (1) 暫時地禁止 ping reply 重新啟動後仍會得到 ping reply echo &amp;#34;1&amp;#34; | sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all 永久地禁止 ping reply 重新啟動後無法得到 ping reply echo &amp;#34;net.ipv4.icmp_echo_ignore_all = 1&amp;#34; | sudo</description><content type="html"><![CDATA[<p>關掉主機的 ICMP<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 回應 (ping reply)
 主機預設是開啟 (0) ，關閉 (1)</p>
 <h2 id="暫時地禁止-ping-reply">暫時地禁止 ping reply</h2>
 <blockquote>
