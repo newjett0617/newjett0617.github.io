@@ -16,7 +16,45 @@
 <p>由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案</p>
 <p>順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭
 <img src="/images/qGIuYBQAnl63tyUH/screencapture-medium-upchen-mac-bootcamp-win10-gametogo-76c31896588-2020-11-12-00_24_57.png" alt=""></p>
-]]></content></item><item><title>關閉 Ping Reply</title><link>https://newjett0617.github.io/posts/disable-ping-reply/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/disable-ping-reply/</guid><description>關掉主機的 ICMP1 回應 (ping reply) 主機預設是開啟 (0) ，關閉 (1) 暫時地禁止 ping reply 重新啟動後仍會得到 ping reply echo &amp;#34;1&amp;#34; | sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all 永久地禁止 ping reply 重新啟動後無法得到 ping reply echo &amp;#34;net.ipv4.icmp_echo_ignore_all = 1&amp;#34; | sudo</description><content type="html"><![CDATA[<p>關掉主機的 ICMP<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 回應 (ping reply)
+]]></content></item><item><title>[Linux] Logrotate</title><link>https://newjett0617.github.io/posts/linux-logrotate/</link><pubDate>Thu, 05 Nov 2020 15:27:07 +0800</pubDate><guid>https://newjett0617.github.io/posts/linux-logrotate/</guid><description>最近在 Linux 主機中的 /var/log 資料夾底下發現有許多的 xxx.log.1 xxx.log.2 &amp;hellip; 的檔案，好奇去查並記錄下來 這些檔案是 logrotate 產生的檔案，主要功能是做日誌檔案的輪替 logrotate 設定檔 主要設定檔</description><content type="html"><![CDATA[<p>最近在 Linux 主機中的 <code>/var/log</code> 資料夾底下發現有許多的 <code>xxx.log.1</code> <code>xxx.log.2</code> &hellip; 的檔案，好奇去查並記錄下來</p>
+<p>這些檔案是 <a href="https://en.wikipedia.org/wiki/Log_rotation"><code>logrotate</code></a> 產生的檔案，主要功能是做日誌檔案的輪替</p>
+<h2 id="logrotate-設定檔">logrotate 設定檔</h2>
+<p>主要設定檔是在 <code>/etc/logrotate.conf</code>，會在載入 <code>/etc/logrotate.d/</code> 底下的檔案進行 rotate</p>
+<h2 id="觸發-logrotate">觸發 logrotate</h2>
+<p>觸發 logrotate 則是在 <code>/etc/cron.daily/logrotate</code> 每日的 crontab 中執行</p>
+<p>假如想要手動觸發執行 logrotate 的話，可以直接執行 <code>logrotate --force</code> 指令，<code>--force</code> 是強制執行 rotate，可搭配 <code>--debug</code> 一起使用並觀察</p>
+<h2 id="logrotate-範例">logrotate 範例</h2>
+<p>在 <code>/etc/logrotate.conf</code> 檔案中定義 logrotate 的預設值，範例如下</p>
+<pre><code># 某個頻率對日誌檔做 rotate (hourly, daily, weekly, monthly, yearly) (hourly 需要改變 logrotate 的頻率)
+# weekly [weekday] &lt;- default 0 (0 means Sunday, 1 means Monday, ... , 6 means Saturday)
+weekly
+
+# 設定日誌檔預設的 user/group
+# su user group
+su root syslog
+
+# 保留四個 rotate 後的檔案 (.1, .2, .3, .4)
+# rotate count
+rotate 4
+
+# 當被日誌檔被 rotate 後，建立相同名字的檔案
+create
+
+# 對日誌檔進行壓縮，預設使用 gzip 壓縮方式
+compress
+
+# 載入 /etc/logrotate.d/ 設定檔進行 rotate
+include /etc/logrotate.d
+
+/var/log/wtmp {                &lt;= 針對 /var/log/wtmp 檔案的參數設定
+    missingok                  &lt;= 如果缺少日誌檔案的話，繼續執行下一個而不噴錯誤訊息，對應的參數（nomissingok）
+    monthly                    &lt;= 一個月進行一次 rotate
+    create 0664 root utmp      &lt;= 新建檔案的權限與群組
+    rotate 1                   &lt;= 保留一個檔案
+}
+</code></pre><p>更多細節設定可看手冊</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man logrotate.conf
+</code></pre></div>]]></content></item><item><title>關閉 Ping Reply</title><link>https://newjett0617.github.io/posts/disable-ping-reply/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/disable-ping-reply/</guid><description>關掉主機的 ICMP1 回應 (ping reply) 主機預設是開啟 (0) ，關閉 (1) 暫時地禁止 ping reply 重新啟動後仍會得到 ping reply echo &amp;#34;1&amp;#34; | sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all 永久地禁止 ping reply 重新啟動後無法得到 ping reply echo &amp;#34;net.ipv4.icmp_echo_ignore_all = 1&amp;#34; | sudo</description><content type="html"><![CDATA[<p>關掉主機的 ICMP<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 回應 (ping reply)
 主機預設是開啟 (0) ，關閉 (1)</p>
 <h2 id="暫時地禁止-ping-reply">暫時地禁止 ping reply</h2>
 <blockquote>
