@@ -211,6 +211,42 @@
 </li>
 </ol>
 </section>
+]]></content></item><item><title>[iTerm2] 筆記</title><link>https://newjett0617.github.io/posts/iterm2-note/</link><pubDate>Thu, 10 Dec 2020 18:11:05 +0800</pubDate><guid>https://newjett0617.github.io/posts/iterm2-note/</guid><description>hotkey description command + t 開啟新的 windows command + w 關閉 windows command + option + 上下左右 移動 windows focus command + d 垂直切割 windows command + shift + d 水平切割 windows 平常會搭配 Magnet 變更視窗尺寸，但是 iterm2 預設有些限制讓我</description><content type="html"><![CDATA[<table>
+<thead>
+<tr>
+<th>hotkey</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command + t</td>
+<td>開啟新的 windows</td>
+</tr>
+<tr>
+<td>command + w</td>
+<td>關閉 windows</td>
+</tr>
+<tr>
+<td>command + option + 上下左右</td>
+<td>移動 windows focus</td>
+</tr>
+<tr>
+<td>command + d</td>
+<td>垂直切割 windows</td>
+</tr>
+<tr>
+<td>command + shift + d</td>
+<td>水平切割 windows</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>平常會搭配 Magnet 變更視窗尺寸，但是 iterm2 預設有些限制讓我無法變更，剛好在 iTerm2 的 <a href="https://iterm2.com/faq.html">FAQ</a> 中有提到相關的設定</p>
+<blockquote>
+<p>Q: When I use Magnet to move iTerm2 windows they do unexpected things (like not moving where I told them to).</p>
+<p>A: This is a side-effect of making the window size a multiple of the size of a single character&rsquo;s cell. Turn on Preferences &gt; Advanced &gt; Terminal windows resize smoothly to disable this behavior and that usually fixes the issue.</p>
+</blockquote>
 ]]></content></item><item><title>[Mac] DIY GameToGo</title><link>https://newjett0617.github.io/posts/mac-diy-gametogo/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/posts/mac-diy-gametogo/</guid><description>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能</description><content type="html"><![CDATA[<p>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能的遊戲，因此打算使用 MacOS 的硬體加上外接硬碟，讓開機選單選擇 Windows 的硬碟，這樣玩遊戲應該綽綽有餘。</p>
 <p>剛好查到這篇 <a href="https://medium.com/@upchen_/%E5%9C%A8-mac-%E4%B8%8B-%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%9D-bootcamp-win10-%E5%88%B0%E5%A4%96%E6%8E%A5%E7%A1%AC%E7%A2%9F-%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84-gametogo-76c31896588">Medium</a>，這篇寫的很棒也很詳細，順便記錄下實作的差異。</p>
 <h2 id="第一部分">第一部分</h2>
