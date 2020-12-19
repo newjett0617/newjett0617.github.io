@@ -1,4 +1,217 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Nov 2020 16:18:04 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Mac] DIY GameToGo</title><link>https://newjett0617.github.io/posts/mac-diy-gametogo/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/posts/mac-diy-gametogo/</guid><description>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能</description><content type="html"><![CDATA[<p>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能的遊戲，因此打算使用 MacOS 的硬體加上外接硬碟，讓開機選單選擇 Windows 的硬碟，這樣玩遊戲應該綽綽有餘。</p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 18 Dec 2020 12:27:39 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>MySQL Generated Column</title><link>https://newjett0617.github.io/posts/mysql-generated-column/</link><pubDate>Fri, 18 Dec 2020 12:27:39 +0800</pubDate><guid>https://newjett0617.github.io/posts/mysql-generated-column/</guid><description>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式 使用 MySQL Date and Time Functions 原始欄位拆分成「衍生欄位」 使用 Generated Column 產生「衍生欄位」 使用 MySQL Function 使</description><content type="html"><![CDATA[<p>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式</p>
+<ul>
+<li>使用 MySQL <a href="https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html">Date and Time Functions</a></li>
+<li>原始欄位拆分成「衍生欄位」</li>
+<li>使用 Generated Column 產生「衍生欄位」</li>
+</ul>
+<h2 id="使用-mysql-function">使用 MySQL Function</h2>
+<p>使用 MySQL Function 像是 <code>MONTH(birth)</code>，這個做法是可以 workaround</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="nb">DATE</span> <span class="k">NULL</span>
+<span class="p">)</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">InnoDB</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">WHERE</span> <span class="k">MONTH</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">)</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+</code></pre></div><table>
+<thead>
+<tr>
+<th>id</th>
+<th>select_type</th>
+<th>table</th>
+<th>partitions</th>
+<th>type</th>
+<th>possible_keys</th>
+<th>key</th>
+<th>key_len</th>
+<th>ref</th>
+<th>rows</th>
+<th>filtered</th>
+<th>Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SIMPLE</td>
+<td>t1</td>
+<td>NULL</td>
+<td>ALL</td>
+<td>NULL</td>
+<td>NULL</td>
+<td>NULL</td>
+<td>NULL</td>
+<td>83099</td>
+<td>100.00</td>
+<td>Using here</td>
+</tr>
+</tbody>
+</table>
+<p>explain 的結果 type = ALL，代表 full table scan，總共查了 83099 筆完成 query</p>
+<p>但是 birth 欄位無法進行 index，當筆數增加時 query 就會變慢</p>
+<h2 id="原始欄位拆分成衍生欄位">原始欄位拆分成「衍生欄位」</h2>
+<p>把 birth 拆成「年(year)」、「月(month)」、「日(day)」三個欄位，針對其欄位進行 indexing，在搜尋上的表現會更好</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="nb">DATE</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="k">year</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="k">month</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="k">day</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NULL</span>
+<span class="p">)</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">InnoDB</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">INDEX</span> <span class="o">`</span><span class="n">idx__month</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="k">month</span><span class="o">`</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span>
+  <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="k">year</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="k">month</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="k">day</span><span class="o">`</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">&#39;1985-12-20&#39;</span><span class="p">,</span> <span class="s1">&#39;1985&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span> <span class="s1">&#39;20&#39;</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">t1</span> <span class="k">WHERE</span> <span class="o">`</span><span class="k">month</span><span class="o">`</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+</code></pre></div><table>
+<thead>
+<tr>
+<th>id</th>
+<th>select_type</th>
+<th>table</th>
+<th>partitions</th>
+<th>type</th>
+<th>possible_keys</th>
+<th>key</th>
+<th>key_len</th>
+<th>ref</th>
+<th>rows</th>
+<th>filtered</th>
+<th>Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SIMPLE</td>
+<td>t1</td>
+<td>NULL</td>
+<td>ref</td>
+<td>idx__month</td>
+<td>idx__month</td>
+<td>5</td>
+<td>const</td>
+<td>7218</td>
+<td>100.00</td>
+<td>Using index</td>
+</tr>
+</tbody>
+</table>
+<p>explain 的結果 type = ref，代表使用到 normal index (不是 unique index)，總共查了 7218 筆完成 query</p>
+<p>比起使用 function 來說已經快很多了，增加 query 速度，但是這個很不聰明的做法，當 birth 欄位有修改時，其他三個欄位需要一起修改，有點麻煩</p>
+<h2 id="使用-generated-column-產生衍生欄位">使用 Generated Column 產生「衍生欄位」</h2>
+<p>使用 Generated Column 來自動產生「衍生欄位」，當原始欄位變更，會一並更新「衍生欄位」，這個做法就聰明多了</p>
+<p>語法如下</p>
+<pre><code>col_name data_type [GENERATED ALWAYS] AS (expressions)
+  [VIRTUAL | STORED] [NOT NULL | NULL]
+  [UNIQUE [KEY]] [[PRIMARY] KEY]
+  [COMMENT 'string']
+</code></pre><h3 id="virtual-column-與-stored-column">VIRTUAL column 與 STORED column</h3>
+<ul>
+<li>VIRTUAL (default)
+<ul>
+<li>virtual column values are not stored, but are evaluated when rows are read, immediately after any BEFORE triggers</li>
+<li>virtual column takes no storage</li>
+<li>InnoDB supports secondary indexes<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> on virtual column</li>
+</ul>
+</li>
+<li>STORED
+<ul>
+<li>column values are evaluated and stored when rows are inserted or updated</li>
+<li>stored column does require storage space and can be indexed</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="nb">DATE</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="k">year</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="k">YEAR</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">))</span> <span class="n">VIRTUAL</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="k">month</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="k">MONTH</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">))</span> <span class="n">VIRTUAL</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="k">day</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="k">DAY</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">))</span> <span class="n">VIRTUAL</span> <span class="k">NULL</span>
+<span class="p">)</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">InnoDB</span><span class="p">;</span>
+</code></pre></div><p>當 insert 資料時，會自動產生 year, month, day 欄位</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;1985-12-20&#39;</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div><pre><code>+----+------------+------+-------+------+
+| id | birth      | year | month | day  |
++----+------------+------+-------+------+
+|  1 | 1985-12-20 | 1985 |    12 |   20 |
++----+------------+------+-------+------+
+1 rows in set (0.00 sec)
+</code></pre><p>當 update birth 時，也會自動更新 year, month, day 欄位</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;1988-09-10&#39;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div><pre><code>+----+------------+------+-------+------+
+| id | birth      | year | month | day  |
++----+------------+------+-------+------+
+|  1 | 1988-09-10 | 1988 |     9 |   10 |
++----+------------+------+-------+------+
+1 rows in set (0.00 sec)
+</code></pre><p>Generated Column 只能提供讀，不給更新</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="k">year</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;1988&#39;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div><pre><code>ERROR 3105 (HY000): The value specified for generated column 'year' in table 't1' is not allowed.
+</code></pre><h2 id="一些錯誤">一些錯誤</h2>
+<p>generated column 的表達式必須遵守規則，當表達式包含不允許的構造，就會發生錯誤</p>
+<h3 id="運算錯誤">運算錯誤</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="mi">0</span><span class="p">)</span> <span class="n">VIRTUAL</span>
+<span class="p">);</span>
+</code></pre></div><pre><code>Query OK, 0 rows affected (0.05 sec)
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div><pre><code>ERROR 1365 (22012): Division by 0
+</code></pre><hr>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span>
+<span class="p">);</span>
+</code></pre></div><pre><code>Query OK, 0 rows affected (0.05 sec)
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div><pre><code>ERROR 1365 (22012): Division by 0
+</code></pre><h3 id="依賴錯誤">依賴錯誤</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span>
+<span class="p">);</span>
+</code></pre></div><pre><code>Query OK, 0 rows affected (0.05 sec)
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="k">DROP</span> <span class="k">COLUMN</span> <span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">;</span>
+</code></pre></div><pre><code>ERROR 3108 (HY000): Column 'x' has a generated column dependency.
+</code></pre><h3 id="資料型態錯誤">資料型態錯誤</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">+</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span>
+<span class="p">);</span>
+</code></pre></div><pre><code>Query OK, 0 rows affected (0.04 sec)
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">);</span>
+</code></pre></div><pre><code>ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'x'
+</code></pre><h3 id="key-錯誤">Key 錯誤</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span><span class="p">,</span>
+  <span class="k">UNIQUE</span> <span class="k">KEY</span> <span class="o">`</span><span class="n">uni__z</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">z</span><span class="o">`</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div><pre><code>Query OK, 0 rows affected (0.08 sec)
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div><pre><code>Query OK, 1 row affected (0.01 sec)
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div><pre><code>ERROR 1062 (23000): Duplicate entry '1' for key 'uni__z'
+</code></pre><p>應該還有許多場景可以應用</p>
+<ul>
+<li>像是 full_name 可以用 first_name + last_name 組出來</li>
+<li>像是原始欄位可以存 json 的資料類型，透過 Generated Column 解析 JSON 成 VIRTUAL column，透過 indexing VIRTUAL column，這樣就可以快速查詢 JSON 裡面的內容</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>secondary indexes 只找 key 而不找 raw data (todo, 待補相關知識) <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></content></item><item><title>[Mac] DIY GameToGo</title><link>https://newjett0617.github.io/posts/mac-diy-gametogo/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/posts/mac-diy-gametogo/</guid><description>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能</description><content type="html"><![CDATA[<p>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能的遊戲，因此打算使用 MacOS 的硬體加上外接硬碟，讓開機選單選擇 Windows 的硬碟，這樣玩遊戲應該綽綽有餘。</p>
 <p>剛好查到這篇 <a href="https://medium.com/@upchen_/%E5%9C%A8-mac-%E4%B8%8B-%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%9D-bootcamp-win10-%E5%88%B0%E5%A4%96%E6%8E%A5%E7%A1%AC%E7%A2%9F-%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84-gametogo-76c31896588">Medium</a>，這篇寫的很棒也很詳細，順便記錄下實作的差異。</p>
 <h2 id="第一部分">第一部分</h2>
 <h3 id="第三點">第三點</h3>
@@ -186,10 +399,10 @@ the sections of the manual are:
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">1</span> passwd
 </code></pre></div><p>想看檔案的手冊的話</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">5</span> passwd
-</code></pre></div>]]></content></item><item><title>[Laravel] 使用 Laradock 搭配 xdebug phpunit phpstorm</title><link>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</link><pubDate>Tue, 21 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</guid><description>修改 Laradock .env sed -i &amp;#39;&amp;#39; \ -e &amp;#39;s/WORKSPACE_INSTALL_XDEBUG=false/WORKSPACE_INSTALL_XDEBUG=true/g&amp;#39; \ -e &amp;#39;s/PHP_FPM_INSTALL_XDEBUG=false/PHP_FPM_INSTALL_XDEBUG=true/g&amp;#39; \ .env 重新建置 Laradock images docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm 設定 phpstorm config Preferences | Languages &amp;amp; Frameworks | PHP PHP Language level: choose you want CLI Interpreter: click ... create a cli interpreter, from docker &amp;hellip; Path mappings: OK Preferences | Languages &amp;amp; Frameworks | PHP |</description><content type="html"><![CDATA[<h2 id="修改-laradock-env">修改 Laradock .env</h2>
+</code></pre></div>]]></content></item><item><title>[Laravel] 使用 Laradock 搭配 xdebug phpunit phpstorm</title><link>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</link><pubDate>Tue, 21 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</guid><description>修改 Laradock .env sed -i &amp;#39;&amp;#39; \ -e &amp;#39;s|WORKSPACE_INSTALL_XDEBUG=false|WORKSPACE_INSTALL_XDEBUG=true|g&amp;#39; \ -e &amp;#39;s|PHP_FPM_INSTALL_XDEBUG=false|PHP_FPM_INSTALL_XDEBUG=true|g&amp;#39; \ .env 重新建置 Laradock images docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm 設定 phpstorm config Preferences | Languages &amp;amp; Frameworks | PHP PHP Language level: choose you want CLI Interpreter: click ... create a cli interpreter, from docker &amp;hellip; Path mappings: OK Preferences | Languages &amp;amp; Frameworks | PHP |</description><content type="html"><![CDATA[<h2 id="修改-laradock-env">修改 Laradock .env</h2>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s/WORKSPACE_INSTALL_XDEBUG=false/WORKSPACE_INSTALL_XDEBUG=true/g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s/PHP_FPM_INSTALL_XDEBUG=false/PHP_FPM_INSTALL_XDEBUG=true/g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_XDEBUG=false|WORKSPACE_INSTALL_XDEBUG=true|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|PHP_FPM_INSTALL_XDEBUG=false|PHP_FPM_INSTALL_XDEBUG=true|g&#39;</span> <span class="se">\
 </span><span class="se"></span>    .env
 </code></pre></div><h2 id="重新建置-laradock-images">重新建置 Laradock images</h2>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm
@@ -298,9 +511,9 @@ git clone https://github.com/laravel/laravel.git <span class="si">${</span><span
 composer install
 cp .env.example .env
 sed -i <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s/DB_HOST=127.0.0.1/DB_HOST=mysql/g&#39;</span> .env <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s/DB_PASSWORD=/DB_PASSWORD=root/g&#39;</span> .env <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s/DB_DATABASE=laravel/DB_DATABASE=&#39;</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span><span class="s1">&#39;/g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|DB_HOST=127.0.0.1|DB_HOST=mysql|g&#39;</span> .env <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|DB_PASSWORD=|DB_PASSWORD=root|g&#39;</span> .env <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|DB_DATABASE=laravel|DB_DATABASE=&#39;</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span><span class="s1">&#39;|g&#39;</span> <span class="se">\
 </span><span class="se"></span>    .env
 mysql --host<span class="o">=</span>mysql --user<span class="o">=</span>root --password<span class="o">=</span>root --execute<span class="o">=</span><span class="s2">&#34;CREATE DATABASE IF NOT EXISTS \`</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span><span class="s2">\` CHARACTER SET \`utf8mb4\` COLLATE \`utf8mb4_unicode_ci\`;&#34;</span><span class="p">;</span>
 php artisan key:generate

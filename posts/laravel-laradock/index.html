@@ -40,9 +40,9 @@ git clone https://github.com/laravel/laravel.git <span class=si>${</span><span c
 composer install
 cp .env.example .env
 sed -i <span class=se>\
-</span><span class=se></span>    -e <span class=s1>&#39;s/DB_HOST=127.0.0.1/DB_HOST=mysql/g&#39;</span> .env <span class=se>\
-</span><span class=se></span>    -e <span class=s1>&#39;s/DB_PASSWORD=/DB_PASSWORD=root/g&#39;</span> .env <span class=se>\
-</span><span class=se></span>    -e <span class=s1>&#39;s/DB_DATABASE=laravel/DB_DATABASE=&#39;</span><span class=si>${</span><span class=nv>PROJECT_NAME</span><span class=si>}</span><span class=s1>&#39;/g&#39;</span> <span class=se>\
+</span><span class=se></span>    -e <span class=s1>&#39;s|DB_HOST=127.0.0.1|DB_HOST=mysql|g&#39;</span> .env <span class=se>\
+</span><span class=se></span>    -e <span class=s1>&#39;s|DB_PASSWORD=|DB_PASSWORD=root|g&#39;</span> .env <span class=se>\
+</span><span class=se></span>    -e <span class=s1>&#39;s|DB_DATABASE=laravel|DB_DATABASE=&#39;</span><span class=si>${</span><span class=nv>PROJECT_NAME</span><span class=si>}</span><span class=s1>&#39;|g&#39;</span> <span class=se>\
 </span><span class=se></span>    .env
 mysql --host<span class=o>=</span>mysql --user<span class=o>=</span>root --password<span class=o>=</span>root --execute<span class=o>=</span><span class=s2>&#34;CREATE DATABASE IF NOT EXISTS \`</span><span class=si>${</span><span class=nv>PROJECT_NAME</span><span class=si>}</span><span class=s2>\` CHARACTER SET \`utf8mb4\` COLLATE \`utf8mb4_unicode_ci\`;&#34;</span><span class=p>;</span>
 php artisan key:generate
