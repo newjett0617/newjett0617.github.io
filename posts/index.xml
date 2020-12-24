@@ -1,4 +1,93 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 18 Dec 2020 12:27:39 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[MySQL] 使用 Generated Column</title><link>https://newjett0617.github.io/posts/mysql-generated-column/</link><pubDate>Fri, 18 Dec 2020 12:27:39 +0800</pubDate><guid>https://newjett0617.github.io/posts/mysql-generated-column/</guid><description>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式 使用 MySQL Date and Time Functions 原始欄位拆分成「衍生欄位」 使用 Generated Column 產生「衍生欄位」 使用 MySQL Function 使</description><content type="html"><![CDATA[<p>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式</p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Dec 2020 15:52:07 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Docker] 使用 Traefik 來當作反向代理</title><link>https://newjett0617.github.io/posts/docker-traefik/</link><pubDate>Wed, 23 Dec 2020 15:52:07 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-traefik/</guid><description>最近在伺服器架設了一個應用程式，這個應用程式是跑在 Docker 上，假如應用程式需要對外服務的話，通常會需要暴露一個 port 才能將請求轉導到容器內，可以透過 curl</description><content type="html"><![CDATA[<p>最近在伺服器架設了一個應用程式，這個應用程式是跑在 Docker 上，假如應用程式需要對外服務的話，通常會需要暴露一個 port 才能將請求轉導到容器內，可以透過 <code>curl http://xx.xx.xx.xx:8080</code> 可以訪問到容器的 nginx 應用程式</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -d --publish<span class="o">=</span><span class="s1">&#39;8080:80&#39;</span> nginx:alpine
+</code></pre></div><p>一但暴露了 port 話，任何人可以用掃描工具發現這個 IP 的 port 是開啟的狀態（IPv4 跟 port 是有範圍<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>），就有機會對 port 做一些事情</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">nc -v -z xx.xx.xx.xx <span class="m">8080</span>
+</code></pre></div><pre><code>Connection to 172.104.85.116 8080 port [tcp/http-alt] succeeded!
+</code></pre><p>通常會限定是只有 127.0.0.1 的才能訪問該 port，這樣的話外部就不會發現 8080 port 是被打開的</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -d --publish<span class="o">=</span><span class="s1">&#39;127.0.0.1:8080:80&#39;</span> nginx:alpine
+</code></pre></div><pre><code>CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                    NAMES
+05179d024297   nginx:alpine   &quot;/docker-entrypoint.…&quot;   About a minute ago   Up About a minute   127.0.0.1:8080-&gt;80/tcp   nginx
+</code></pre><pre><code>nc -v -z xx.xx.xx.xx 8080
+</code></pre><pre><code>nc: connect to xx.xx.xx.xx port 8080 (tcp) failed: Connection refused
+</code></pre><p>一但限定只有 127.0.0.1 能訪問的話，外部就無法訪問，必須要有一個反向代理 (Reverse Proxy) 將請求代理到內部</p>
+<p>有許多工具可以使用，像是 <a href="https://httpd.apache.org/">Apache</a>, <a href="https://nginx.org/">Nginx</a>, <a href="https://caddyserver.com/">Caddy</a> 等等都可以做到 reverse proxy 的功能</p>
+<p>本文要介紹的 Traefik 跟 Docker 有著密不可分的關係，透過使用 Docker 的物件 labels 來達到目的</p>
+<p>只需要在容器貼上標籤 labels，就可以很容易地達到 reverse proxy 目的，Traefik 會自動偵測並接管容器，將請求代理至指定的容器</p>
+<p><img src="https://raw.githubusercontent.com/traefik/traefik/master/docs/content/assets/img/traefik-architecture.png" alt=""></p>
+<h2 id="建置-traefik">建置 Traefik</h2>
+<p>首先需要建立一個給 Traefik 專屬使用的網路</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker network create reverse-proxy
+</code></pre></div><p>撰寫 docker-compose.yml 後就可以啟動了</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">reverse-proxy</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">external</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">traefik</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker.io/library/traefik<span class="p">:</span>v2<span class="m">.3</span><span class="w">
+</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>traefik<span class="w">
+</span><span class="w">    </span><span class="k">restart</span><span class="p">:</span><span class="w"> </span>always<span class="w">
+</span><span class="w">    </span><span class="k">command</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- --api.dashboard=<span class="kc">true</span><span class="w">
+</span><span class="w">      </span>- --providers.docker=<span class="kc">true</span><span class="w"> </span><span class="c"># Enabling docker provider</span><span class="w">
+</span><span class="w">      </span>- --providers.docker.exposedbydefault=<span class="kc">false</span><span class="w"> </span><span class="c"># Do not expose containers unless explicitly told so</span><span class="w">
+</span><span class="w">      </span>- --entrypoints.web.address=<span class="p">:</span><span class="m">80</span><span class="w"> </span><span class="c"># Traefik will listen to incoming request on the port 80 (HTTP)</span><span class="w">
+</span><span class="w">      </span>- --entrypoints.websecure.address=<span class="p">:</span><span class="m">443</span><span class="w"> </span><span class="c"># Traefik will listen to incoming request on the port 443 (HTTPS)</span><span class="w">
+</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.httpchallenge=<span class="kc">true</span><span class="w"> </span><span class="c"># Enable a http challenge named &#34;myresolver&#34;</span><span class="w">
+</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web<span class="w"> </span><span class="c"># Tell it to use our predefined entrypoint named &#34;web&#34;</span><span class="w">
+</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.email=postmaster@example.com<span class="w"> </span><span class="c"># The email to provide to let&#39;s encrypt</span><span class="w">
+</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json<span class="w"> </span><span class="c"># Tell to store the certificate on a path under our volume</span><span class="w">
+</span><span class="w">    </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="m">80</span><span class="p">:</span><span class="m">80</span><span class="w">
+</span><span class="w">      </span>- <span class="m">443</span><span class="p">:</span><span class="m">443</span><span class="w">
+</span><span class="w">    </span><span class="k">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- reverse-proxy<span class="w">
+</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- /var/run/docker.sock<span class="p">:</span>/var/run/docker.sock<span class="p">:</span>ro<span class="w">
+</span><span class="w">      </span>- ./letsencrypt<span class="p">:</span>/letsencrypt<span class="w"> </span><span class="c"># Create a letsencrypt dir within the folder where the docker-compose file is</span><span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- traefik.enable=<span class="kc">true</span><span class="w">
+</span><span class="w">      </span>- traefik.http.routers.traefik.rule=Host(`traefik.example.com`)<span class="w">
+</span><span class="w">      </span>- traefik.http.routers.traefik.entrypoints=websecure<span class="w">
+</span><span class="w">      </span>- traefik.http.routers.traefik.tls.certresolver=myresolver<span class="w">
+</span><span class="w">      </span>- traefik.http.routers.traefik.service=api@internal<span class="w">
+</span><span class="w">      </span>- traefik.http.routers.traefik.middlewares=auth<span class="w">
+</span><span class="w">      </span>- traefik.http.middlewares.auth.basicauth.users=username<span class="p">:</span>password<span class="w"> </span><span class="c"># use basic auth, `$ htpasswd username password` (output replace $ -&gt; $$)</span><span class="w">
+</span><span class="w">      </span>- traefik.http.services.dashboard.loadbalancer.server.port=<span class="m">8080</span><span class="w"> </span><span class="c"># 443 -&gt; 8080</span><span class="w">
+</span></code></pre></div><h2 id="使用-traefik">使用 Traefik</h2>
+<p>在一個 nginx 上加上 label 就能啟動</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">reverse-proxy</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">external</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">snginx</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker.io/library/nginx<span class="p">:</span>alpine<span class="w">
+</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>web<span class="w">
+</span><span class="w">    </span><span class="k">expose</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="m">80</span><span class="w">
+</span><span class="w">    </span><span class="k">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- reverse-proxy<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- traefik.enable=<span class="kc">true</span><span class="w"> </span><span class="c"># Explicitly tell Traefik to expose this container</span><span class="w">
+</span><span class="w">      </span>- traefik.http.routers.snginx.rule=Host(`snginx.example.com`)<span class="w"> </span><span class="c"># The domain the service will respond to</span><span class="w">
+</span><span class="w">      </span>- traefik.http.routers.snginx.entrypoints=websecure<span class="w"> </span><span class="c"># Allow request only from the predefined entry point named &#34;websecure&#34;</span><span class="w">
+</span><span class="w">      </span>- traefik.http.routers.snginx.tls.certresolver=myresolver<span class="w"> </span><span class="c"># Uses the Host rule to define which certificate to issue</span><span class="w">
+</span></code></pre></div><p>可以自己撰寫規則，我是使用 subdomain 方式去匹配 container，也可以使用 path 方式匹配，traefik 提供的功能太多了，以後有碰到再來寫</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>IPv4 range -&gt; <a href="https://en.wikipedia.org/wiki/IPv4">https://en.wikipedia.org/wiki/IPv4</a></p>
+<p>port range -&gt; <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></content></item><item><title>[MySQL] 使用 Generated Column</title><link>https://newjett0617.github.io/posts/mysql-generated-column/</link><pubDate>Fri, 18 Dec 2020 12:27:39 +0800</pubDate><guid>https://newjett0617.github.io/posts/mysql-generated-column/</guid><description>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式 使用 MySQL Date and Time Functions 原始欄位拆分成「衍生欄位」 使用 Generated Column 產生「衍生欄位」 使用 MySQL Function 使</description><content type="html"><![CDATA[<p>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式</p>
 <ul>
 <li>使用 MySQL <a href="https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html">Date and Time Functions</a></li>
 <li>原始欄位拆分成「衍生欄位」</li>
