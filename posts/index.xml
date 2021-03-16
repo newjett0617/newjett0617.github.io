@@ -1,4 +1,44 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Dec 2020 15:52:13 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Docker] 自架 RSS, 使用 Miniflux 搭配 Traefik</title><link>https://newjett0617.github.io/posts/docker-miniflux-traefik/</link><pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-miniflux-traefik/</guid><description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買服務，在思考有什麼工具來解決我訂閱數量的問題，搜尋 self hosted rss 就有一堆文章及工具提供選擇，於是我挑</description><content type="html"><![CDATA[<p>最近因為 <a href="https://www.inoreader.com/">Inoreader</a> 的免費訂閱數量快到上限了，不想掏錢購買服務，在思考有什麼工具來解決我訂閱數量的問題，搜尋 <code>self hosted rss</code> 就有一堆文章及工具提供選擇，於是我挑了 <a href="https://miniflux.app/">Miniflux</a> 來使用</p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 09 Mar 2021 00:55:53 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Tip] 將 Kobo 書籍放入 Kindle 中</title><link>https://newjett0617.github.io/posts/tip-kobo-into-kindle/</link><pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate><guid>https://newjett0617.github.io/posts/tip-kobo-into-kindle/</guid><description>準備工具 等等的操作會需要這些工具來輔助完成 Calibre brew install --cask calibre Calibre 外掛程式 DeDRM VERSION=$(curl -sL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d&amp;#39;&amp;#34;&amp;#39; -f 4) VERSION2=$(echo ${VERSION} | cut -c 2-) curl -sL &amp;#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/${VERSION}/DeDRM_tools_${VERSION2}.zip&amp;#34; -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝外掛程式 教學 （如</description><content type="html"><![CDATA[<h2 id="準備工具">準備工具</h2>
+<p>等等的操作會需要這些工具來輔助完成</p>
+<ul>
+<li><a href="https://calibre-ebook.com/download">Calibre</a>
+<ul>
+<li><code>brew install --cask calibre</code></li>
+</ul>
+</li>
+<li>Calibre 外掛程式 <a href="https://github.com/apprenticeharper/DeDRM_tools/releases">DeDRM</a>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">VERSION</span><span class="o">=</span><span class="k">$(</span>curl -sL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest <span class="p">|</span> grep tag_name <span class="p">|</span> cut -d<span class="s1">&#39;&#34;&#39;</span> -f 4<span class="k">)</span>
+<span class="nv">VERSION2</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span> <span class="p">|</span> cut -c 2-<span class="k">)</span>
+curl -sL <span class="s2">&#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">/DeDRM_tools_</span><span class="si">${</span><span class="nv">VERSION2</span><span class="si">}</span><span class="s2">.zip&#34;</span> -o dedrm.zip
+unzip dedrm.zip -d dedrm
+rm dedrm.zip
+</code></pre></div><ul>
+<li>安裝外掛程式 <a href="https://github.com/apprenticeharper/DeDRM_tools/wiki/Exactly-how-to-remove-DRM#2-install-calibre">教學</a> （如何安裝外掛及載入外掛）</li>
+</ul>
+</li>
+<li><a href="https://www.adobe.com/sea/solutions/ebook/digital-editions/download.html">Adobe Digital Editions</a>
+<ul>
+<li><code>brew install --cask adobe-digital-editions</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="準備書籍">準備書籍</h2>
+<p>到 kobo 下載想要放入 kindle 的書籍，下載後會得到 <code>URLLink.acsm</code> 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟</p>
+<h2 id="進行轉檔">進行轉檔</h2>
+<p>開啟 Calibre 並點擊加入書籍，把該本書籍載入後，選擇你要的輸出格式後就可以進行轉檔了</p>
+<h2 id="reference-from">reference from</h2>
+<ul>
+<li><a href="http://jdev.tw/blog/5383/kobo-ebook-to-kindle/comment-page-1">http://jdev.tw/blog/5383/kobo-ebook-to-kindle/comment-page-1</a></li>
+<li><a href="https://medium.com/akichy/%E7%AD%86%E8%A8%98-%E5%A6%82%E4%BD%95%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E6%A8%82%E5%A4%A9-%E9%9B%BB%E5%AD%90%E6%9B%B8%E6%AA%94%E6%A1%88-5aa529b61203">https://medium.com/akichy/%E7%AD%86%E8%A8%98-%E5%A6%82%E4%BD%95%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E6%A8%82%E5%A4%A9-%E9%9B%BB%E5%AD%90%E6%9B%B8%E6%AA%94%E6%A1%88-5aa529b61203</a></li>
+</ul>
+]]></content></item><item><title>[Linux] 安全性更新 Sudo</title><link>https://newjett0617.github.io/posts/linux-sudo-update/</link><pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate><guid>https://newjett0617.github.io/posts/linux-sudo-update/</guid><description>最近看到 這篇 說到，在預設 sudo 組態的情況下，非擁有 root 權限的使用者能夠透過 sudo 來提升權限而獲得 root 的權限，只要能登入主機的都可以獲得 root 的權限 也看到 這篇</description><content type="html"><![CDATA[<p>最近看到 <a href="https://www.ithome.com.tw/news/142469">這篇</a> 說到，在預設 sudo 組態的情況下，非擁有 root 權限的使用者能夠透過 sudo 來提升權限而獲得 root 的權限，只要能登入主機的都可以獲得 root 的權限</p>
+<p>也看到 <a href="https://askubuntu.com/a/1311627">這篇</a> 有提供的指令可以檢查看看是否受到此漏洞的影響，自己檢測一下發現居然不是 <code>usage: </code> 開頭，看來我要來更新套件了</p>
+<p>我是參考 <a href="https://www.cyberciti.biz/faq/ubuntu-upgrade-update-single-package-using-apt-get/">這篇</a> 的做法，使用 apt 方式更新套件</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># apt update</span>
+<span class="c1"># apt list --upgradable</span>
+<span class="c1"># apt --only-upgrade install &lt;PackageName&gt;</span>
+</code></pre></div><p>在 update 後可以看看有哪些套件是可更新的，剛好有看到 <code>sudo</code> 這個套件，那就來更新吧</p>
+]]></content></item><item><title>[Docker] 自架 RSS, 使用 Miniflux 搭配 Traefik</title><link>https://newjett0617.github.io/posts/docker-miniflux-traefik/</link><pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-miniflux-traefik/</guid><description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買服務，在思考有什麼工具來解決我訂閱數量的問題，搜尋 self hosted rss 就有一堆文章及工具提供選擇，於是我挑</description><content type="html"><![CDATA[<p>最近因為 <a href="https://www.inoreader.com/">Inoreader</a> 的免費訂閱數量快到上限了，不想掏錢購買服務，在思考有什麼工具來解決我訂閱數量的問題，搜尋 <code>self hosted rss</code> 就有一堆文章及工具提供選擇，於是我挑了 <a href="https://miniflux.app/">Miniflux</a> 來使用</p>
 <h2 id="安裝-miniflux">安裝 Miniflux</h2>
 <p>使用 docker-compose 來進行安裝， <a href="https://github.com/miniflux/v2/">repository</a> 中有提供 <a href="https://raw.githubusercontent.com/miniflux/v2/master/contrib/docker-compose/basic.yml">basic.yaml</a> 範例當作使用，就不多贅述了</p>
 <h2 id="搭配-traefik">搭配 Traefik</h2>
@@ -826,7 +866,7 @@ x-ratelimit-remaining: 指定時間內剩下的請求次數
 retry-after: 15
 retry-after: 距離下次重試請求需要等待的時間（秒）
 </code></pre><p>如果想要自行設定次數的話，在 Route 使用 Middleware 來設定次數 Rate Limiting</p>
-]]></content></item><item><title>[Tools] 刪除多個 GitHub Repositories</title><link>https://newjett0617.github.io/posts/tools-delete-multiple-github-repositories/</link><pubDate>Sun, 07 Jul 2019 21:09:09 +0800</pubDate><guid>https://newjett0617.github.io/posts/tools-delete-multiple-github-repositories/</guid><description>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &amp;hellip; GitHub 有提供 api 方式可以使用，這次使用 shell script 方式刪除 不一定要使用 shell scri</description><content type="html"><![CDATA[<p>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &hellip;</p>
+]]></content></item><item><title>[Tip] 刪除多個 GitHub Repositories</title><link>https://newjett0617.github.io/posts/tip-delete-multiple-github-repositories-using-api/</link><pubDate>Sun, 07 Jul 2019 21:09:09 +0800</pubDate><guid>https://newjett0617.github.io/posts/tip-delete-multiple-github-repositories-using-api/</guid><description>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &amp;hellip; GitHub 有提供 api 方式可以使用，這次使用 shell script 方式刪除 不一定要使用 shell scri</description><content type="html"><![CDATA[<p>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &hellip;</p>
 <p>GitHub 有提供 api 方式可以使用，這次使用 shell script 方式刪除</p>
 <p>不一定要使用 shell script，只要能夠發請求的話，即可達成目的</p>
 <h2 id="建立一個-shell-script">建立一個 shell script</h2>
