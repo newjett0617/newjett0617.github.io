@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>tar on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/tar/</link>
+    <description>Recent content in tar on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 04 Oct 2020 11:59:30 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/tar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 中的 tar 指令</title>
+      <link>https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sun, 04 Oct 2020 11:59:30 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 中常常看到副檔名 .tar.gz 的檔案，紀錄一下過程
+打包檔案 副檔名包含 .tar 的檔案，都是使用 tar 指令進行打包，也代表未使用壓縮的檔案
+看一下怎麼打包檔案
+tar -c -v -f a.tar /etc -c, --create: create a new ARCHIVE -f, --file=ARCHIVE: use ARCHIVE file or device ARCHIVE -v, --verbose: verbosely list files processed 壓縮檔案 副檔名 .tar.gz 的檔案，是經過 gzip 壓縮後的 tar 檔案，可以縮寫成 .tgz
+看一下怎麼壓縮檔案，多一個參數 -z
+tar -c -z -v -f a.tar.gz /etc -z, --gzip Filter the archive through gzip(1) 解壓縮檔案 看一下怎麼解壓縮檔案，使用 -x 參數
+tar -x -v -f a.</description>
+    </item>
+    
+  </channel>
+</rss>

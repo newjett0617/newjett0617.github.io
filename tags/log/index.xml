@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>log on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/log/</link>
+    <description>Recent content in log on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 29 Apr 2021 17:24:09 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker 容器日誌整合 AWS CloudWatch</title>
+      <link>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</guid>
+      <description>最近有收到需求是要將容器的日誌寫入 AWS CloudWatch 中，剛好 docker 的 logging drivers 有支援，紀錄一下過程
+docker 預設的 logging driver 是 json-file，日誌檔案路徑在 /var/lib/docker/containers/&amp;lt;CONTAINER_ID&amp;gt;/&amp;lt;CONTAINER_ID&amp;gt;-json.log
+這是 docker 的 logging drivers 支援的清單 logging driver 可以單一容器設定，也可以全域設定 (修改 /etc/docker/daemon.json)
+下面關於 docker 的示範都是使用單一容器設定 logging driver
+直接使用 awslogs logging driver 沒有傳遞 AWS Credentials 而直接使用 awslogs logging driver 的話會有下面錯誤
+啟動容器
+docker run --name test1 \  --log-driver awslogs \  --log-opt &amp;#34;awslogs-region=us-east-1&amp;#34; \  --log-opt &amp;#34;awslogs-group=myLogGroup&amp;#34; \  --log-opt &amp;#34;awslogs-stream=myLogStream&amp;#34; \  busybox echo test1 查看一下狀態</description>
+    </item>
+    
+  </channel>
+</rss>

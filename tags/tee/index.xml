@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>tee on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/tee/</link>
+    <description>Recent content in tee on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 09 Aug 2020 15:32:11 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/tee/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 中的 tee 指令</title>
+      <link>https://newjett0617.github.io/posts/20200809-linux-%E4%B8%AD%E7%9A%84-tee-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sun, 09 Aug 2020 15:32:11 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200809-linux-%E4%B8%AD%E7%9A%84-tee-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在設定 config 檔案時，第一次可能會用編輯器進行修改，但第二、三次就會用指令的方式進行修改
+常常遇到因為權限問題而沒辦法寫入檔案中，沒辦法指令化，範例如下
+sudo echo &amp;#39;foo&amp;#39; &amp;gt; /foo -bash: /foo: Permission denied 在 這篇 剛好有人問，因此紀錄一下
+tee tee 指令是從 standard input (stdin) 讀取並輸出 standard output (stdout) 和文件，同時「螢幕輸出」及「輸出檔案」
+echo &amp;#39;foo&amp;#39; | sudo tee /foo 上面的方式會直接覆蓋掉檔案 /foo，如果想要追加寫入檔案的話，可以使用 -a 或 --append 參數 (類似於 &amp;gt;&amp;gt; 的方式)
+echo &amp;#39;foo&amp;#39; | sudo tee -a /foo 如果不想要看到 tee 輸出在螢幕的內容，可以將 tee 的 stdout 丟到黑洞中 /dev/null
+echo &amp;#39;foo&amp;#39; | sudo tee -a /foo &amp;gt; /dev/null </description>
+    </item>
+    
+  </channel>
+</rss>

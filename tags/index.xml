@@ -1,1 +1,212 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Dev Jett</title><link>https://newjett0617.github.io/tags/</link><description>Recent content in Tags on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 09 Mar 2021 00:55:53 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>tip</title><link>https://newjett0617.github.io/tags/tip/</link><pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate><guid>https://newjett0617.github.io/tags/tip/</guid><description/></item><item><title>Linux</title><link>https://newjett0617.github.io/tags/linux/</link><pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate><guid>https://newjett0617.github.io/tags/linux/</guid><description/></item><item><title>docker</title><link>https://newjett0617.github.io/tags/docker/</link><pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate><guid>https://newjett0617.github.io/tags/docker/</guid><description/></item><item><title>mysql</title><link>https://newjett0617.github.io/tags/mysql/</link><pubDate>Fri, 18 Dec 2020 12:27:39 +0800</pubDate><guid>https://newjett0617.github.io/tags/mysql/</guid><description/></item><item><title>iTerm2</title><link>https://newjett0617.github.io/tags/iterm2/</link><pubDate>Thu, 10 Dec 2020 18:11:05 +0800</pubDate><guid>https://newjett0617.github.io/tags/iterm2/</guid><description/></item><item><title>gametogo</title><link>https://newjett0617.github.io/tags/gametogo/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/tags/gametogo/</guid><description/></item><item><title>mac</title><link>https://newjett0617.github.io/tags/mac/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/tags/mac/</guid><description/></item><item><title>Ping</title><link>https://newjett0617.github.io/tags/ping/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/tags/ping/</guid><description/></item><item><title>Commands</title><link>https://newjett0617.github.io/tags/commands/</link><pubDate>Sun, 04 Oct 2020 11:59:30 +0800</pubDate><guid>https://newjett0617.github.io/tags/commands/</guid><description/></item><item><title>Laravel</title><link>https://newjett0617.github.io/tags/laravel/</link><pubDate>Tue, 21 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/tags/laravel/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/</link>
+    <description>Recent content in Tags on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 11 Aug 2021 13:34:03 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kustomize</title>
+      <link>https://newjett0617.github.io/tags/kustomize/</link>
+      <pubDate>Wed, 11 Aug 2021 13:34:03 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/kustomize/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://newjett0617.github.io/tags/aws/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloudwatch</title>
+      <link>https://newjett0617.github.io/tags/cloudwatch/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/cloudwatch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>daemon</title>
+      <link>https://newjett0617.github.io/tags/daemon/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/daemon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://newjett0617.github.io/tags/docker/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>log</title>
+      <link>https://newjett0617.github.io/tags/log/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/log/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>logging-driver</title>
+      <link>https://newjett0617.github.io/tags/logging-driver/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/logging-driver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kindle</title>
+      <link>https://newjett0617.github.io/tags/kindle/</link>
+      <pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/kindle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kobo</title>
+      <link>https://newjett0617.github.io/tags/kobo/</link>
+      <pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/kobo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sudo</title>
+      <link>https://newjett0617.github.io/tags/sudo/</link>
+      <pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/sudo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>miniflux</title>
+      <link>https://newjett0617.github.io/tags/miniflux/</link>
+      <pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/miniflux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rss</title>
+      <link>https://newjett0617.github.io/tags/rss/</link>
+      <pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/rss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wintogo</title>
+      <link>https://newjett0617.github.io/tags/wintogo/</link>
+      <pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/wintogo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>logrotate</title>
+      <link>https://newjett0617.github.io/tags/logrotate/</link>
+      <pubDate>Thu, 05 Nov 2020 15:27:07 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/logrotate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kind</title>
+      <link>https://newjett0617.github.io/tags/kind/</link>
+      <pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/kind/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://newjett0617.github.io/tags/kubernetes/</link>
+      <pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tar</title>
+      <link>https://newjett0617.github.io/tags/tar/</link>
+      <pubDate>Sun, 04 Oct 2020 11:59:30 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/tar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sed</title>
+      <link>https://newjett0617.github.io/tags/sed/</link>
+      <pubDate>Thu, 10 Sep 2020 15:15:08 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/sed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tee</title>
+      <link>https://newjett0617.github.io/tags/tee/</link>
+      <pubDate>Sun, 09 Aug 2020 15:32:11 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/tee/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>man</title>
+      <link>https://newjett0617.github.io/tags/man/</link>
+      <pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/man/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cut</title>
+      <link>https://newjett0617.github.io/tags/cut/</link>
+      <pubDate>Fri, 12 Jun 2020 16:31:49 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/cut/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scp</title>
+      <link>https://newjett0617.github.io/tags/scp/</link>
+      <pubDate>Fri, 08 Feb 2019 08:37:48 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/tags/scp/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

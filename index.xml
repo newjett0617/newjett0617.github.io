@@ -1,1 +1,213 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dev Jett</title><link>https://newjett0617.github.io/</link><description>Recent content on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 09 Mar 2021 00:55:53 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>[Tip] 將 Kobo 書籍放入 Kindle 中</title><link>https://newjett0617.github.io/posts/tip-kobo-into-kindle/</link><pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate><guid>https://newjett0617.github.io/posts/tip-kobo-into-kindle/</guid><description>準備工具 等等的操作會需要這些工具來輔助完成 Calibre brew install --cask calibre Calibre 外掛程式 DeDRM VERSION=$(curl -sL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d&amp;#39;&amp;#34;&amp;#39; -f 4) VERSION2=$(echo ${VERSION} | cut -c 2-) curl -sL &amp;#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/${VERSION}/DeDRM_tools_${VERSION2}.zip&amp;#34; -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝外掛程式 教學 （如</description></item><item><title>[Linux] 安全性更新 Sudo</title><link>https://newjett0617.github.io/posts/linux-sudo-update/</link><pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate><guid>https://newjett0617.github.io/posts/linux-sudo-update/</guid><description>最近看到 這篇 說到，在預設 sudo 組態的情況下，非擁有 root 權限的使用者能夠透過 sudo 來提升權限而獲得 root 的權限，只要能登入主機的都可以獲得 root 的權限 也看到 這篇</description></item><item><title>[Docker] 自架 RSS, 使用 Miniflux 搭配 Traefik</title><link>https://newjett0617.github.io/posts/docker-miniflux-traefik/</link><pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-miniflux-traefik/</guid><description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買服務，在思考有什麼工具來解決我訂閱數量的問題，搜尋 self hosted rss 就有一堆文章及工具提供選擇，於是我挑</description></item><item><title>[Docker] 使用 Traefik 來當作反向代理 Reverse Proxy</title><link>https://newjett0617.github.io/posts/docker-traefik/</link><pubDate>Wed, 23 Dec 2020 15:52:07 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-traefik/</guid><description>最近在伺服器架設了一個應用程式，這個應用程式是跑在 Docker 上，假如應用程式需要對外服務的話，通常會需要暴露一個 port 才能將請求轉導到容器內，可以透過 curl</description></item><item><title>[MySQL] 使用 Generated Column</title><link>https://newjett0617.github.io/posts/mysql-generated-column/</link><pubDate>Fri, 18 Dec 2020 12:27:39 +0800</pubDate><guid>https://newjett0617.github.io/posts/mysql-generated-column/</guid><description>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式 使用 MySQL Date and Time Functions 原始欄位拆分成「衍生欄位」 使用 Generated Column 產生「衍生欄位」 使用 MySQL Function 使</description></item><item><title>[iTerm2] 筆記</title><link>https://newjett0617.github.io/posts/iterm2-note/</link><pubDate>Thu, 10 Dec 2020 18:11:05 +0800</pubDate><guid>https://newjett0617.github.io/posts/iterm2-note/</guid><description>hotkey description command + t 開啟新的 windows command + w 關閉 windows command + option + 上下左右 移動 windows focus command + d 垂直切割 windows command + shift + d 水平切割 windows 平常會搭配 Magnet 變更視窗尺寸，但是 iterm2 預設有些限制讓我</description></item><item><title>[Mac] DIY GameToGo</title><link>https://newjett0617.github.io/posts/mac-diy-gametogo/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/posts/mac-diy-gametogo/</guid><description>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能</description></item><item><title>[Linux] Logrotate</title><link>https://newjett0617.github.io/posts/linux-logrotate/</link><pubDate>Thu, 05 Nov 2020 15:27:07 +0800</pubDate><guid>https://newjett0617.github.io/posts/linux-logrotate/</guid><description>最近在 Linux 主機中的 /var/log 資料夾底下發現有許多的 xxx.log.1 xxx.log.2 &amp;hellip; 的檔案，好奇去查並記錄下來 這些檔案是 logrotate 產生的檔案，主要功能是做日誌檔案的輪替 logrotate 設定檔 主要設定檔</description></item><item><title>[Docker] 使用 KIND 建置本地 Kubernetes cluster</title><link>https://newjett0617.github.io/posts/docker-kind-local-kubernetes-cluster/</link><pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-kind-local-kubernetes-cluster/</guid><description>最近在學習 Kubernetes 的相關知識，需要建立 cluster 環境，一開始會建議使用單節點的 cluster minikube ，但是有些功能是在單節點做不到，需要建立多節點的 cluster 來進行測試，剛好有看到</description></item><item><title>關閉 Ping Reply</title><link>https://newjett0617.github.io/posts/disable-ping-reply/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/disable-ping-reply/</guid><description>關掉主機的 ICMP1 回應 (ping reply) 主機預設是開啟 (0) ，關閉 (1) 暫時地禁止 ping reply 重新啟動後仍會得到 ping reply echo &amp;#34;1&amp;#34; | sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all 永久地禁止 ping reply 重新啟動後無法得到 ping reply echo &amp;#34;net.ipv4.icmp_echo_ignore_all = 1&amp;#34; | sudo</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/</link>
+    <description>Recent content on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 11 Aug 2021 13:34:03 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Kustomize 對 Kubernetes 物件進行宣告式管理</title>
+      <link>https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 11 Aug 2021 13:34:03 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/</guid>
+      <description>在 kubernetes 官網 中有看到一個用來管理 kubernetes 的工具，叫做 Kustomize，透過 kustomization 檔案來宣告式 ( Declarative) 管理 kubernetes 物件
+安裝 Kustomize 從 kubernetes 1.14 之後就有支援 kustomization 檔案
+kubectl kustomize DIR [flags] [options] DIR 目錄下，必須有 kustomization 檔案，名稱可以為下列三個其中一個
+ kustomization.yaml kustomization.yml Kustomization  但是也可以獨立安裝 kustomize-cli，其他安裝方式請看 here
+brew install kustomize Kustomize 工作原理 主要分成 base 及 overlays
+base 會透過 kustomization 檔案定義使用的哪些 kubernetes 物件
+overlays 也會透過 kustomization 檔案定義要使用哪個 base，並在 base 上新增補丁 (Patch)，如果在 base 上有該資源的話就複寫，如果沒有的話就新增
+資料夾結構如下
+. ├── base │ ├── configMap.</description>
+    </item>
+    
+    <item>
+      <title>Docker 容器日誌整合 AWS CloudWatch</title>
+      <link>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</guid>
+      <description>最近有收到需求是要將容器的日誌寫入 AWS CloudWatch 中，剛好 docker 的 logging drivers 有支援，紀錄一下過程
+docker 預設的 logging driver 是 json-file，日誌檔案路徑在 /var/lib/docker/containers/&amp;lt;CONTAINER_ID&amp;gt;/&amp;lt;CONTAINER_ID&amp;gt;-json.log
+這是 docker 的 logging drivers 支援的清單 logging driver 可以單一容器設定，也可以全域設定 (修改 /etc/docker/daemon.json)
+下面關於 docker 的示範都是使用單一容器設定 logging driver
+直接使用 awslogs logging driver 沒有傳遞 AWS Credentials 而直接使用 awslogs logging driver 的話會有下面錯誤
+啟動容器
+docker run --name test1 \  --log-driver awslogs \  --log-opt &amp;#34;awslogs-region=us-east-1&amp;#34; \  --log-opt &amp;#34;awslogs-group=myLogGroup&amp;#34; \  --log-opt &amp;#34;awslogs-stream=myLogStream&amp;#34; \  busybox echo test1 查看一下狀態</description>
+    </item>
+    
+    <item>
+      <title>用 Kindle 閱讀 Kobo 電子書</title>
+      <link>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</link>
+      <pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</guid>
+      <description>準備工具 等等操作中會需要使用這些工具來完成
+ Calibre Calibre 外掛程式 DeDRM Adobe Digital Editions  安裝 Calibre 由於我使用的是 macOS，因此直接透過 homebrew 套件管理工具來安裝
+brew install --cask calibre 安裝外掛程式 教學 (如何安裝外掛及載入外掛)
+安裝 DeDRM 執行下面程式，會得到 DeDRM 外掛程式
+VERSION=$(curl -fsSL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d&amp;#39;&amp;#34;&amp;#39; -f 4 | cut -c 2-) curl -fsSL &amp;#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/v${VERSION}/DeDRM_tools_${VERSION}.zip&amp;#34; -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝 Adobe Digital Editions brew install --cask adobe-digital-editions 準備電子書 到 kobo 下載想要放入 kindle 的電子書，會得到 URLLink.acsm 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟</description>
+    </item>
+    
+    <item>
+      <title>更新 Linux Sudo 漏洞</title>
+      <link>https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/</guid>
+      <description>最近看到 這篇 提到 sudo 有安全性漏洞
+也看到 這篇 有提供指令可以檢查，看看是否受到此漏洞的影響
+sudoedit -s / sudoedit: /: not a regular file 自己檢測一下，發現居然是漏洞版本，看來需要更新套件了
+在 apt update 後可以看到有哪些套件是可更新的，剛好有看到 sudo 這個套件，那就來更新吧
+sudo apt update sudo apt list --upgradable | grep sudo sudo apt --only-upgrade install sudo 更新後再用指令檢查一下，結果符合預期
+usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...  參考資料:
+ https://www.sudo.ws/alerts/unescape_overflow.html  </description>
+    </item>
+    
+    <item>
+      <title>用 Miniflux 自架 RSS 服務</title>
+      <link>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</link>
+      <pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</guid>
+      <description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買，思考有什麼類似的服務來解決我的問題，google 搜尋 self hosted rss 有一堆工具提供選擇，最後我挑了 Miniflux 來使用
+安裝 Miniflux 我是使用 docker 來架設，官方的 repo 中有提供 basic.yml 範例當作使用，就不多贅述了
+由於伺服器的架構不同，這是我自架 miniflux 的 repo
+後記 除了使用網頁外，Miniflux 還有提供 Fever API 可以串接，搭配使用 FeedMe 及 Reeder 這兩個 App 當作跨平台的閱讀器</description>
+    </item>
+    
+    <item>
+      <title>DIY WinToGo</title>
+      <link>https://newjett0617.github.io/posts/20201107-diy-wintogo/</link>
+      <pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201107-diy-wintogo/</guid>
+      <description>最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS
+有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了
+剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異
+第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk
+第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10
+第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）
+補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案
+順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 Log Rotation</title>
+      <link>https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/</link>
+      <pubDate>Thu, 05 Nov 2020 15:27:07 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/</guid>
+      <description>最近在 Linux 主機中 /var/log 資料夾底下發現有許多的 xxx.log.1, xxx.log.2 的檔案，好奇去查並記錄下來
+這些檔案是 log rotate 產生的檔案，主要功能是做日誌檔案的輪替
+logrotate 設定檔 主要設定檔的路徑是在 /etc/logrotate.conf，會載入 /etc/logrotate.d/ 底下的檔案，根據設定檔進行 rotate
+執行 logrotate logrotate 預設會在每日的 crontab 中執行 (/etc/cron.daily/logrotate)，如果想要手動執行 logrotate 的話，可以直接呼叫 logrotate --force 指令，--force 是強制執行 rotate 檔案，可搭配 --debug 一起使用並觀察
+logrotate 範例 在 /etc/logrotate.conf 檔案中定義 logrotate 的預設值，範例如下
+# 設定頻率對日誌檔做 rotate (hourly, daily, weekly, monthly, yearly) (hourly 需要改變 logrotate 的頻率) # weekly [weekday] &amp;lt;- default 0 (0 means Sunday, 1 means Monday, ... , 6 means Saturday) weekly # 日誌被 rotate 了 4 次後刪除舊日誌 rotate 4 # rotate 舊日誌文件後創建新日誌文件權限 # create [mode(octal)] [owner] [group].</description>
+    </item>
+    
+    <item>
+      <title>用 KIND 搭建本地 Kubernetes Cluster</title>
+      <link>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</link>
+      <pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</guid>
+      <description>最近在學習 Kubernetes 相關知識，需要建立 cluster 環境，開始學習時會建議使用單節點的 minikube 當作環境，但是有些功能是在單節點環境做不到，需要建立多節點環境進行測試，剛好有看到有人推薦 KIND (Kubernetes IN Docker)，這套工具可以快速建置多節點的環境
+安裝 KIND 環境中已經預設安裝 docker，接下來只要下載 KIND-cli
+brew install kind KIND-cli autocomplete cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; ~/.zshrc # kind-cli autocomplete source &amp;lt;(kind completion zsh) EOF 建置 cluster 在 KIND 的 repo 中的有提供範例 config 設定 kind-example-config.yaml ，可以快速建立四個節點 (一個 control-plane 節點, 三個 workers 節點)
+kind create cluster --name mykind --config ./kind-example-config.yaml 刪除 cluster kind delete cluster --name mykind happy using kubernetes clusters &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 tar 指令</title>
+      <link>https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sun, 04 Oct 2020 11:59:30 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 中常常看到副檔名 .tar.gz 的檔案，紀錄一下過程
+打包檔案 副檔名包含 .tar 的檔案，都是使用 tar 指令進行打包，也代表未使用壓縮的檔案
+看一下怎麼打包檔案
+tar -c -v -f a.tar /etc -c, --create: create a new ARCHIVE -f, --file=ARCHIVE: use ARCHIVE file or device ARCHIVE -v, --verbose: verbosely list files processed 壓縮檔案 副檔名 .tar.gz 的檔案，是經過 gzip 壓縮後的 tar 檔案，可以縮寫成 .tgz
+看一下怎麼壓縮檔案，多一個參數 -z
+tar -c -z -v -f a.tar.gz /etc -z, --gzip Filter the archive through gzip(1) 解壓縮檔案 看一下怎麼解壓縮檔案，使用 -x 參數
+tar -x -v -f a.</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 sed 指令</title>
+      <link>https://newjett0617.github.io/posts/20200910-linux-%E4%B8%AD%E7%9A%84-sed-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Thu, 10 Sep 2020 15:15:08 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200910-linux-%E4%B8%AD%E7%9A%84-sed-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 的 sed 版本是 GNU，在 macOS 的 sed 版本是 BSD，兩者在使用上略有不同，踩到這個雷，紀錄一下
+-i 參數的差異 最常見的就是 -i，如果沒有提供後綴，則原始文件將被覆蓋而不進行備份（in place）
+下面的指令在 macOS 中是可以執行的
+cat &amp;lt;&amp;lt; EOF &amp;gt; test.txt foo bar baz EOF sed -e &amp;#39;s/foo/bar/g&amp;#39; -i &amp;#39;&amp;#39; test.txt 但是在 Linux 中卻會噴錯 sed: can&#39;t read : No such file or directory
+在 Linux 中只需要使用 -i 即可
+sed -e &amp;#39;s/foo/bar/g&amp;#39; -i test.txt 更改 separator 另外一個技巧就是更換 separator s/regular expression/replacement/flags
+如果使用 / 當作 separator，在正規表示式中有用到 / 的地方，需要使用 \ 跳脫，這會造成很難閱讀</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 tee 指令</title>
+      <link>https://newjett0617.github.io/posts/20200809-linux-%E4%B8%AD%E7%9A%84-tee-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sun, 09 Aug 2020 15:32:11 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200809-linux-%E4%B8%AD%E7%9A%84-tee-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在設定 config 檔案時，第一次可能會用編輯器進行修改，但第二、三次就會用指令的方式進行修改
+常常遇到因為權限問題而沒辦法寫入檔案中，沒辦法指令化，範例如下
+sudo echo &amp;#39;foo&amp;#39; &amp;gt; /foo -bash: /foo: Permission denied 在 這篇 剛好有人問，因此紀錄一下
+tee tee 指令是從 standard input (stdin) 讀取並輸出 standard output (stdout) 和文件，同時「螢幕輸出」及「輸出檔案」
+echo &amp;#39;foo&amp;#39; | sudo tee /foo 上面的方式會直接覆蓋掉檔案 /foo，如果想要追加寫入檔案的話，可以使用 -a 或 --append 參數 (類似於 &amp;gt;&amp;gt; 的方式)
+echo &amp;#39;foo&amp;#39; | sudo tee -a /foo 如果不想要看到 tee 輸出在螢幕的內容，可以將 tee 的 stdout 丟到黑洞中 /dev/null
+echo &amp;#39;foo&amp;#39; | sudo tee -a /foo &amp;gt; /dev/null </description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 man 指令</title>
+      <link>https://newjett0617.github.io/posts/20200727-linux-%E4%B8%AD%E7%9A%84-man-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200727-linux-%E4%B8%AD%E7%9A%84-man-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 中常常需要執行指令，在不知道指令或是參數之前都會看手冊
+使用 man 指令時，容易因為有相同名稱檔案或指令而導致看錯手冊
+舉個例子像是 passwd
+passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊
+這時需要查一下有哪些 manual
+查名稱有 passwd 的手冊 man -f passwd passwd (1) - change user password passwd (1ssl) - compute password hashes passwd (5) - the password file -f, --whatis: same as whatis(1). Search for all words in expression in manual page names only. 查名稱包含 passwd 的手冊 man -k passwd chgpasswd (8) - update group passwords in batch mode chpasswd (8) - update passwords in batch mode gpasswd (1) - administer /etc/group and /etc/gshadow grub-mkpasswd-pbkdf2 (1) - generate hashed password for GRUB mkpasswd (1) - Overfeatured front end to crypt(3) openssl-passwd (1ssl) - compute password hashes pam_localuser (8) - require users to be listed in /etc/passwd passwd (1) - change user password passwd (1ssl) - compute password hashes passwd (5) - the password file update-passwd (8) - safely update /etc/passwd, /etc/shadow and /etc/group -k, --apropos: same as apropos(1).</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 cut 指令</title>
+      <link>https://newjett0617.github.io/posts/20200612-linux-%E4%B8%AD%E7%9A%84-cut-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Fri, 12 Jun 2020 16:31:49 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200612-linux-%E4%B8%AD%E7%9A%84-cut-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 中會需要字串處理，學會 cut 指令可以幫助不少
+cut 在 /etc/passwd 中儲存了所有 Linux 帳號的登入資訊，每一行就是一筆資料，欄位有 login name, user id, group id &amp;hellip; 等等，並且用 : 分隔
+如果想要列出所有使用者的話，可以使用 cut 來辦到
+cut 處理的字串是以「行」為單位
+root:x:0:0:root:/root:/bin/bash bin:x:1:1:bin:/bin:/sbin/nologin daemon:x:2:2:daemon:/sbin:/sbin/nologin cut -d &amp;#39;:&amp;#39; -f 1 /etc/passwd root bin daemon -d, --delimiter=DELIM use DELIM instead of TAB for field delimiter -f, --fields=LIST select only these fields 如果想要其他欄位的話，可以在 -f 參數後面加上
+cut -d &amp;#39;:&amp;#39; -f 1,3-4 /etc/passwd root:0:0 daemon:1:1 bin:2:2 後記 使用 cut 在處理多空格相連的資料時，會比較難判斷是第幾個 fields，應該有其他處理方式</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 scp 指令</title>
+      <link>https://newjett0617.github.io/posts/20190208-linux-%E4%B8%AD%E7%9A%84-scp-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Fri, 08 Feb 2019 08:37:48 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20190208-linux-%E4%B8%AD%E7%9A%84-scp-%E6%8C%87%E4%BB%A4/</guid>
+      <description>scp 指令是在網路上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸檔案
+remote -&amp;gt; local scp user@remote_host:remote_file local_file local -&amp;gt; remote scp local_file user@remote_host:remote_file </description>
+    </item>
+    
+    
+    
+  </channel>
+</rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>kubernetes on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/categories/kubernetes/</link>
+    <description>Recent content in kubernetes on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 11 Aug 2021 13:34:03 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Kustomize 對 Kubernetes 物件進行宣告式管理</title>
+      <link>https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 11 Aug 2021 13:34:03 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/</guid>
+      <description>在 kubernetes 官網 中有看到一個用來管理 kubernetes 的工具，叫做 Kustomize，透過 kustomization 檔案來宣告式 ( Declarative) 管理 kubernetes 物件
+安裝 Kustomize 從 kubernetes 1.14 之後就有支援 kustomization 檔案
+kubectl kustomize DIR [flags] [options] DIR 目錄下，必須有 kustomization 檔案，名稱可以為下列三個其中一個
+ kustomization.yaml kustomization.yml Kustomization  但是也可以獨立安裝 kustomize-cli，其他安裝方式請看 here
+brew install kustomize Kustomize 工作原理 主要分成 base 及 overlays
+base 會透過 kustomization 檔案定義使用的哪些 kubernetes 物件
+overlays 也會透過 kustomization 檔案定義要使用哪個 base，並在 base 上新增補丁 (Patch)，如果在 base 上有該資源的話就複寫，如果沒有的話就新增
+資料夾結構如下
+. ├── base │ ├── configMap.</description>
+    </item>
+    
+    <item>
+      <title>用 KIND 搭建本地 Kubernetes Cluster</title>
+      <link>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</link>
+      <pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</guid>
+      <description>最近在學習 Kubernetes 相關知識，需要建立 cluster 環境，開始學習時會建議使用單節點的 minikube 當作環境，但是有些功能是在單節點環境做不到，需要建立多節點環境進行測試，剛好有看到有人推薦 KIND (Kubernetes IN Docker)，這套工具可以快速建置多節點的環境
+安裝 KIND 環境中已經預設安裝 docker，接下來只要下載 KIND-cli
+brew install kind KIND-cli autocomplete cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; ~/.zshrc # kind-cli autocomplete source &amp;lt;(kind completion zsh) EOF 建置 cluster 在 KIND 的 repo 中的有提供範例 config 設定 kind-example-config.yaml ，可以快速建立四個節點 (一個 control-plane 節點, 三個 workers 節點)
+kind create cluster --name mykind --config ./kind-example-config.yaml 刪除 cluster kind delete cluster --name mykind happy using kubernetes clusters &amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

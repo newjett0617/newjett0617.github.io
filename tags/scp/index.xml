@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>scp on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/scp/</link>
+    <description>Recent content in scp on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 08 Feb 2019 08:37:48 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/scp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 中的 scp 指令</title>
+      <link>https://newjett0617.github.io/posts/20190208-linux-%E4%B8%AD%E7%9A%84-scp-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Fri, 08 Feb 2019 08:37:48 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20190208-linux-%E4%B8%AD%E7%9A%84-scp-%E6%8C%87%E4%BB%A4/</guid>
+      <description>scp 指令是在網路上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸檔案
+remote -&amp;gt; local scp user@remote_host:remote_file local_file local -&amp;gt; remote scp local_file user@remote_host:remote_file </description>
+    </item>
+    
+  </channel>
+</rss>

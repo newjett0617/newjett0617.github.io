@@ -1,1015 +1,211 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Jett</title><link>https://newjett0617.github.io/posts/</link><description>Recent content in Posts on Dev Jett</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 09 Mar 2021 00:55:53 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Tip] 將 Kobo 書籍放入 Kindle 中</title><link>https://newjett0617.github.io/posts/tip-kobo-into-kindle/</link><pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate><guid>https://newjett0617.github.io/posts/tip-kobo-into-kindle/</guid><description>準備工具 等等的操作會需要這些工具來輔助完成 Calibre brew install --cask calibre Calibre 外掛程式 DeDRM VERSION=$(curl -sL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d&amp;#39;&amp;#34;&amp;#39; -f 4) VERSION2=$(echo ${VERSION} | cut -c 2-) curl -sL &amp;#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/${VERSION}/DeDRM_tools_${VERSION2}.zip&amp;#34; -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝外掛程式 教學 （如</description><content type="html"><![CDATA[<h2 id="準備工具">準備工具</h2>
-<p>等等的操作會需要這些工具來輔助完成</p>
-<ul>
-<li><a href="https://calibre-ebook.com/download">Calibre</a>
-<ul>
-<li><code>brew install --cask calibre</code></li>
-</ul>
-</li>
-<li>Calibre 外掛程式 <a href="https://github.com/apprenticeharper/DeDRM_tools/releases">DeDRM</a>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">VERSION</span><span class="o">=</span><span class="k">$(</span>curl -sL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest <span class="p">|</span> grep tag_name <span class="p">|</span> cut -d<span class="s1">&#39;&#34;&#39;</span> -f 4<span class="k">)</span>
-<span class="nv">VERSION2</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span> <span class="p">|</span> cut -c 2-<span class="k">)</span>
-curl -sL <span class="s2">&#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">/DeDRM_tools_</span><span class="si">${</span><span class="nv">VERSION2</span><span class="si">}</span><span class="s2">.zip&#34;</span> -o dedrm.zip
-unzip dedrm.zip -d dedrm
-rm dedrm.zip
-</code></pre></div><ul>
-<li>安裝外掛程式 <a href="https://github.com/apprenticeharper/DeDRM_tools/wiki/Exactly-how-to-remove-DRM#2-install-calibre">教學</a> （如何安裝外掛及載入外掛）</li>
-</ul>
-</li>
-<li><a href="https://www.adobe.com/sea/solutions/ebook/digital-editions/download.html">Adobe Digital Editions</a>
-<ul>
-<li><code>brew install --cask adobe-digital-editions</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="準備書籍">準備書籍</h2>
-<p>到 kobo 下載想要放入 kindle 的書籍，下載後會得到 <code>URLLink.acsm</code> 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟</p>
-<h2 id="進行轉檔">進行轉檔</h2>
-<p>開啟 Calibre 並點擊加入書籍，把該本書籍載入後，選擇你要的輸出格式後就可以進行轉檔了</p>
-<h2 id="reference-from">reference from</h2>
-<ul>
-<li><a href="http://jdev.tw/blog/5383/kobo-ebook-to-kindle/comment-page-1">http://jdev.tw/blog/5383/kobo-ebook-to-kindle/comment-page-1</a></li>
-<li><a href="https://medium.com/akichy/%E7%AD%86%E8%A8%98-%E5%A6%82%E4%BD%95%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E6%A8%82%E5%A4%A9-%E9%9B%BB%E5%AD%90%E6%9B%B8%E6%AA%94%E6%A1%88-5aa529b61203">https://medium.com/akichy/%E7%AD%86%E8%A8%98-%E5%A6%82%E4%BD%95%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E6%A8%82%E5%A4%A9-%E9%9B%BB%E5%AD%90%E6%9B%B8%E6%AA%94%E6%A1%88-5aa529b61203</a></li>
-</ul>
-]]></content></item><item><title>[Linux] 安全性更新 Sudo</title><link>https://newjett0617.github.io/posts/linux-sudo-update/</link><pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate><guid>https://newjett0617.github.io/posts/linux-sudo-update/</guid><description>最近看到 這篇 說到，在預設 sudo 組態的情況下，非擁有 root 權限的使用者能夠透過 sudo 來提升權限而獲得 root 的權限，只要能登入主機的都可以獲得 root 的權限 也看到 這篇</description><content type="html"><![CDATA[<p>最近看到 <a href="https://www.ithome.com.tw/news/142469">這篇</a> 說到，在預設 sudo 組態的情況下，非擁有 root 權限的使用者能夠透過 sudo 來提升權限而獲得 root 的權限，只要能登入主機的都可以獲得 root 的權限</p>
-<p>也看到 <a href="https://askubuntu.com/a/1311627">這篇</a> 有提供的指令可以檢查看看是否受到此漏洞的影響，自己檢測一下發現居然不是 <code>usage: </code> 開頭，看來我要來更新套件了</p>
-<p>我是參考 <a href="https://www.cyberciti.biz/faq/ubuntu-upgrade-update-single-package-using-apt-get/">這篇</a> 的做法，使用 apt 方式更新套件</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># apt update</span>
-<span class="c1"># apt list --upgradable</span>
-<span class="c1"># apt --only-upgrade install &lt;PackageName&gt;</span>
-</code></pre></div><p>在 update 後可以看看有哪些套件是可更新的，剛好有看到 <code>sudo</code> 這個套件，那就來更新吧</p>
-]]></content></item><item><title>[Docker] 自架 RSS, 使用 Miniflux 搭配 Traefik</title><link>https://newjett0617.github.io/posts/docker-miniflux-traefik/</link><pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-miniflux-traefik/</guid><description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買服務，在思考有什麼工具來解決我訂閱數量的問題，搜尋 self hosted rss 就有一堆文章及工具提供選擇，於是我挑</description><content type="html"><![CDATA[<p>最近因為 <a href="https://www.inoreader.com/">Inoreader</a> 的免費訂閱數量快到上限了，不想掏錢購買服務，在思考有什麼工具來解決我訂閱數量的問題，搜尋 <code>self hosted rss</code> 就有一堆文章及工具提供選擇，於是我挑了 <a href="https://miniflux.app/">Miniflux</a> 來使用</p>
-<h2 id="安裝-miniflux">安裝 Miniflux</h2>
-<p>使用 docker-compose 來進行安裝， <a href="https://github.com/miniflux/v2/">repository</a> 中有提供 <a href="https://raw.githubusercontent.com/miniflux/v2/master/contrib/docker-compose/basic.yml">basic.yaml</a> 範例當作使用，就不多贅述了</p>
-<h2 id="搭配-traefik">搭配 Traefik</h2>
-<p>repository 中也有提到如何與 <a href="https://traefik.io/">Traefik</a> 整合的做法，<a href="https://raw.githubusercontent.com/miniflux/v2/master/contrib/docker-compose/traefik.yml">traefik.yml</a> ，只不過他提供的作法無法滿足我的需求，稍微修改成符合我需求的樣子 <a href="https://raw.githubusercontent.com/newjett0617/miniflux/main/docker-compose.yml">docker-compose.yml</a></p>
-<p>值得一提，我的情況是需要新增 <code>traefik.http.services.miniflux.loadbalancer.server.port=8080</code> 這個 label 才能把流量轉導到 miniflux 容器內</p>
-]]></content></item><item><title>[Docker] 使用 Traefik 來當作反向代理 Reverse Proxy</title><link>https://newjett0617.github.io/posts/docker-traefik/</link><pubDate>Wed, 23 Dec 2020 15:52:07 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-traefik/</guid><description>最近在伺服器架設了一個應用程式，這個應用程式是跑在 Docker 上，假如應用程式需要對外服務的話，通常會需要暴露一個 port 才能將請求轉導到容器內，可以透過 curl</description><content type="html"><![CDATA[<p>最近在伺服器架設了一個應用程式，這個應用程式是跑在 Docker 上，假如應用程式需要對外服務的話，通常會需要暴露一個 port 才能將請求轉導到容器內，可以透過 <code>curl http://xx.xx.xx.xx:8080</code> 可以訪問到容器的 nginx 應用程式</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -d --publish<span class="o">=</span><span class="s1">&#39;8080:80&#39;</span> nginx:alpine
-</code></pre></div><p>一但暴露了 port 話，任何人可以用掃描工具發現這個 IP 的 port 是開啟的狀態（IPv4 跟 port 是有範圍<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>），就有機會對 port 做一些事情</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">nc -v -z xx.xx.xx.xx <span class="m">8080</span>
-</code></pre></div><pre><code>Connection to 172.104.85.116 8080 port [tcp/http-alt] succeeded!
-</code></pre><p>通常會限定是只有 127.0.0.1 的才能訪問該 port，這樣的話外部就不會發現 8080 port 是被打開的</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -d --publish<span class="o">=</span><span class="s1">&#39;127.0.0.1:8080:80&#39;</span> nginx:alpine
-</code></pre></div><pre><code>CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                    NAMES
-05179d024297   nginx:alpine   &quot;/docker-entrypoint.…&quot;   About a minute ago   Up About a minute   127.0.0.1:8080-&gt;80/tcp   nginx
-</code></pre><pre><code>nc -v -z xx.xx.xx.xx 8080
-</code></pre><pre><code>nc: connect to xx.xx.xx.xx port 8080 (tcp) failed: Connection refused
-</code></pre><p>一但限定只有 127.0.0.1 能訪問的話，外部就無法訪問，必須要有一個反向代理 (Reverse Proxy) 將請求代理到內部</p>
-<p>有許多工具可以使用，像是 <a href="https://httpd.apache.org/">Apache</a>, <a href="https://nginx.org/">Nginx</a>, <a href="https://caddyserver.com/">Caddy</a> 等等都可以做到 reverse proxy 的功能</p>
-<p>本文要介紹的 Traefik 跟 Docker 有著密不可分的關係，透過使用 Docker 的物件 labels 來達到目的</p>
-<p>只需要在容器貼上標籤 labels，就可以很容易地達到 reverse proxy 目的，Traefik 會自動偵測並接管容器，將請求代理至指定的容器</p>
-<p><img src="https://raw.githubusercontent.com/traefik/traefik/master/docs/content/assets/img/traefik-architecture.png" alt=""></p>
-<h2 id="建置-traefik">建置 Traefik</h2>
-<p>首先需要建立一個給 Traefik 專屬使用的網路</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker network create reverse-proxy
-</code></pre></div><p>撰寫 docker-compose.yml 後就可以啟動了</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">reverse-proxy</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">external</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">traefik</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker.io/library/traefik<span class="p">:</span>v2<span class="m">.3</span><span class="w">
-</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>traefik<span class="w">
-</span><span class="w">    </span><span class="k">restart</span><span class="p">:</span><span class="w"> </span>always<span class="w">
-</span><span class="w">    </span><span class="k">command</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- --api.dashboard=<span class="kc">true</span><span class="w">
-</span><span class="w">      </span>- --providers.docker=<span class="kc">true</span><span class="w"> </span><span class="c"># Enabling docker provider</span><span class="w">
-</span><span class="w">      </span>- --providers.docker.exposedbydefault=<span class="kc">false</span><span class="w"> </span><span class="c"># Do not expose containers unless explicitly told so</span><span class="w">
-</span><span class="w">      </span>- --entrypoints.web.address=<span class="p">:</span><span class="m">80</span><span class="w"> </span><span class="c"># Traefik will listen to incoming request on the port 80 (HTTP)</span><span class="w">
-</span><span class="w">      </span>- --entrypoints.websecure.address=<span class="p">:</span><span class="m">443</span><span class="w"> </span><span class="c"># Traefik will listen to incoming request on the port 443 (HTTPS)</span><span class="w">
-</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.httpchallenge=<span class="kc">true</span><span class="w"> </span><span class="c"># Enable a http challenge named &#34;myresolver&#34;</span><span class="w">
-</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web<span class="w"> </span><span class="c"># Tell it to use our predefined entrypoint named &#34;web&#34;</span><span class="w">
-</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.email=postmaster@example.com<span class="w"> </span><span class="c"># The email to provide to let&#39;s encrypt</span><span class="w">
-</span><span class="w">      </span>- --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json<span class="w"> </span><span class="c"># Tell to store the certificate on a path under our volume</span><span class="w">
-</span><span class="w">    </span><span class="k">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="m">80</span><span class="p">:</span><span class="m">80</span><span class="w">
-</span><span class="w">      </span>- <span class="m">443</span><span class="p">:</span><span class="m">443</span><span class="w">
-</span><span class="w">    </span><span class="k">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- reverse-proxy<span class="w">
-</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- /var/run/docker.sock<span class="p">:</span>/var/run/docker.sock<span class="p">:</span>ro<span class="w">
-</span><span class="w">      </span>- ./letsencrypt<span class="p">:</span>/letsencrypt<span class="w"> </span><span class="c"># Create a letsencrypt dir within the folder where the docker-compose file is</span><span class="w">
-</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- traefik.enable=<span class="kc">true</span><span class="w">
-</span><span class="w">      </span>- traefik.http.routers.traefik.rule=Host(`traefik.example.com`)<span class="w">
-</span><span class="w">      </span>- traefik.http.routers.traefik.entrypoints=websecure<span class="w">
-</span><span class="w">      </span>- traefik.http.routers.traefik.tls.certresolver=myresolver<span class="w">
-</span><span class="w">      </span>- traefik.http.routers.traefik.service=api@internal<span class="w">
-</span><span class="w">      </span>- traefik.http.routers.traefik.middlewares=auth<span class="w">
-</span><span class="w">      </span>- traefik.http.middlewares.auth.basicauth.users=username<span class="p">:</span>password<span class="w"> </span><span class="c"># use basic auth, `$ htpasswd username password` (output replace $ -&gt; $$)</span><span class="w">
-</span><span class="w">      </span>- traefik.http.services.dashboard.loadbalancer.server.port=<span class="m">8080</span><span class="w"> </span><span class="c"># 443 -&gt; 8080</span><span class="w">
-</span></code></pre></div><h2 id="使用-traefik">使用 Traefik</h2>
-<p>在一個 nginx 上加上 label 就能啟動</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">reverse-proxy</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">external</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">snginx</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>docker.io/library/nginx<span class="p">:</span>alpine<span class="w">
-</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>web<span class="w">
-</span><span class="w">    </span><span class="k">expose</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="m">80</span><span class="w">
-</span><span class="w">    </span><span class="k">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- reverse-proxy<span class="w">
-</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- traefik.enable=<span class="kc">true</span><span class="w"> </span><span class="c"># Explicitly tell Traefik to expose this container</span><span class="w">
-</span><span class="w">      </span>- traefik.http.routers.snginx.rule=Host(`snginx.example.com`)<span class="w"> </span><span class="c"># The domain the service will respond to</span><span class="w">
-</span><span class="w">      </span>- traefik.http.routers.snginx.entrypoints=websecure<span class="w"> </span><span class="c"># Allow request only from the predefined entry point named &#34;websecure&#34;</span><span class="w">
-</span><span class="w">      </span>- traefik.http.routers.snginx.tls.certresolver=myresolver<span class="w"> </span><span class="c"># Uses the Host rule to define which certificate to issue</span><span class="w">
-</span></code></pre></div><p>可以自己撰寫規則，我是使用 subdomain 方式去匹配 container，也可以使用 path 方式匹配，traefik 提供的功能太多了，以後有碰到再來寫</p>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>IPv4 range -&gt; <a href="https://en.wikipedia.org/wiki/IPv4">https://en.wikipedia.org/wiki/IPv4</a></p>
-<p>port range -&gt; <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-]]></content></item><item><title>[MySQL] 使用 Generated Column</title><link>https://newjett0617.github.io/posts/mysql-generated-column/</link><pubDate>Fri, 18 Dec 2020 12:27:39 +0800</pubDate><guid>https://newjett0617.github.io/posts/mysql-generated-column/</guid><description>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式 使用 MySQL Date and Time Functions 原始欄位拆分成「衍生欄位」 使用 Generated Column 產生「衍生欄位」 使用 MySQL Function 使</description><content type="html"><![CDATA[<p>在儲存日期欄位時，為了要更精準撈出該年、月、日的資料，會有幾種方式</p>
-<ul>
-<li>使用 MySQL <a href="https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html">Date and Time Functions</a></li>
-<li>原始欄位拆分成「衍生欄位」</li>
-<li>使用 Generated Column 產生「衍生欄位」</li>
-</ul>
-<h2 id="使用-mysql-function">使用 MySQL Function</h2>
-<p>使用 MySQL Function 像是 <code>MONTH(birth)</code>，這個做法是可以 workaround</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="nb">DATE</span> <span class="k">NULL</span>
-<span class="p">)</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">InnoDB</span><span class="p">;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">WHERE</span> <span class="k">MONTH</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">)</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-</code></pre></div><table>
-<thead>
-<tr>
-<th>id</th>
-<th>select_type</th>
-<th>table</th>
-<th>partitions</th>
-<th>type</th>
-<th>possible_keys</th>
-<th>key</th>
-<th>key_len</th>
-<th>ref</th>
-<th>rows</th>
-<th>filtered</th>
-<th>Extra</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>SIMPLE</td>
-<td>t1</td>
-<td>NULL</td>
-<td>ALL</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>83099</td>
-<td>100.00</td>
-<td>Using here</td>
-</tr>
-</tbody>
-</table>
-<p>explain 的結果 type = ALL，代表 full table scan，總共查了 83099 筆完成 query</p>
-<p>但是 birth 欄位無法進行 index，當筆數增加時 query 就會變慢</p>
-<h2 id="原始欄位拆分成衍生欄位">原始欄位拆分成「衍生欄位」</h2>
-<p>把 birth 拆成「年(year)」、「月(month)」、「日(day)」三個欄位，針對其欄位進行 indexing，在搜尋上的表現會更好</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="nb">DATE</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="k">year</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="k">month</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="k">day</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NULL</span>
-<span class="p">)</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">InnoDB</span><span class="p">;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">INDEX</span> <span class="o">`</span><span class="n">idx__month</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="k">month</span><span class="o">`</span><span class="p">);</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span>
-  <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="k">year</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="k">month</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="k">day</span><span class="o">`</span><span class="p">)</span>
-<span class="k">values</span><span class="p">(</span><span class="s1">&#39;1985-12-20&#39;</span><span class="p">,</span> <span class="s1">&#39;1985&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span> <span class="s1">&#39;20&#39;</span><span class="p">);</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">t1</span> <span class="k">WHERE</span> <span class="o">`</span><span class="k">month</span><span class="o">`</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-</code></pre></div><table>
-<thead>
-<tr>
-<th>id</th>
-<th>select_type</th>
-<th>table</th>
-<th>partitions</th>
-<th>type</th>
-<th>possible_keys</th>
-<th>key</th>
-<th>key_len</th>
-<th>ref</th>
-<th>rows</th>
-<th>filtered</th>
-<th>Extra</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>SIMPLE</td>
-<td>t1</td>
-<td>NULL</td>
-<td>ref</td>
-<td>idx__month</td>
-<td>idx__month</td>
-<td>5</td>
-<td>const</td>
-<td>7218</td>
-<td>100.00</td>
-<td>Using index</td>
-</tr>
-</tbody>
-</table>
-<p>explain 的結果 type = ref，代表使用到 normal index (不是 unique index)，總共查了 7218 筆完成 query</p>
-<p>比起使用 function 來說已經快很多了，增加 query 速度，但是這個很不聰明的做法，當 birth 欄位有修改時，其他三個欄位需要一起修改，有點麻煩</p>
-<h2 id="使用-generated-column-產生衍生欄位">使用 Generated Column 產生「衍生欄位」</h2>
-<p>使用 Generated Column 來自動產生「衍生欄位」，當原始欄位變更，會一並更新「衍生欄位」，這個做法就聰明多了</p>
-<p>語法如下</p>
-<pre><code>col_name data_type [GENERATED ALWAYS] AS (expressions)
-  [VIRTUAL | STORED] [NOT NULL | NULL]
-  [UNIQUE [KEY]] [[PRIMARY] KEY]
-  [COMMENT 'string']
-</code></pre><h3 id="virtual-column-與-stored-column">VIRTUAL column 與 STORED column</h3>
-<ul>
-<li>VIRTUAL (default)
-<ul>
-<li>virtual column values are not stored, but are evaluated when rows are read, immediately after any BEFORE triggers</li>
-<li>virtual column takes no storage</li>
-<li>InnoDB supports secondary indexes<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> on virtual column</li>
-</ul>
-</li>
-<li>STORED
-<ul>
-<li>column values are evaluated and stored when rows are inserted or updated</li>
-<li>stored column does require storage space and can be indexed</li>
-</ul>
-</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="nb">DATE</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="k">year</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="k">YEAR</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">))</span> <span class="n">VIRTUAL</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="k">month</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="k">MONTH</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">))</span> <span class="n">VIRTUAL</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="k">day</span><span class="o">`</span> <span class="nb">INT</span> <span class="n">unsigned</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="k">DAY</span><span class="p">(</span><span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">))</span> <span class="n">VIRTUAL</span> <span class="k">NULL</span>
-<span class="p">)</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">InnoDB</span><span class="p">;</span>
-</code></pre></div><p>當 insert 資料時，會自動產生 year, month, day 欄位</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">birth</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;1985-12-20&#39;</span><span class="p">);</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div><pre><code>+----+------------+------+-------+------+
-| id | birth      | year | month | day  |
-+----+------------+------+-------+------+
-|  1 | 1985-12-20 | 1985 |    12 |   20 |
-+----+------------+------+-------+------+
-1 rows in set (0.00 sec)
-</code></pre><p>當 update birth 時，也會自動更新 year, month, day 欄位</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">birth</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;1988-09-10&#39;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div><pre><code>+----+------------+------+-------+------+
-| id | birth      | year | month | day  |
-+----+------------+------+-------+------+
-|  1 | 1988-09-10 | 1988 |     9 |   10 |
-+----+------------+------+-------+------+
-1 rows in set (0.00 sec)
-</code></pre><p>Generated Column 只能提供讀，不給更新</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">t1</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="k">year</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;1988&#39;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div><pre><code>ERROR 3105 (HY000): The value specified for generated column 'year' in table 't1' is not allowed.
-</code></pre><h2 id="一些錯誤">一些錯誤</h2>
-<p>generated column 的表達式必須遵守規則，當表達式包含不允許的構造，就會發生錯誤</p>
-<h3 id="運算錯誤">運算錯誤</h3>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="mi">0</span><span class="p">)</span> <span class="n">VIRTUAL</span>
-<span class="p">);</span>
-</code></pre></div><pre><code>Query OK, 0 rows affected (0.05 sec)
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</code></pre></div><pre><code>ERROR 1365 (22012): Division by 0
-</code></pre><hr>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span>
-<span class="p">);</span>
-</code></pre></div><pre><code>Query OK, 0 rows affected (0.05 sec)
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</code></pre></div><pre><code>ERROR 1365 (22012): Division by 0
-</code></pre><h3 id="依賴錯誤">依賴錯誤</h3>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span>
-<span class="p">);</span>
-</code></pre></div><pre><code>Query OK, 0 rows affected (0.05 sec)
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="k">DROP</span> <span class="k">COLUMN</span> <span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">;</span>
-</code></pre></div><pre><code>ERROR 3108 (HY000): Column 'x' has a generated column dependency.
-</code></pre><h3 id="資料型態錯誤">資料型態錯誤</h3>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">+</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span>
-<span class="p">);</span>
-</code></pre></div><pre><code>Query OK, 0 rows affected (0.04 sec)
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">);</span>
-</code></pre></div><pre><code>ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'x'
-</code></pre><h3 id="key-錯誤">Key 錯誤</h3>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">y</span><span class="o">`</span> <span class="nb">INT</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">z</span><span class="o">`</span> <span class="nb">INT</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span> <span class="o">/</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="n">VIRTUAL</span><span class="p">,</span>
-  <span class="k">UNIQUE</span> <span class="k">KEY</span> <span class="o">`</span><span class="n">uni__z</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">z</span><span class="o">`</span><span class="p">)</span>
-<span class="p">);</span>
-</code></pre></div><pre><code>Query OK, 0 rows affected (0.08 sec)
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</code></pre></div><pre><code>Query OK, 1 row affected (0.01 sec)
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">t</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-</code></pre></div><pre><code>ERROR 1062 (23000): Duplicate entry '1' for key 'uni__z'
-</code></pre><p>應該還有許多場景可以應用</p>
-<ul>
-<li>像是 full_name 可以用 first_name + last_name 組出來</li>
-<li>像是原始欄位可以存 json 的資料類型，透過 Generated Column 解析 JSON 成 VIRTUAL column，透過 indexing VIRTUAL column，這樣就可以快速查詢 JSON 裡面的內容</li>
-</ul>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>secondary indexes 只找 key 而不找 raw data (todo, 待補相關知識) <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-]]></content></item><item><title>[iTerm2] 筆記</title><link>https://newjett0617.github.io/posts/iterm2-note/</link><pubDate>Thu, 10 Dec 2020 18:11:05 +0800</pubDate><guid>https://newjett0617.github.io/posts/iterm2-note/</guid><description>hotkey description command + t 開啟新的 windows command + w 關閉 windows command + option + 上下左右 移動 windows focus command + d 垂直切割 windows command + shift + d 水平切割 windows 平常會搭配 Magnet 變更視窗尺寸，但是 iterm2 預設有些限制讓我</description><content type="html"><![CDATA[<table>
-<thead>
-<tr>
-<th>hotkey</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>command + t</td>
-<td>開啟新的 windows</td>
-</tr>
-<tr>
-<td>command + w</td>
-<td>關閉 windows</td>
-</tr>
-<tr>
-<td>command + option + 上下左右</td>
-<td>移動 windows focus</td>
-</tr>
-<tr>
-<td>command + d</td>
-<td>垂直切割 windows</td>
-</tr>
-<tr>
-<td>command + shift + d</td>
-<td>水平切割 windows</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>平常會搭配 Magnet 變更視窗尺寸，但是 iterm2 預設有些限制讓我無法變更，剛好在 iTerm2 的 <a href="https://iterm2.com/faq.html">FAQ</a> 中有提到相關的設定</p>
-<blockquote>
-<p>Q: When I use Magnet to move iTerm2 windows they do unexpected things (like not moving where I told them to).</p>
-<p>A: This is a side-effect of making the window size a multiple of the size of a single character&rsquo;s cell. Turn on Preferences &gt; Advanced &gt; Terminal windows resize smoothly to disable this behavior and that usually fixes the issue.</p>
-</blockquote>
-]]></content></item><item><title>[Mac] DIY GameToGo</title><link>https://newjett0617.github.io/posts/mac-diy-gametogo/</link><pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate><guid>https://newjett0617.github.io/posts/mac-diy-gametogo/</guid><description>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能</description><content type="html"><![CDATA[<p>最近有玩遊戲的需求，但是手邊沒有桌上型電腦，也沒有遊戲主機，於是腦筋就動到我的工作機上，工作機是使用 MacOS，想玩的遊戲不是那種需要吃效能的遊戲，因此打算使用 MacOS 的硬體加上外接硬碟，讓開機選單選擇 Windows 的硬碟，這樣玩遊戲應該綽綽有餘。</p>
-<p>剛好查到這篇 <a href="https://medium.com/@upchen_/%E5%9C%A8-mac-%E4%B8%8B-%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%9D-bootcamp-win10-%E5%88%B0%E5%A4%96%E6%8E%A5%E7%A1%AC%E7%A2%9F-%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84-gametogo-76c31896588">Medium</a>，這篇寫的很棒也很詳細，順便記錄下實作的差異。</p>
-<h2 id="第一部分">第一部分</h2>
-<h3 id="第三點">第三點</h3>
-<p>打開 MacOS 的 <code>磁碟工具程式</code> 後，將顯示方式選擇 <code>顯示所有裝置</code>，針對外接硬碟進行格式化，點擊 <code>清除</code>，格式選擇 <code>MacOS 擴充格式（日誌式）</code>，架構選擇 <code>GUID 分割區配置表</code>，選擇完成後按下 <code>清除</code>
-<img src="/images/qGIuYBQAnl63tyUH/rHrp85FWkg1MXcvp.png" alt=""></p>
-<p>點擊 <code>分割</code>，點擊 <code>＋</code>，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 <code>ExFAT</code>，按下 <code>套用</code>，按下 <code>分割</code>。
-<img src="/images/qGIuYBQAnl63tyUH/ge0m0Aest2la2A43.png" alt=""></p>
-<h3 id="第六點">第六點</h3>
-<p>在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 <code>~/bootcamp.vmdk</code></p>
-<h3 id="第七點">第七點</h3>
-<p>在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 <code>WIN10</code></p>
-<h2 id="第二部分">第二部分</h2>
-<p>下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 <code>WindowsSupport.zip</code> 壓縮檔，把該壓縮檔丟到之前分割的 <code>DATA</code> 磁區（假如沒有看到的話，回到 <code>磁碟工具程式</code>，選擇 <code>DATA</code> 後點擊 <code>裝載</code>）</p>
-<h2 id="補充">補充</h2>
-<p>由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案</p>
-<p>順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭
-<img src="/images/qGIuYBQAnl63tyUH/screencapture-medium-upchen-mac-bootcamp-win10-gametogo-76c31896588-2020-11-12-00_24_57.png" alt=""></p>
-]]></content></item><item><title>[Linux] Logrotate</title><link>https://newjett0617.github.io/posts/linux-logrotate/</link><pubDate>Thu, 05 Nov 2020 15:27:07 +0800</pubDate><guid>https://newjett0617.github.io/posts/linux-logrotate/</guid><description>最近在 Linux 主機中的 /var/log 資料夾底下發現有許多的 xxx.log.1 xxx.log.2 &amp;hellip; 的檔案，好奇去查並記錄下來 這些檔案是 logrotate 產生的檔案，主要功能是做日誌檔案的輪替 logrotate 設定檔 主要設定檔</description><content type="html"><![CDATA[<p>最近在 Linux 主機中的 <code>/var/log</code> 資料夾底下發現有許多的 <code>xxx.log.1</code> <code>xxx.log.2</code> &hellip; 的檔案，好奇去查並記錄下來</p>
-<p>這些檔案是 <a href="https://en.wikipedia.org/wiki/Log_rotation"><code>logrotate</code></a> 產生的檔案，主要功能是做日誌檔案的輪替</p>
-<h2 id="logrotate-設定檔">logrotate 設定檔</h2>
-<p>主要設定檔是在 <code>/etc/logrotate.conf</code>，會在載入 <code>/etc/logrotate.d/</code> 底下的檔案進行 rotate</p>
-<h2 id="觸發-logrotate">觸發 logrotate</h2>
-<p>觸發 logrotate 則是在 <code>/etc/cron.daily/logrotate</code> 每日的 crontab 中執行</p>
-<p>假如想要手動觸發執行 logrotate 的話，可以直接執行 <code>logrotate --force</code> 指令，<code>--force</code> 是強制執行 rotate，可搭配 <code>--debug</code> 一起使用並觀察</p>
-<h2 id="logrotate-範例">logrotate 範例</h2>
-<p>在 <code>/etc/logrotate.conf</code> 檔案中定義 logrotate 的預設值，範例如下</p>
-<pre><code># 某個頻率對日誌檔做 rotate (hourly, daily, weekly, monthly, yearly) (hourly 需要改變 logrotate 的頻率)
-# weekly [weekday] &lt;- default 0 (0 means Sunday, 1 means Monday, ... , 6 means Saturday)
-weekly
-
-# 設定日誌檔預設的 user/group
-# su user group
-su root syslog
-
-# 保留四個 rotate 後的檔案 (.1, .2, .3, .4)
-# rotate count
-rotate 4
-
-# 當被日誌檔被 rotate 後，建立相同名字的檔案
-create
-
-# 對日誌檔進行壓縮，預設使用 gzip 壓縮方式
-compress
-
-# 載入 /etc/logrotate.d/ 設定檔進行 rotate
-include /etc/logrotate.d
-
-/var/log/wtmp {                &lt;= 針對 /var/log/wtmp 檔案的參數設定
-    missingok                  &lt;= 如果缺少日誌檔案的話，繼續執行下一個而不噴錯誤訊息，對應的參數（nomissingok）
-    monthly                    &lt;= 一個月進行一次 rotate
-    create 0664 root utmp      &lt;= 新建檔案的權限與群組
-    rotate 1                   &lt;= 保留一個檔案
-}
-</code></pre><p>更多細節設定可看手冊</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man logrotate.conf
-</code></pre></div>]]></content></item><item><title>[Docker] 使用 KIND 建置本地 Kubernetes cluster</title><link>https://newjett0617.github.io/posts/docker-kind-local-kubernetes-cluster/</link><pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate><guid>https://newjett0617.github.io/posts/docker-kind-local-kubernetes-cluster/</guid><description>最近在學習 Kubernetes 的相關知識，需要建立 cluster 環境，一開始會建議使用單節點的 cluster minikube ，但是有些功能是在單節點做不到，需要建立多節點的 cluster 來進行測試，剛好有看到</description><content type="html"><![CDATA[<p>最近在學習 Kubernetes 的相關知識，需要建立 cluster 環境，一開始會建議使用單節點的 cluster  <a href="https://github.com/kubernetes/minikube">minikube</a> ，但是有些功能是在單節點做不到，需要建立多節點的 cluster 來進行測試，剛好有看到有人推薦 <a href="https://github.com/kubernetes-sigs/kind">KIND</a> 這套工具可以建置多節點 cluster</p>
-<h2 id="安裝-kind">安裝 KIND</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">brew install kind
-</code></pre></div><h2 id="建置-cluster">建置 cluster</h2>
-<p>KIND 的 config 可以參考 <a href="https://github.com/kubernetes-sigs/kind">repository</a> 中的 <a href="https://raw.githubusercontent.com/kubernetes-sigs/kind/master/site/content/docs/user/kind-example-config.yaml">kind-example-config.yaml</a> ，裡面有提供一個快速建立一個 control plane 節點以及三個 workers 節點的範例</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kind create cluster --name mykind --config kind-example-config.yaml
-</code></pre></div><h2 id="刪除-cluster">刪除 cluster</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kind delete cluster --name mykind
-</code></pre></div><p>happy using kubernetes clusters &hellip;</p>
-]]></content></item><item><title>關閉 Ping Reply</title><link>https://newjett0617.github.io/posts/disable-ping-reply/</link><pubDate>Sun, 04 Oct 2020 12:00:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/disable-ping-reply/</guid><description>關掉主機的 ICMP1 回應 (ping reply) 主機預設是開啟 (0) ，關閉 (1) 暫時地禁止 ping reply 重新啟動後仍會得到 ping reply echo &amp;#34;1&amp;#34; | sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all 永久地禁止 ping reply 重新啟動後無法得到 ping reply echo &amp;#34;net.ipv4.icmp_echo_ignore_all = 1&amp;#34; | sudo</description><content type="html"><![CDATA[<p>關掉主機的 ICMP<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 回應 (ping reply)
-主機預設是開啟 (0) ，關閉 (1)</p>
-<h2 id="暫時地禁止-ping-reply">暫時地禁止 ping reply</h2>
-<blockquote>
-<p>重新啟動後仍會得到 ping reply</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;1&#34;</span> <span class="p">|</span> sudo tee /proc/sys/net/ipv4/icmp_echo_ignore_all
-</code></pre></div><h2 id="永久地禁止-ping-reply">永久地禁止 ping reply</h2>
-<blockquote>
-<p>重新啟動後無法得到 ping reply</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;net.ipv4.icmp_echo_ignore_all = 1&#34;</span> <span class="p">|</span> sudo tee /etc/sysctl.d/icmp_echo_ignore_all.conf
-</code></pre></div><section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol">https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-]]></content></item><item><title>[Commands] tar 打包、壓縮指令</title><link>https://newjett0617.github.io/posts/commands-tar/</link><pubDate>Sun, 04 Oct 2020 11:59:30 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-tar/</guid><description>打包 壓縮 描述 .tar V 用 tar 打包檔案，沒有使用壓縮 .tar.gz V V 用 tar 打包檔案，使用 gzip 壓縮 .tar tar 打包、解包預設操作使用相對路徑，使用絕對路徑路徑需加上 -P, --absolute-paths 參數 #!/bin/bash</description><content type="html"><![CDATA[<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">打包</th>
-<th align="center">壓縮</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.tar</td>
-<td align="center">V</td>
-<td align="center"></td>
-<td>用 tar 打包檔案，沒有使用壓縮</td>
-</tr>
-<tr>
-<td>.tar.gz</td>
-<td align="center">V</td>
-<td align="center">V</td>
-<td>用 tar 打包檔案，使用 gzip 壓縮</td>
-</tr>
-</tbody>
-</table>
-<h2 id="tar">.tar</h2>
-<blockquote>
-<p>tar 打包、解包預設操作使用相對路徑，使用絕對路徑路徑需加上 <code>-P, --absolute-paths</code> 參數</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
-</span><span class="cp"></span><span class="c1"># 打包 foo/ 資料夾下所有檔案</span>
-tar -c -v -f foo.tar foo/
-
-<span class="c1"># 解包</span> 
-tar -x -v -f foo.tar
-
-<span class="c1"># 查看包</span>
-tar -t -v -f foo.tar
-</code></pre></div><pre><code>-c, --create:
-    create a new ARCHIVE
-
--x, --extract: 
-    extract files from an ARCHIVE
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/posts/</link>
+    <description>Recent content in Posts on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 11 Aug 2021 13:34:03 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Kustomize 對 Kubernetes 物件進行宣告式管理</title>
+      <link>https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 11 Aug 2021 13:34:03 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/</guid>
+      <description>在 kubernetes 官網 中有看到一個用來管理 kubernetes 的工具，叫做 Kustomize，透過 kustomization 檔案來宣告式 ( Declarative) 管理 kubernetes 物件
+安裝 Kustomize 從 kubernetes 1.14 之後就有支援 kustomization 檔案
+kubectl kustomize DIR [flags] [options] DIR 目錄下，必須有 kustomization 檔案，名稱可以為下列三個其中一個
+ kustomization.yaml kustomization.yml Kustomization  但是也可以獨立安裝 kustomize-cli，其他安裝方式請看 here
+brew install kustomize Kustomize 工作原理 主要分成 base 及 overlays
+base 會透過 kustomization 檔案定義使用的哪些 kubernetes 物件
+overlays 也會透過 kustomization 檔案定義要使用哪個 base，並在 base 上新增補丁 (Patch)，如果在 base 上有該資源的話就複寫，如果沒有的話就新增
+資料夾結構如下
+. ├── base │ ├── configMap.</description>
+    </item>
     
--t, --list
-    list the contents of an ARCHIVE
-
--f, --file=ARCHIVE:
-    use ARCHIVE file or device ARCHIVE
-
--v, --verbose: 
-    verbosely list files processed
-</code></pre><h2 id="targz">.tar.gz</h2>
-<blockquote>
-<p>使用 <code>-c, --create</code> 參數時多加上 <code>-z, --gzip</code> 參數 (使用 gzip 方式壓縮)</p>
-</blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">tar -z -c -v -f foo.tar.gz foo/
-</code></pre></div><pre><code>-z, --gzip
-    filter the ARCHIVE through gzip
-</code></pre>]]></content></item><item><title>[Commands] sed 指令</title><link>https://newjett0617.github.io/posts/commands-sed/</link><pubDate>Thu, 10 Sep 2020 15:15:08 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-sed/</guid><description>-i 的差異 在 macOS 中 sed 指令是使用 BSD 版本，但在 Ubuntu 是使用 GNU 版本，指令之間存著一些差異，用法也會有些許不同 最常見的就是 -i，如果沒有提供後綴，則原始文件</description><content type="html"><![CDATA[<h2 id="-i-的差異"><code>-i</code> 的差異</h2>
-<p>在 macOS 中 sed 指令是使用 BSD 版本，但在 Ubuntu 是使用 GNU 版本，指令之間存著一些差異，用法也會有些許不同</p>
-<p>最常見的就是 <code>-i</code>，如果沒有提供後綴，則原始文件將被覆蓋而不進行備份（in place）</p>
-<p>macOS</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed -i <span class="s1">&#39;&#39;</span> -e <span class="s1">&#39;s/foo/bar/g&#39;</span> test.txt
-</code></pre></div><p>指令在 macOS 環境中執行是可以的，但是在 Ubuntu 卻會噴錯</p>
-<pre><code>sed: can't read : No such file or directory
-</code></pre><p>Ubuntu</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sed -i -e <span class="s1">&#39;s/foo/bar/g&#39;</span> test.txt
-</code></pre></div><h2 id="更改-separator">更改 separator</h2>
-<p>另外一個技巧就是更換 separator <code>s/regular expression/replacement/flags</code></p>
-<p>如果使用 slash <code>/</code> 當作 separator，當在正規表示式中有用到 slash <code>/</code> 的部分，會需要使用 backslash <code>\</code> 來跳脫，但會造成很難閱讀</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s/\/home\/example/\/usr\/local\/example/&#39;</span>
-</code></pre></div><p>可以更改用其他的 separator 來代替（<code>|</code>, <code>#</code>, <code>@</code>）</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s|/home/example|/usr/local/example|&#39;</span>
-<span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s#/home/example#/usr/local/example#&#39;</span>
-<span class="nb">echo</span> <span class="s2">&#34;/home/example&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s@/home/example@/usr/local/example@&#39;</span>
-</code></pre></div>]]></content></item><item><title>[Commands] man 手冊指令</title><link>https://newjett0617.github.io/posts/commands-man/</link><pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-man/</guid><description>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊 這時需要查一下有哪些 manual # 查手冊名字中</description><content type="html"><![CDATA[<p>使用 man 指令時，容易因為相似檔案或指令而導致看錯手冊，舉個例子像是 <code>passwd</code></p>
-<p>這同時有指令 <code>/usr/bin/passwd</code> 的手冊，也是檔案 <code>/etc/passwd</code> 的手冊</p>
-<p>這時需要查一下有哪些 manual</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查手冊名字中有 `passwd` 的手冊</span>
-man -f passwd
-
-<span class="c1"># 查手冊名字中包含 `passwd` 的手冊</span>
-man -k passwd
-<span class="c1">## output</span>
-<span class="c1"># passwd (1)           - change user password</span>
-<span class="c1"># passwd (5)           - the password file</span>
-</code></pre></div><pre><code>-f: 
-    same as whatis(1). 
-    Search for all words in expression in manual page names only.
--k:
-    same as apropos(1). 
-    Support the full expression syntax. The search is case-insensitive and matches whole words only.
-</code></pre><p>此時會顯示跟 passwd 相關的手冊，括號中的數字表示手冊的 section</p>
-<pre><code>Manual Sections
-the sections of the manual are:
-
-    1. General commands (executable programs or shell commands)
-    2. System calls (functions provided by the kernel)
-    3. Library functions (functions within program libraries)
-    4. Kernel interfaces
-    5. File formats and conventions
-    6. Games
-    7. Miscellaneous information (including macro packages and conventions)
-    8. System manager's
-    8. system administration commands (usually only for root)
-    9. Kernel developer's
-    9. kernel routines [non standard]
-</code></pre><p>上述例子輸出關於 <code>passwd</code> 的結果，session 1 是指令的手冊，session 5 是檔案的手冊</p>
-<p>想看指令的手冊的話</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">1</span> passwd
-</code></pre></div><p>想看檔案的手冊的話</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">man <span class="m">5</span> passwd
-</code></pre></div>]]></content></item><item><title>[Laravel] 使用 Laradock 搭配 xdebug phpunit phpstorm</title><link>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</link><pubDate>Tue, 21 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-laradock-xdebug-phpunit-phpstorm/</guid><description>修改 Laradock .env sed -i &amp;#39;&amp;#39; \ -e &amp;#39;s|WORKSPACE_INSTALL_XDEBUG=false|WORKSPACE_INSTALL_XDEBUG=true|g&amp;#39; \ -e &amp;#39;s|PHP_FPM_INSTALL_XDEBUG=false|PHP_FPM_INSTALL_XDEBUG=true|g&amp;#39; \ .env 重新建置 Laradock images docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm 設定 phpstorm config Preferences | Languages &amp;amp; Frameworks | PHP PHP Language level: choose you want CLI Interpreter: click ... create a cli interpreter, from docker &amp;hellip; Path mappings: OK Preferences | Languages &amp;amp; Frameworks | PHP |</description><content type="html"><![CDATA[<h2 id="修改-laradock-env">修改 Laradock .env</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_XDEBUG=false|WORKSPACE_INSTALL_XDEBUG=true|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|PHP_FPM_INSTALL_XDEBUG=false|PHP_FPM_INSTALL_XDEBUG=true|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    .env
-</code></pre></div><h2 id="重新建置-laradock-images">重新建置 Laradock images</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace php-fpm
-</code></pre></div><h2 id="設定-phpstorm-config">設定 phpstorm config</h2>
-<h3 id="preferences--languages--frameworks--php">Preferences | Languages &amp; Frameworks | PHP</h3>
-<ul>
-<li>PHP Language level: choose you want</li>
-<li>CLI Interpreter: click <code>...</code>
-<ul>
-<li>create a cli interpreter, from docker &hellip;</li>
-<li><img src="/images/gVgSvNDom2J2PpWv/8bYCkdR.png" alt=""></li>
-<li><img src="/images/gVgSvNDom2J2PpWv/pTPnihF.png" alt=""></li>
-<li><img src="/images/gVgSvNDom2J2PpWv/to2UDGb.png" alt=""></li>
-</ul>
-</li>
-<li>Path mappings:
-<ul>
-<li><img src="/images/gVgSvNDom2J2PpWv/DTVpqW5.png" alt=""></li>
-</ul>
-</li>
-<li>OK
-<ul>
-<li><img src="/images/gVgSvNDom2J2PpWv/1ESF1wz.png" alt=""></li>
-</ul>
-</li>
-</ul>
-<h3 id="preferences--languages--frameworks--php--servers">Preferences | Languages &amp; Frameworks | PHP | Servers</h3>
-<ul>
-<li>create a server call <code>laradock</code>
-<ul>
-<li><img src="/images/gVgSvNDom2J2PpWv/2RBIfzm.png" alt=""></li>
-</ul>
-</li>
-<li>OK</li>
-</ul>
-]]></content></item><item><title>[Laravel] Laradock</title><link>https://newjett0617.github.io/posts/laravel-laradock/</link><pubDate>Sat, 11 Jul 2020 14:40:56 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-laradock/</guid><description>使用 Laradock 來建置 Laravel 專案的環境 必要工具 Git Docker （版本 &amp;gt;= 17.12 ） 安裝 單個專案 多個專案 會使用 多個專案 方式進行安裝 檔案目錄結構 . ├── ./laradock ├── laradock ├── proj1 ├── ...</description><content type="html"><![CDATA[<p>使用 <a href="https://github.com/laradock/laradock">Laradock</a> 來建置 Laravel 專案的環境</p>
-<h2 id="必要工具">必要工具</h2>
-<ul>
-<li>Git</li>
-<li>Docker （版本 &gt;= 17.12 ）</li>
-</ul>
-<h2 id="安裝">安裝</h2>
-<ul>
-<li>單個專案</li>
-<li>多個專案</li>
-</ul>
-<p>會使用 <code>多個專案</code> 方式進行安裝</p>
-<h3 id="檔案目錄結構">檔案目錄結構</h3>
-<pre><code>.
-├── ./laradock
-├── laradock
-├── proj1
-├── ...
-└── proj2
-</code></pre><h2 id="getting-started">Getting Started</h2>
-<h3 id="clone-laradock">Clone Laradock</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/Laradock/laradock.git
-</code></pre></div><h3 id="改變目錄到-laradock-後複製-env-example-成-env">改變目錄到 laradock 後複製 <code>env-example</code> 成 <code>.env</code></h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> laradock
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cp env-example .env
-</code></pre></div><h3 id="設定-laradock-的-docker-image">設定 Laradock 的 docker image</h3>
-<p>設定 docker image 要安裝該軟體及軟體版本</p>
-<p>這邊的 <code>.env</code> 是 docker-compose 所需要的檔案</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|DATA_PATH_HOST=~/.laradock/data|DATA_PATH_HOST=../.laradock/data|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|PHP_VERSION=7.3|PHP_VERSION=7.4|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_COMPOSER_REPO_PACKAGIST=|WORKSPACE_COMPOSER_REPO_PACKAGIST=https://packagist.jp|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_NODE=true|WORKSPACE_INSTALL_NODE=false|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_YARN=true|WORKSPACE_INSTALL_YARN=false|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_NPM_GULP=true|WORKSPACE_INSTALL_NPM_GULP=false|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_NPM_VUE_CLI=true|WORKSPACE_INSTALL_NPM_VUE_CLI=false|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_PRESTISSIMO=false|WORKSPACE_INSTALL_PRESTISSIMO=true|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|WORKSPACE_INSTALL_MYSQL_CLIENT=false|WORKSPACE_INSTALL_MYSQL_CLIENT=true|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|PHP_FPM_INSTALL_MYSQLI=true|PHP_FPM_INSTALL_MYSQLI=false|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_VERSION=latest|MYSQL_VERSION=5.7|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_DATABASE=default|MYSQL_DATABASE=|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_USER=default|MYSQL_USER=|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|MYSQL_PASSWORD=secret|MYSQL_PASSWORD=|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    .env
-</code></pre></div><h3 id="設定-nginx-config">設定 Nginx config</h3>
-<p>這個做法限定是給 laravel 的專案</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cp nginx/sites/laravel.conf.example nginx/sites/laravel.conf
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|laravel.test|~(?&lt;domain&gt;.+)(\.test)$|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|/var/www/laravel/public|/var/www/$domain/public|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|laravel_|$domain.|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    nginx/sites/laravel.conf
-</code></pre></div><p>依照專案名稱來當作 Virtual Host 的配置</p>
-<h3 id="建立-laradock-services-images">建立 Laradock services images</h3>
-<p>這個步驟會花費大量時間抓取 docker image 及 build image</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose build --parallel --pull --force-rm --compress --no-cache --quiet workspace nginx php-fpm mysql
-</code></pre></div><h3 id="啟動-laradock-services">啟動 Laradock services</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose up --detach workspace nginx php-fpm mysql
-</code></pre></div><h3 id="關閉-laradock-services">關閉 Laradock services</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose down --timeout <span class="m">1</span>
-</code></pre></div><h3 id="map-to-localhost-dns">Map to localhost DNS</h3>
-<p>在 macOS 的 <code>/etc/hosts</code> 新增 dns record</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo -- bash -c <span class="s2">&#34;echo &#39;127.0.0.1 proj1.test&#39; &gt;&gt; /etc/hosts&#34;</span>
-</code></pre></div><h3 id="設定-laravel-專案">設定 Laravel 專案</h3>
-<p>操作指令都會需要進入 workspace container 進行操作</p>
-<p>這邊的 .env 是 laravel 專案所需要的檔案</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose <span class="nb">exec</span> --user<span class="o">=</span>laradock workspace bash
-<span class="nv">PROJECT_NAME</span><span class="o">=</span>proj1
-git clone https://github.com/laravel/laravel.git <span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
-<span class="nb">cd</span> <span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
-composer install
-cp .env.example .env
-sed -i <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|DB_HOST=127.0.0.1|DB_HOST=mysql|g&#39;</span> .env <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|DB_PASSWORD=|DB_PASSWORD=root|g&#39;</span> .env <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|DB_DATABASE=laravel|DB_DATABASE=&#39;</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span><span class="s1">&#39;|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    .env
-mysql --host<span class="o">=</span>mysql --user<span class="o">=</span>root --password<span class="o">=</span>root --execute<span class="o">=</span><span class="s2">&#34;CREATE DATABASE IF NOT EXISTS \`</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span><span class="s2">\` CHARACTER SET \`utf8mb4\` COLLATE \`utf8mb4_unicode_ci\`;&#34;</span><span class="p">;</span>
-php artisan key:generate
-php artisan migrate
-<span class="nb">exit</span>
-</code></pre></div><h3 id="測試">測試</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">curl -v -I -L -X GET <span class="s1">&#39;http://proj1.test&#39;</span>
-</code></pre></div><h2 id="faq">FAQ</h2>
-<h3 id="where-is-nginx-log">Where is Nginx log?</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker <span class="nb">exec</span> <span class="k">$(</span>docker ps --quiet --filter <span class="s2">&#34;name=nginx&#34;</span><span class="k">)</span> ls -al /var/log/nginx
-<span class="c1"># or</span>
-ls -al laradock/logs/
-</code></pre></div><h3 id="how-to-reload-nginx">How to reload Nginx?</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker <span class="nb">exec</span> <span class="k">$(</span>docker ps --quiet --filter <span class="s2">&#34;name=nginx&#34;</span><span class="k">)</span> nginx -t
-docker <span class="nb">exec</span> <span class="k">$(</span>docker ps --quiet --filter <span class="s2">&#34;name=nginx&#34;</span><span class="k">)</span> nginx -s reload
-</code></pre></div><h3 id="how-to-run-artisan-command">How to run artisan command?</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose <span class="nb">exec</span> --user<span class="o">=</span>laradock workspace php artisan ...
-</code></pre></div><h3 id="how-to-connect-mysql-database-on-macos">How to connect MySQL database on macOS?</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">mysql --host<span class="o">=</span>127.0.0.1 --user<span class="o">=</span>root --password<span class="o">=</span>root
-</code></pre></div><h3 id="how-to-reload-supervisor">How to reload supervisor</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose <span class="nb">exec</span> php-worker supervisorctl reload
-</code></pre></div>]]></content></item><item><title>加速 Composer Install</title><link>https://newjett0617.github.io/posts/speed-up-composer-install/</link><pubDate>Tue, 27 Aug 2019 19:34:27 +0800</pubDate><guid>https://newjett0617.github.io/posts/speed-up-composer-install/</guid><description>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝 附上 GitHub Repository Settings 安裝 composer global require hirak/prestissimo 移除 composer global remove hirak/prestissimo 測試 以安裝 Laravel 來當做測試基準，比較是否安裝 Laravel 會需要</description><content type="html"><![CDATA[<p>最近發現 composer install dependencies 有點久，去 google 發現這個 composer 的 plugin 可以來加速 composer 的安裝</p>
-<p>附上 <a href="https://github.com/hirak/prestissimo">GitHub Repository Settings</a></p>
-<h2 id="安裝">安裝</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">composer global require hirak/prestissimo
-</code></pre></div><h2 id="移除">移除</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">composer global remove hirak/prestissimo
-</code></pre></div><h2 id="測試">測試</h2>
-<p>以安裝 Laravel 來當做測試基準，比較是否安裝 Laravel 會需要多少時間，而每次安裝都會清 cache</p>
-<h3 id="安裝指令">安裝指令</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">composer clearcache
-composer create-project laravel/laravel laravel1 --no-progress --profile --prefer-dist
-</code></pre></div><h3 id="安裝-plugin-前後比較">安裝 plugin 前後比較</h3>
-<p>安裝 Laravel 所需要花費 240 秒 變成 50 秒，這樣的差異也太大了吧，省去了大多時間</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>記憶體</th>
-<th>時間</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>安裝前</td>
-<td>343.9 MiB</td>
-<td>239.83 s</td>
-</tr>
-<tr>
-<td>安裝後</td>
-<td>344.2 MiB</td>
-<td>49.64 s</td>
-</tr>
-</tbody>
-</table>
-]]></content></item><item><title>[Laravel] Log 與 Slack 串接</title><link>https://newjett0617.github.io/posts/laravel-log-with-slack/</link><pubDate>Mon, 26 Aug 2019 09:10:18 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-log-with-slack/</guid><description>Laravel 有許多 Logger Driver 可以使用，本文用的是 Slack 當作是記錄 Log 的地方，只要完成相關的設定，基本上就完成串接了 設定 Laravel config/logging.php &amp;lt;?php # config/logging.php return [ &amp;#39;default&amp;#39; =&amp;gt; env(&amp;#39;LOG_CHANNEL&amp;#39;, &amp;#39;stack&amp;#39;), &amp;#39;channels&amp;#39; =&amp;gt; [ &amp;#39;stack&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;stack&amp;#39;, &amp;#39;channels&amp;#39; =&amp;gt;</description><content type="html"><![CDATA[<p>Laravel 有許多 Logger Driver 可以使用，本文用的是 Slack 當作是記錄 Log 的地方，只要完成相關的設定，基本上就完成串接了</p>
-<h2 id="設定-laravel">設定 Laravel</h2>
-<h3 id="configloggingphp">config/logging.php</h3>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> <span class="c1"># config/logging.php
-</span><span class="c1"></span>
-<span class="k">return</span> <span class="p">[</span>
-
-    <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_CHANNEL&#39;</span><span class="p">,</span> <span class="s1">&#39;stack&#39;</span><span class="p">),</span>
-
-    <span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">&#39;stack&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;daily&#39;</span><span class="p">,</span> <span class="s1">&#39;slack&#39;</span><span class="p">],</span> <span class="c1">// &lt;= 新增 slack
-</span><span class="c1"></span>            <span class="s1">&#39;ignore_exceptions&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
-        <span class="p">],</span>
-
-        <span class="c1">// Slack 用預設的設定
-</span><span class="c1"></span>        <span class="s1">&#39;slack&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;slack&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_SLACK_WEBHOOK_URL&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Laravel Log&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;emoji&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;💥&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;level&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;critical&#39;</span><span class="p">,</span>
-        <span class="p">],</span>
-        
-        <span class="c1">// ...
-</span><span class="c1"></span>    <span class="p">],</span>
-<span class="p">];</span> 
-</code></pre></div><p>channels 原本只有 daily，新增一個 slack，level 依照 log 等級<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>而決定是否要 log 到 Slack，當 log level 是 critical 等級時才會 log 到 Slack</p>
-<h3 id="env">.env</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">LOG_CHANNEL</span><span class="o">=</span>stack
-<span class="nv">LOG_SLACK_WEBHOOK_URL</span><span class="o">=</span>slack_webhook_url
-</code></pre></div><p>LOG_CHANNEL 選擇 stack</p>
-<p>新增 LOG_SLACK_WEBHOOK_URL key，value 等等在 Slack 設定完就可以貼上了</p>
-<h2 id="設定-slack">設定 Slack</h2>
-<p>Slack 的 <a href="https://api.slack.com/incoming-webhooks">incoming-webhooks</a> 相關文件</p>
-<h3 id="註冊-slack-app">註冊 Slack App</h3>
-<ul>
-<li>輸入 App Name 及 選擇 Slack Workspace 後，按下 Create App
-<img src="https://i.imgur.com/bcVw1P1.png" alt=""></li>
-</ul>
-<h3 id="啟動-incoming-webhooks">啟動 Incoming Webhooks</h3>
-<ul>
-<li>按下 on 完成啟動
-<img src="https://i.imgur.com/89GDF5h.png" alt=""></li>
-</ul>
-<h3 id="建立一個-incoming-webhook">建立一個 Incoming Webhook</h3>
-<ul>
-<li>
-<p>按下 <code>Add New Webhook to Workspace</code>
-<img src="https://i.imgur.com/pczufF1.png" alt=""></p>
-</li>
-<li>
-<p>在 Slack 的 Workspace 建立一個 Channel 後，將 Slack App 加到 Channel，按下 <code>Allow</code>，也會看到 Slack App 加入到 Channel 中
-<img src="https://i.imgur.com/4zau2J2.png" alt="">
-<img src="https://i.imgur.com/UDKT4g2.png" alt=""></p>
-</li>
-<li>
-<p>這樣就完成建立 Incoming Webhook，複製 Webhook URL 到 .env 完成設定
-<img src="https://i.imgur.com/DvtlZjJ.png" alt=""></p>
-</li>
-<li>
-<p>複製 sample curl 測試看看 Slack App 是否正常
-<img src="https://i.imgur.com/8h6g35h.png" alt=""></p>
-</li>
-</ul>
-<h2 id="example">Example</h2>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-
-<span class="nx">\Illuminate\Support\Facades\Log</span><span class="o">::</span><span class="na">critical</span><span class="p">(</span><span class="s1">&#39;oops!&#39;</span><span class="p">);</span>
-</code></pre></div><p>或是針對指定的 Channel 記錄 Log</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-
-<span class="nx">\Illuminate\Support\Facades\Log</span><span class="o">::</span><span class="na">channel</span><span class="p">(</span><span class="s1">&#39;slack&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">critical</span><span class="p">(</span><span class="s1">&#39;oops!&#39;</span><span class="p">);</span>
-</code></pre></div><p><img src="https://i.imgur.com/H7HE1S2.png" alt=""></p>
-<p>基本上這樣就完成</p>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>根據 <a href="https://tools.ietf.org/html/rfc5424">RFC 5424</a> 分別是 emergency、alert、critical、error、warning、notice、info、debug，分成 8 個等級 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-]]></content></item><item><title>[Laravel] Status Code 429, Too Many Request</title><link>https://newjett0617.github.io/posts/laravel-status-code-429-too-many-request/</link><pubDate>Wed, 24 Jul 2019 11:43:43 +0800</pubDate><guid>https://newjett0617.github.io/posts/laravel-status-code-429-too-many-request/</guid><description>某天前端在串接 API 時，發生 Status Code 429 錯誤，自己使用 Postman 也沒遇過這個錯誤，乾脆就順手把這坑填了吧 👍 Status Code 429 根據 MDN 的說明 429 Too Many The user has sent too many requests in a given amount of time (&amp;ldquo;rate</description><content type="html"><![CDATA[<p>某天前端在串接 API 時，發生 Status Code 429 錯誤，自己使用 Postman 也沒遇過這個錯誤，乾脆就順手把這坑填了吧 👍
-<img src="https://i.imgur.com/YefoEXZ.png" alt=""></p>
-<h2 id="status-code-429">Status Code 429</h2>
-<p>根據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status/429">MDN</a> 的說明</p>
-<blockquote>
-<p><strong>429 Too Many</strong>
-The user has sent too many requests in a given amount of time (&ldquo;rate limiting&rdquo;).</p>
-<p>意思是在限制的時間內，使用者發出太多的請求了</p>
-</blockquote>
-<h2 id="laravel-幫了我什麼">Laravel 幫了我什麼？</h2>
-<p>什麼都沒有設定的話，預設在 <code>app/Http/Kernel.php</code> 中，會限制 1 分鐘只能請求 60 次</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Kernel.php
-</span><span class="c1"></span><span class="k">class</span> <span class="nc">Kernel</span> <span class="p">{</span>
-    <span class="c1">// ...
-</span><span class="c1"></span>    <span class="k">protected</span> <span class="nv">$middlewareGroups</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="c1">// ...
-</span><span class="c1"></span>        <span class="s1">&#39;api&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="s1">&#39;throttle:60,1&#39;</span><span class="p">,</span> <span class="c1">// 1 分鐘 60 次請求
-</span><span class="c1"></span>        <span class="p">],</span>
-        <span class="c1">// ...
-</span><span class="c1"></span>    <span class="p">];</span>
-    <span class="c1">// ...
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>在請求的 response header 中有提及相關內容</p>
-<pre><code>x-ratelimit-limit: 60
-x-ratelimit-limit: 指定時間內允許最大的請求次數
-
-x-ratelimit-remaining: 0
-x-ratelimit-remaining: 指定時間內剩下的請求次數
-
-retry-after: 15
-retry-after: 距離下次重試請求需要等待的時間（秒）
-</code></pre><p>如果想要自行設定次數的話，在 Route 使用 Middleware 來設定次數 Rate Limiting</p>
-]]></content></item><item><title>[Tip] 刪除多個 GitHub Repositories</title><link>https://newjett0617.github.io/posts/tip-delete-multiple-github-repositories-using-api/</link><pubDate>Sun, 07 Jul 2019 21:09:09 +0800</pubDate><guid>https://newjett0617.github.io/posts/tip-delete-multiple-github-repositories-using-api/</guid><description>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &amp;hellip; GitHub 有提供 api 方式可以使用，這次使用 shell script 方式刪除 不一定要使用 shell scri</description><content type="html"><![CDATA[<p>在我的 GitHub 中有許多垃圾 Repositories 是需要被刪除的，手動點擊畫面上的步驟太繁瑣、太累人 &hellip;</p>
-<p>GitHub 有提供 api 方式可以使用，這次使用 shell script 方式刪除</p>
-<p>不一定要使用 shell script，只要能夠發請求的話，即可達成目的</p>
-<h2 id="建立一個-shell-script">建立一個 shell script</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">touch delete.sh
-chmod u+x delete.sh
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/usr/bin/env bash
-</span><span class="cp"></span>
-<span class="nv">token</span><span class="o">=</span><span class="s1">&#39;&lt;your-github-token&gt;&#39;</span>
-
-<span class="nv">repos</span><span class="o">=(</span>
-    <span class="s1">&#39;username/repo-1&#39;</span>
-    <span class="s1">&#39;username/repo-2&#39;</span>
-    <span class="s1">&#39;username/repo-3&#39;</span>
-<span class="o">)</span>
-
-<span class="k">for</span> i in <span class="si">${</span><span class="nv">repos</span><span class="p">[@]</span><span class="si">}</span> <span class="p">;</span> <span class="k">do</span>
-    curl -X DELETE https://api.github.com/repos/<span class="si">${</span><span class="nv">i</span><span class="si">}</span> -H <span class="s2">&#34;Authorization: token </span><span class="si">${</span><span class="nv">token</span><span class="si">}</span><span class="s2">&#34;</span>
-    <span class="nb">echo</span> <span class="s2">&#34;delete https://github.com/</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span>
-<span class="k">done</span>
-</code></pre></div><blockquote>
-<p>Github API 相關文件</p>
-<ul>
-<li><a href="https://developer.github.com/v3/repos/#delete-a-repository">文件</a></li>
-<li><a href="https://developer.github.com/v3/#authentication">Authentication 方式</a></li>
-<li><a href="https://developer.github.com/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/#available-scopes">可用的 scope</a></li>
-</ul>
-</blockquote>
-<h2 id="產生-github-token">產生 Github token</h2>
-<p>Github 有提供畫面可以操作，token scope 需包含 <code>delete_repo</code> scope</p>
-<p>在 Settings / Developer settings / Personal access tokens</p>
-<p><img src="https://i.imgur.com/jUbtXab.png" alt=""></p>
-<p>token 只顯示一次，記得保存好
-<img src="https://i.imgur.com/lFRDDHo.png" alt=""></p>
-<h2 id="執行">執行</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">./delete.sh
-</code></pre></div><h3 id="執行後該注意">執行後該注意</h3>
-<p>因為刪除 repo 的行為太危險了，應該在使用後將這組 token 刪除，確保安全</p>
-]]></content></item><item><title>[Commands] scp 遠程安全地複製文件</title><link>https://newjett0617.github.io/posts/commands-scp/</link><pubDate>Fri, 08 Feb 2019 07:37:48 +0800</pubDate><guid>https://newjett0617.github.io/posts/commands-scp/</guid><description>scp 是在網絡上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸。 remote -&amp;gt; local scp user@remote_host:remote_file local_file local -&amp;gt; remote scp local_file user@remote_host:remote_file</description><content type="html"><![CDATA[<p>scp 是在網絡上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸。</p>
-<h2 id="remote---local">remote -&gt; local</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">scp user@remote_host:remote_file local_file
-</code></pre></div><h2 id="local---remote">local -&gt; remote</h2>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">scp local_file user@remote_host:remote_file
-</code></pre></div>]]></content></item><item><title>Proxy 代理</title><link>https://newjett0617.github.io/posts/proxy/</link><pubDate>Sat, 01 Dec 2018 12:45:50 +0800</pubDate><guid>https://newjett0617.github.io/posts/proxy/</guid><description>Positive Proxy 正向代理 正向代理是一個位於 client 和 server 之間的代理伺服器，client 向代理伺服器發送一個請求，並且指定 server，代理向 server 轉交並且將獲得的內</description><content type="html"><![CDATA[<h2 id="positive-proxy-正向代理">Positive Proxy 正向代理</h2>
-<p><img src="https://i.imgur.com/kELZv9N.png" alt=""></p>
-<ul>
-<li>正向代理是一個位於 client 和 server 之間的代理伺服器，client 向代理伺服器發送一個請求，並且指定 server，代理向 server 轉交並且將獲得的內容返回給 client。</li>
-<li>client 需要設定向哪臺代理伺服器發請求。</li>
-<li>正向代理是代理 client 端，為 client 發請求，使得真實 client 對伺服器不可見。</li>
-<li>正向代理中，proxy 和 client 同屬一個 LAN，對 server 透明。</li>
-</ul>
-<h2 id="reverse-proxy-反向代理">Reverse Proxy 反向代理</h2>
-<p><img src="https://i.imgur.com/CuEnudf.png" alt=""></p>
-<ul>
-<li>反向代理對於 client 來說，反向代理就好像 server。</li>
-<li>client 向反向代理伺服器發送請求，接著反向代理伺服器判斷請求走向何處，並將請求轉交給 client，使得這些內容就好似他自己一樣，client 並不會知道反向代理後面的服務，也因此不需要 client 做任何設置，只需要把反向代理伺服器當成真正的 server 就好了。</li>
-<li>反向代理是代理 server 端，為 server 收發請求，使真實 server 對 client 不可見。</li>
-<li>反向代理中，proxy 和 server 同屬一個 LAN，對 client 透明。</li>
-</ul>
-<h2 id="從用途上區分">從用途上區分</h2>
-<ul>
-<li>正向代理：正向代理用途是為了在防火牆內的局域網提供訪問 internet 的途徑。</li>
-<li>反向代理：反向代理的用途是將防火牆後面的服務器提供給 internet 用戶訪問。同時還可以完成像是負載均衡等功能。</li>
-</ul>
-<h2 id="從安全性來講">從安全性來講</h2>
-<ul>
-<li>正向代理：正向代理允許客戶端通過它訪問任意網站並且隱蔽客戶端自身，因此你必須採取安全措施來確保僅為經過授權的客戶端提供服務。</li>
-<li>反向代理：對外是透明的，訪問者並不知道自己訪問的是代理。對訪問者而言，他以為訪問的就是原始服務器。</li>
-</ul>
-]]></content></item><item><title>Typography</title><link>https://newjett0617.github.io/posts/typography/</link><pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate><guid>https://newjett0617.github.io/posts/typography/</guid><description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-An apple is a sweet, edible fruit produced by an apple tree (Malus pumila).</description><content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<blockquote>
-<p>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-</blockquote>
-<hr>
-<p>Inline styles：</p>
-<p><strong>strong</strong>, <em>emphasis</em>, <em><strong>strong and emphasis</strong></em>,<code>code</code>, <!-- raw HTML omitted -->underline<!-- raw HTML omitted -->, <del>strikethrough</del>, 😂🤣, $\LaTeX$, X^2^, H~2~O, ==highlight==, <a href="https://example.com">Link</a>, and image:</p>
-<p><img src="https://picsum.photos/600/400/?random" alt="img"></p>
-<hr>
-<p>Headings:</p>
-<h1 id="heading-1">Heading 1</h1>
-<h2 id="heading-2">Heading 2</h2>
-<h3 id="heading-3">Heading 3</h3>
-<h4 id="heading-4">Heading 4</h4>
-<h5 id="heading-5">Heading 5</h5>
-<h6 id="heading-6">Heading 6</h6>
-<p>Table:</p>
-<table>
-<thead>
-<tr>
-<th align="left">Left-Aligned</th>
-<th align="center">Center Aligned</th>
-<th align="right">Right Aligned</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">col 3 is</td>
-<td align="center">some wordy text</td>
-<td align="right">$1600</td>
-</tr>
-<tr>
-<td align="left">col 2 is</td>
-<td align="center">centered</td>
-<td align="right">$12</td>
-</tr>
-<tr>
-<td align="left">zebra stripes</td>
-<td align="center">are neat</td>
-<td align="right">$1</td>
-</tr>
-</tbody>
-</table>
-<p>Lists:</p>
-<ul>
-<li>Unordered list item 1.</li>
-<li>Unordered list item 2.</li>
-</ul>
-<ol>
-<li>ordered list item 1.</li>
-<li>ordered list item 2.
-<ul>
-<li>sub-unordered list item 1.</li>
-<li>sub-unordered list item 2.
-<ul>
-<li><input checked="" disabled="" type="checkbox"> something is DONE.</li>
-<li><input disabled="" type="checkbox"> something is NOT DONE.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>Syntax Highlighting:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">,</span> <span class="nx">sum</span>
-<span class="nx">num1</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter first number&#34;</span><span class="p">)</span>
-<span class="nx">num2</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter second number&#34;</span><span class="p">)</span>
-<span class="nx">sum</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num2</span><span class="p">)</span> <span class="c1">// &#34;+&#34; means &#34;add&#34;
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Sum = &#34;</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">)</span>  <span class="c1">// &#34;+&#34; means combine into a string
-</span></code></pre></div><section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>From <a href="https://en.wikipedia.org/wiki/Apple">https://en.wikipedia.org/wiki/Apple</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-]]></content></item></channel></rss>
+    <item>
+      <title>Docker 容器日誌整合 AWS CloudWatch</title>
+      <link>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</guid>
+      <description>最近有收到需求是要將容器的日誌寫入 AWS CloudWatch 中，剛好 docker 的 logging drivers 有支援，紀錄一下過程
+docker 預設的 logging driver 是 json-file，日誌檔案路徑在 /var/lib/docker/containers/&amp;lt;CONTAINER_ID&amp;gt;/&amp;lt;CONTAINER_ID&amp;gt;-json.log
+這是 docker 的 logging drivers 支援的清單 logging driver 可以單一容器設定，也可以全域設定 (修改 /etc/docker/daemon.json)
+下面關於 docker 的示範都是使用單一容器設定 logging driver
+直接使用 awslogs logging driver 沒有傳遞 AWS Credentials 而直接使用 awslogs logging driver 的話會有下面錯誤
+啟動容器
+docker run --name test1 \  --log-driver awslogs \  --log-opt &amp;#34;awslogs-region=us-east-1&amp;#34; \  --log-opt &amp;#34;awslogs-group=myLogGroup&amp;#34; \  --log-opt &amp;#34;awslogs-stream=myLogStream&amp;#34; \  busybox echo test1 查看一下狀態</description>
+    </item>
+    
+    <item>
+      <title>用 Kindle 閱讀 Kobo 電子書</title>
+      <link>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</link>
+      <pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</guid>
+      <description>準備工具 等等操作中會需要使用這些工具來完成
+ Calibre Calibre 外掛程式 DeDRM Adobe Digital Editions  安裝 Calibre 由於我使用的是 macOS，因此直接透過 homebrew 套件管理工具來安裝
+brew install --cask calibre 安裝外掛程式 教學 (如何安裝外掛及載入外掛)
+安裝 DeDRM 執行下面程式，會得到 DeDRM 外掛程式
+VERSION=$(curl -fsSL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d&amp;#39;&amp;#34;&amp;#39; -f 4 | cut -c 2-) curl -fsSL &amp;#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/v${VERSION}/DeDRM_tools_${VERSION}.zip&amp;#34; -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝 Adobe Digital Editions brew install --cask adobe-digital-editions 準備電子書 到 kobo 下載想要放入 kindle 的電子書，會得到 URLLink.acsm 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟</description>
+    </item>
+    
+    <item>
+      <title>更新 Linux Sudo 漏洞</title>
+      <link>https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/</guid>
+      <description>最近看到 這篇 提到 sudo 有安全性漏洞
+也看到 這篇 有提供指令可以檢查，看看是否受到此漏洞的影響
+sudoedit -s / sudoedit: /: not a regular file 自己檢測一下，發現居然是漏洞版本，看來需要更新套件了
+在 apt update 後可以看到有哪些套件是可更新的，剛好有看到 sudo 這個套件，那就來更新吧
+sudo apt update sudo apt list --upgradable | grep sudo sudo apt --only-upgrade install sudo 更新後再用指令檢查一下，結果符合預期
+usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...  參考資料:
+ https://www.sudo.ws/alerts/unescape_overflow.html  </description>
+    </item>
+    
+    <item>
+      <title>用 Miniflux 自架 RSS 服務</title>
+      <link>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</link>
+      <pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</guid>
+      <description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買，思考有什麼類似的服務來解決我的問題，google 搜尋 self hosted rss 有一堆工具提供選擇，最後我挑了 Miniflux 來使用
+安裝 Miniflux 我是使用 docker 來架設，官方的 repo 中有提供 basic.yml 範例當作使用，就不多贅述了
+由於伺服器的架構不同，這是我自架 miniflux 的 repo
+後記 除了使用網頁外，Miniflux 還有提供 Fever API 可以串接，搭配使用 FeedMe 及 Reeder 這兩個 App 當作跨平台的閱讀器</description>
+    </item>
+    
+    <item>
+      <title>DIY WinToGo</title>
+      <link>https://newjett0617.github.io/posts/20201107-diy-wintogo/</link>
+      <pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201107-diy-wintogo/</guid>
+      <description>最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS
+有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了
+剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異
+第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk
+第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10
+第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）
+補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案
+順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 Log Rotation</title>
+      <link>https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/</link>
+      <pubDate>Thu, 05 Nov 2020 15:27:07 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/</guid>
+      <description>最近在 Linux 主機中 /var/log 資料夾底下發現有許多的 xxx.log.1, xxx.log.2 的檔案，好奇去查並記錄下來
+這些檔案是 log rotate 產生的檔案，主要功能是做日誌檔案的輪替
+logrotate 設定檔 主要設定檔的路徑是在 /etc/logrotate.conf，會載入 /etc/logrotate.d/ 底下的檔案，根據設定檔進行 rotate
+執行 logrotate logrotate 預設會在每日的 crontab 中執行 (/etc/cron.daily/logrotate)，如果想要手動執行 logrotate 的話，可以直接呼叫 logrotate --force 指令，--force 是強制執行 rotate 檔案，可搭配 --debug 一起使用並觀察
+logrotate 範例 在 /etc/logrotate.conf 檔案中定義 logrotate 的預設值，範例如下
+# 設定頻率對日誌檔做 rotate (hourly, daily, weekly, monthly, yearly) (hourly 需要改變 logrotate 的頻率) # weekly [weekday] &amp;lt;- default 0 (0 means Sunday, 1 means Monday, ... , 6 means Saturday) weekly # 日誌被 rotate 了 4 次後刪除舊日誌 rotate 4 # rotate 舊日誌文件後創建新日誌文件權限 # create [mode(octal)] [owner] [group].</description>
+    </item>
+    
+    <item>
+      <title>用 KIND 搭建本地 Kubernetes Cluster</title>
+      <link>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</link>
+      <pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</guid>
+      <description>最近在學習 Kubernetes 相關知識，需要建立 cluster 環境，開始學習時會建議使用單節點的 minikube 當作環境，但是有些功能是在單節點環境做不到，需要建立多節點環境進行測試，剛好有看到有人推薦 KIND (Kubernetes IN Docker)，這套工具可以快速建置多節點的環境
+安裝 KIND 環境中已經預設安裝 docker，接下來只要下載 KIND-cli
+brew install kind KIND-cli autocomplete cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; ~/.zshrc # kind-cli autocomplete source &amp;lt;(kind completion zsh) EOF 建置 cluster 在 KIND 的 repo 中的有提供範例 config 設定 kind-example-config.yaml ，可以快速建立四個節點 (一個 control-plane 節點, 三個 workers 節點)
+kind create cluster --name mykind --config ./kind-example-config.yaml 刪除 cluster kind delete cluster --name mykind happy using kubernetes clusters &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 tar 指令</title>
+      <link>https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sun, 04 Oct 2020 11:59:30 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 中常常看到副檔名 .tar.gz 的檔案，紀錄一下過程
+打包檔案 副檔名包含 .tar 的檔案，都是使用 tar 指令進行打包，也代表未使用壓縮的檔案
+看一下怎麼打包檔案
+tar -c -v -f a.tar /etc -c, --create: create a new ARCHIVE -f, --file=ARCHIVE: use ARCHIVE file or device ARCHIVE -v, --verbose: verbosely list files processed 壓縮檔案 副檔名 .tar.gz 的檔案，是經過 gzip 壓縮後的 tar 檔案，可以縮寫成 .tgz
+看一下怎麼壓縮檔案，多一個參數 -z
+tar -c -z -v -f a.tar.gz /etc -z, --gzip Filter the archive through gzip(1) 解壓縮檔案 看一下怎麼解壓縮檔案，使用 -x 參數
+tar -x -v -f a.</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 sed 指令</title>
+      <link>https://newjett0617.github.io/posts/20200910-linux-%E4%B8%AD%E7%9A%84-sed-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Thu, 10 Sep 2020 15:15:08 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200910-linux-%E4%B8%AD%E7%9A%84-sed-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 的 sed 版本是 GNU，在 macOS 的 sed 版本是 BSD，兩者在使用上略有不同，踩到這個雷，紀錄一下
+-i 參數的差異 最常見的就是 -i，如果沒有提供後綴，則原始文件將被覆蓋而不進行備份（in place）
+下面的指令在 macOS 中是可以執行的
+cat &amp;lt;&amp;lt; EOF &amp;gt; test.txt foo bar baz EOF sed -e &amp;#39;s/foo/bar/g&amp;#39; -i &amp;#39;&amp;#39; test.txt 但是在 Linux 中卻會噴錯 sed: can&#39;t read : No such file or directory
+在 Linux 中只需要使用 -i 即可
+sed -e &amp;#39;s/foo/bar/g&amp;#39; -i test.txt 更改 separator 另外一個技巧就是更換 separator s/regular expression/replacement/flags
+如果使用 / 當作 separator，在正規表示式中有用到 / 的地方，需要使用 \ 跳脫，這會造成很難閱讀</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 tee 指令</title>
+      <link>https://newjett0617.github.io/posts/20200809-linux-%E4%B8%AD%E7%9A%84-tee-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sun, 09 Aug 2020 15:32:11 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200809-linux-%E4%B8%AD%E7%9A%84-tee-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在設定 config 檔案時，第一次可能會用編輯器進行修改，但第二、三次就會用指令的方式進行修改
+常常遇到因為權限問題而沒辦法寫入檔案中，沒辦法指令化，範例如下
+sudo echo &amp;#39;foo&amp;#39; &amp;gt; /foo -bash: /foo: Permission denied 在 這篇 剛好有人問，因此紀錄一下
+tee tee 指令是從 standard input (stdin) 讀取並輸出 standard output (stdout) 和文件，同時「螢幕輸出」及「輸出檔案」
+echo &amp;#39;foo&amp;#39; | sudo tee /foo 上面的方式會直接覆蓋掉檔案 /foo，如果想要追加寫入檔案的話，可以使用 -a 或 --append 參數 (類似於 &amp;gt;&amp;gt; 的方式)
+echo &amp;#39;foo&amp;#39; | sudo tee -a /foo 如果不想要看到 tee 輸出在螢幕的內容，可以將 tee 的 stdout 丟到黑洞中 /dev/null
+echo &amp;#39;foo&amp;#39; | sudo tee -a /foo &amp;gt; /dev/null </description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 man 指令</title>
+      <link>https://newjett0617.github.io/posts/20200727-linux-%E4%B8%AD%E7%9A%84-man-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Mon, 27 Jul 2020 13:36:06 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200727-linux-%E4%B8%AD%E7%9A%84-man-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 中常常需要執行指令，在不知道指令或是參數之前都會看手冊
+使用 man 指令時，容易因為有相同名稱檔案或指令而導致看錯手冊
+舉個例子像是 passwd
+passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊
+這時需要查一下有哪些 manual
+查名稱有 passwd 的手冊 man -f passwd passwd (1) - change user password passwd (1ssl) - compute password hashes passwd (5) - the password file -f, --whatis: same as whatis(1). Search for all words in expression in manual page names only. 查名稱包含 passwd 的手冊 man -k passwd chgpasswd (8) - update group passwords in batch mode chpasswd (8) - update passwords in batch mode gpasswd (1) - administer /etc/group and /etc/gshadow grub-mkpasswd-pbkdf2 (1) - generate hashed password for GRUB mkpasswd (1) - Overfeatured front end to crypt(3) openssl-passwd (1ssl) - compute password hashes pam_localuser (8) - require users to be listed in /etc/passwd passwd (1) - change user password passwd (1ssl) - compute password hashes passwd (5) - the password file update-passwd (8) - safely update /etc/passwd, /etc/shadow and /etc/group -k, --apropos: same as apropos(1).</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 cut 指令</title>
+      <link>https://newjett0617.github.io/posts/20200612-linux-%E4%B8%AD%E7%9A%84-cut-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Fri, 12 Jun 2020 16:31:49 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20200612-linux-%E4%B8%AD%E7%9A%84-cut-%E6%8C%87%E4%BB%A4/</guid>
+      <description>在 Linux 中會需要字串處理，學會 cut 指令可以幫助不少
+cut 在 /etc/passwd 中儲存了所有 Linux 帳號的登入資訊，每一行就是一筆資料，欄位有 login name, user id, group id &amp;hellip; 等等，並且用 : 分隔
+如果想要列出所有使用者的話，可以使用 cut 來辦到
+cut 處理的字串是以「行」為單位
+root:x:0:0:root:/root:/bin/bash bin:x:1:1:bin:/bin:/sbin/nologin daemon:x:2:2:daemon:/sbin:/sbin/nologin cut -d &amp;#39;:&amp;#39; -f 1 /etc/passwd root bin daemon -d, --delimiter=DELIM use DELIM instead of TAB for field delimiter -f, --fields=LIST select only these fields 如果想要其他欄位的話，可以在 -f 參數後面加上
+cut -d &amp;#39;:&amp;#39; -f 1,3-4 /etc/passwd root:0:0 daemon:1:1 bin:2:2 後記 使用 cut 在處理多空格相連的資料時，會比較難判斷是第幾個 fields，應該有其他處理方式</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的 scp 指令</title>
+      <link>https://newjett0617.github.io/posts/20190208-linux-%E4%B8%AD%E7%9A%84-scp-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Fri, 08 Feb 2019 08:37:48 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20190208-linux-%E4%B8%AD%E7%9A%84-scp-%E6%8C%87%E4%BB%A4/</guid>
+      <description>scp 指令是在網路上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸檔案
+remote -&amp;gt; local scp user@remote_host:remote_file local_file local -&amp;gt; remote scp local_file user@remote_host:remote_file </description>
+    </item>
+    
+  </channel>
+</rss>

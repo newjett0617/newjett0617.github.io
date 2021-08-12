@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>c1 on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/categories/c1/</link>
+    <description>Recent content in c1 on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 09 Mar 2021 00:55:53 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/categories/c1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Kindle 閱讀 Kobo 電子書</title>
+      <link>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</link>
+      <pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</guid>
+      <description>準備工具 等等操作中會需要使用這些工具來完成
+ Calibre Calibre 外掛程式 DeDRM Adobe Digital Editions  安裝 Calibre 由於我使用的是 macOS，因此直接透過 homebrew 套件管理工具來安裝
+brew install --cask calibre 安裝外掛程式 教學 (如何安裝外掛及載入外掛)
+安裝 DeDRM 執行下面程式，會得到 DeDRM 外掛程式
+VERSION=$(curl -fsSL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d&amp;#39;&amp;#34;&amp;#39; -f 4 | cut -c 2-) curl -fsSL &amp;#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/v${VERSION}/DeDRM_tools_${VERSION}.zip&amp;#34; -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝 Adobe Digital Editions brew install --cask adobe-digital-editions 準備電子書 到 kobo 下載想要放入 kindle 的電子書，會得到 URLLink.acsm 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟</description>
+    </item>
+    
+    <item>
+      <title>DIY WinToGo</title>
+      <link>https://newjett0617.github.io/posts/20201107-diy-wintogo/</link>
+      <pubDate>Sat, 07 Nov 2020 16:18:04 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201107-diy-wintogo/</guid>
+      <description>最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS
+有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了
+剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異
+第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk
+第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10
+第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）
+補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案
+順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭</description>
+    </item>
+    
+  </channel>
+</rss>

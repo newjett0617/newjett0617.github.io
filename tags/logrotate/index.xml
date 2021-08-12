@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>logrotate on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/logrotate/</link>
+    <description>Recent content in logrotate on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 Nov 2020 15:27:07 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/logrotate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 中的 Log Rotation</title>
+      <link>https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/</link>
+      <pubDate>Thu, 05 Nov 2020 15:27:07 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/</guid>
+      <description>最近在 Linux 主機中 /var/log 資料夾底下發現有許多的 xxx.log.1, xxx.log.2 的檔案，好奇去查並記錄下來
+這些檔案是 log rotate 產生的檔案，主要功能是做日誌檔案的輪替
+logrotate 設定檔 主要設定檔的路徑是在 /etc/logrotate.conf，會載入 /etc/logrotate.d/ 底下的檔案，根據設定檔進行 rotate
+執行 logrotate logrotate 預設會在每日的 crontab 中執行 (/etc/cron.daily/logrotate)，如果想要手動執行 logrotate 的話，可以直接呼叫 logrotate --force 指令，--force 是強制執行 rotate 檔案，可搭配 --debug 一起使用並觀察
+logrotate 範例 在 /etc/logrotate.conf 檔案中定義 logrotate 的預設值，範例如下
+# 設定頻率對日誌檔做 rotate (hourly, daily, weekly, monthly, yearly) (hourly 需要改變 logrotate 的頻率) # weekly [weekday] &amp;lt;- default 0 (0 means Sunday, 1 means Monday, ... , 6 means Saturday) weekly # 日誌被 rotate 了 4 次後刪除舊日誌 rotate 4 # rotate 舊日誌文件後創建新日誌文件權限 # create [mode(octal)] [owner] [group].</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>kobo on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/kobo/</link>
+    <description>Recent content in kobo on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 09 Mar 2021 00:55:53 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/kobo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Kindle 閱讀 Kobo 電子書</title>
+      <link>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</link>
+      <pubDate>Tue, 09 Mar 2021 00:55:53 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/</guid>
+      <description>準備工具 等等操作中會需要使用這些工具來完成
+ Calibre Calibre 外掛程式 DeDRM Adobe Digital Editions  安裝 Calibre 由於我使用的是 macOS，因此直接透過 homebrew 套件管理工具來安裝
+brew install --cask calibre 安裝外掛程式 教學 (如何安裝外掛及載入外掛)
+安裝 DeDRM 執行下面程式，會得到 DeDRM 外掛程式
+VERSION=$(curl -fsSL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d&amp;#39;&amp;#34;&amp;#39; -f 4 | cut -c 2-) curl -fsSL &amp;#34;https://github.com/apprenticeharper/DeDRM_tools/releases/download/v${VERSION}/DeDRM_tools_${VERSION}.zip&amp;#34; -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝 Adobe Digital Editions brew install --cask adobe-digital-editions 準備電子書 到 kobo 下載想要放入 kindle 的電子書，會得到 URLLink.acsm 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟</description>
+    </item>
+    
+  </channel>
+</rss>

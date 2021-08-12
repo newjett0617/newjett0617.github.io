@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>sudo on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/sudo/</link>
+    <description>Recent content in sudo on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 30 Jan 2021 16:00:00 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/sudo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>更新 Linux Sudo 漏洞</title>
+      <link>https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Sat, 30 Jan 2021 16:00:00 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/</guid>
+      <description>最近看到 這篇 提到 sudo 有安全性漏洞
+也看到 這篇 有提供指令可以檢查，看看是否受到此漏洞的影響
+sudoedit -s / sudoedit: /: not a regular file 自己檢測一下，發現居然是漏洞版本，看來需要更新套件了
+在 apt update 後可以看到有哪些套件是可更新的，剛好有看到 sudo 這個套件，那就來更新吧
+sudo apt update sudo apt list --upgradable | grep sudo sudo apt --only-upgrade install sudo 更新後再用指令檢查一下，結果符合預期
+usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...  參考資料:
+ https://www.sudo.ws/alerts/unescape_overflow.html  </description>
+    </item>
+    
+  </channel>
+</rss>

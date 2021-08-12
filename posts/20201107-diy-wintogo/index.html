@@ -1,0 +1,190 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>DIY WinToGo | Jett's Blog</title>
+<meta name=keywords content="wintogo">
+<meta name=description content="最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS
+有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了
+剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異
+第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk
+第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10
+第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）
+補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案
+順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭">
+<meta name=author content="Jett">
+<link rel=canonical href=https://newjett0617.github.io/posts/20201107-diy-wintogo/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://newjett0617.github.io/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://newjett0617.github.io/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://newjett0617.github.io/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://newjett0617.github.io/apple-touch-icon.png>
+<link rel=mask-icon href=https://newjett0617.github.io/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.87.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F7QV6BVFTY"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-F7QV6BVFTY',{anonymize_ip:!1})}</script>
+<meta property="og:title" content="DIY WinToGo">
+<meta property="og:description" content="最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS
+有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了
+剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異
+第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk
+第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10
+第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）
+補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案
+順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://newjett0617.github.io/posts/20201107-diy-wintogo/"><meta property="og:image" content="https://newjett0617.github.io"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-11-07T16:18:04+08:00">
+<meta property="article:modified_time" content="2020-11-07T16:18:04+08:00"><meta property="og:site_name" content="Jett's Blog">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://newjett0617.github.io">
+<meta name=twitter:title content="DIY WinToGo">
+<meta name=twitter:description content="最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS
+有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了
+剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異
+第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk
+第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10
+第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）
+補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案
+順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://newjett0617.github.io/posts/"},{"@type":"ListItem","position":3,"name":"DIY WinToGo","item":"https://newjett0617.github.io/posts/20201107-diy-wintogo/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"DIY WinToGo","name":"DIY WinToGo","description":"最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS\n有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了\n剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異\n第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk\n第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10\n第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）\n補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案\n順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭","keywords":["wintogo"],"articleBody":"最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS\n有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了\n剛好查到這篇 Medium，這篇寫的很棒也很詳細，順便記錄下實作的差異\n第一部分 第三點 打開 macOS 的 磁碟工具程式 後，將顯示方式選擇 顯示所有裝置，針對外接硬碟進行格式化，點擊 清除，格式選擇 MacOS 擴充格式（日誌式），架構選擇 GUID 分割區配置表，選擇完成後按下 清除 點擊 分割，點擊 ＋，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 ExFAT，按下 套用，按下 分割 第六點 在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 ~/bootcamp.vmdk\n第七點 在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 WIN10\n第二部分 下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 WindowsSupport.zip 壓縮檔，把該壓縮檔丟到之前分割的 DATA 磁區（假如沒有看到的話，回到 磁碟工具程式 ，選擇 DATA 後點擊 裝載）\n補充 由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案\n順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭\n click to see more  ","wordCount":"74","inLanguage":"en","datePublished":"2020-11-07T16:18:04+08:00","dateModified":"2020-11-07T16:18:04+08:00","author":{"@type":"Person","name":"Jett"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://newjett0617.github.io/posts/20201107-diy-wintogo/"},"publisher":{"@type":"Organization","name":"Jett's Blog","logo":{"@type":"ImageObject","url":"https://newjett0617.github.io/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<noscript>
+<style type=text/css>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://newjett0617.github.io accesskey=h title="Jett's Blog (Alt + H)">Jett's Blog</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://newjett0617.github.io/archives/ title=Archives>
+<span>Archives</span>
+</a>
+</li>
+<li>
+<a href=https://newjett0617.github.io/categories/ title=Categories>
+<span>Categories</span>
+</a>
+</li>
+<li>
+<a href=https://newjett0617.github.io/search/ title="Search (Alt + /)" accesskey=/>
+<span>Search</span>
+</a>
+</li>
+<li>
+<a href=https://newjett0617.github.io/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://newjett0617.github.io>Home</a>&nbsp;»&nbsp;<a href=https://newjett0617.github.io/posts/>Posts</a></div>
+<h1 class=post-title>
+DIY WinToGo
+</h1>
+<div class=post-meta>2020-11-07&nbsp;·&nbsp;Jett
+</div>
+</header> <div class=toc>
+<details>
+<summary accesskey=c title="(Alt + C)">
+<div class=details>Table of Contents</div>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#%e7%ac%ac%e4%b8%80%e9%83%a8%e5%88%86 aria-label=第一部分>第一部分</a><ul>
+<li>
+<a href=#%e7%ac%ac%e4%b8%89%e9%bb%9e aria-label=第三點>第三點</a></li>
+<li>
+<a href=#%e7%ac%ac%e5%85%ad%e9%bb%9e aria-label=第六點>第六點</a></li>
+<li>
+<a href=#%e7%ac%ac%e4%b8%83%e9%bb%9e aria-label=第七點>第七點</a></li></ul>
+</li>
+<li>
+<a href=#%e7%ac%ac%e4%ba%8c%e9%83%a8%e5%88%86 aria-label=第二部分>第二部分</a></li>
+<li>
+<a href=#%e8%a3%9c%e5%85%85 aria-label=補充>補充</a>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><p>最近有玩遊戲的需求，但是並沒有 Windows 作業系統的電腦，於是腦筋就動到我的工作機上，工作機是使用 macOS</p>
+<p>有人會問說「可以安裝雙系統」，但我覺得太麻煩了，因此打算使用 macOS 的硬體加上 Windows 作業系統的硬碟，在開機選單時選擇 Windows 作為開機硬碟，這樣就可以有 Windows 作業系統了</p>
+<p>剛好查到這篇 <a href=https://medium.com/@upchen_/%E5%9C%A8-mac-%E4%B8%8B-%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%9D-bootcamp-win10-%E5%88%B0%E5%A4%96%E6%8E%A5%E7%A1%AC%E7%A2%9F-%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84-gametogo-76c31896588>Medium</a>，這篇寫的很棒也很詳細，順便記錄下實作的差異</p>
+<h1 id=第一部分>第一部分<a hidden class=anchor aria-hidden=true href=#第一部分>#</a></h1>
+<h2 id=第三點>第三點<a hidden class=anchor aria-hidden=true href=#第三點>#</a></h2>
+<p>打開 macOS 的 <code>磁碟工具程式</code> 後，將顯示方式選擇 <code>顯示所有裝置</code>，針對外接硬碟進行格式化，點擊 <code>清除</code>，格式選擇 <code>MacOS 擴充格式（日誌式）</code>，架構選擇 <code>GUID 分割區配置表</code>，選擇完成後按下 <code>清除</code>
+<img loading=lazy src=/images/94437D5C-75A6-40F1-9FAD-25530EFBE6CF/EA1C1602-7176-43E7-8BEF-8688F3C00205.png alt>
+</p>
+<p>點擊 <code>分割</code>，點擊 <code>＋</code>，由於我硬碟大小是 256 GB，打算切割 64 GB 的儲存空間當作儲存資料，其餘的儲存空間都當作 Windows 作業系統，輸入完大小後，格式選擇 <code>ExFAT</code>，按下 <code>套用</code>，按下 <code>分割</code>
+<img loading=lazy src=/images/94437D5C-75A6-40F1-9FAD-25530EFBE6CF/48F1DBDE-899C-4321-A055-8EE5D2F9872E.png alt>
+</p>
+<h2 id=第六點>第六點<a hidden class=anchor aria-hidden=true href=#第六點>#</a></h2>
+<p>在不同目錄執行指令跟 bootcamp.vmdk 的路徑有關，建議是在家目錄中執行，會得到 <code>~/bootcamp.vmdk</code></p>
+<h2 id=第七點>第七點<a hidden class=anchor aria-hidden=true href=#第七點>#</a></h2>
+<p>在新增虛擬主機時，名稱跟之後的指令有關，建議名稱使用 <code>WIN10</code></p>
+<h1 id=第二部分>第二部分<a hidden class=anchor aria-hidden=true href=#第二部分>#</a></h1>
+<p>下載完成後，會得到一個 WindowsSupport 的資料夾，將該資料夾壓縮後會得到一個 <code>WindowsSupport.zip</code> 壓縮檔，把該壓縮檔丟到之前分割的 <code>DATA</code> 磁區（假如沒有看到的話，回到 <code>磁碟工具程式</code>
+，選擇 <code>DATA</code> 後點擊 <code>裝載</code>）</p>
+<h1 id=補充>補充<a hidden class=anchor aria-hidden=true href=#補充>#</a></h1>
+<p>由於之後的操作都不會再需要 VirtualBox 了，記得清除之前操作產生的檔案</p>
+<p>順便附上 Medium 的螢幕截圖，備份用，以免好文之後找不到，哭哭</p>
+<details> <summary>click to see more</summary>
+<img src=/images/94437D5C-75A6-40F1-9FAD-25530EFBE6CF/47584569-C6FA-41C7-8EC0-42EC5C8634D5.png alt>
+</details>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://newjett0617.github.io/tags/wintogo/>wintogo</a></li>
+</ul>
+<nav class=paginav>
+<a class=prev href=https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/>
+<span class=title>« Prev Page</span>
+<br>
+<span>用 Miniflux 自架 RSS 服務</span>
+</a>
+<a class=next href=https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/>
+<span class=title>Next Page »</span>
+<br>
+<span>Linux 中的 Log Rotation</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2021 <a href=https://newjett0617.github.io>Jett's Blog</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)">
+<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</button>
+</a>
+<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>

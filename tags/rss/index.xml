@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>rss on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/rss/</link>
+    <description>Recent content in rss on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 23 Dec 2020 15:52:13 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/rss/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Miniflux 自架 RSS 服務</title>
+      <link>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</link>
+      <pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</guid>
+      <description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買，思考有什麼類似的服務來解決我的問題，google 搜尋 self hosted rss 有一堆工具提供選擇，最後我挑了 Miniflux 來使用
+安裝 Miniflux 我是使用 docker 來架設，官方的 repo 中有提供 basic.yml 範例當作使用，就不多贅述了
+由於伺服器的架構不同，這是我自架 miniflux 的 repo
+後記 除了使用網頁外，Miniflux 還有提供 Fever API 可以串接，搭配使用 FeedMe 及 Reeder 這兩個 App 當作跨平台的閱讀器</description>
+    </item>
+    
+  </channel>
+</rss>

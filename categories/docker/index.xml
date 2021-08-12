@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>docker on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/categories/docker/</link>
+    <description>Recent content in docker on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 29 Apr 2021 17:24:09 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker 容器日誌整合 AWS CloudWatch</title>
+      <link>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</link>
+      <pubDate>Thu, 29 Apr 2021 17:24:09 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/</guid>
+      <description>最近有收到需求是要將容器的日誌寫入 AWS CloudWatch 中，剛好 docker 的 logging drivers 有支援，紀錄一下過程
+docker 預設的 logging driver 是 json-file，日誌檔案路徑在 /var/lib/docker/containers/&amp;lt;CONTAINER_ID&amp;gt;/&amp;lt;CONTAINER_ID&amp;gt;-json.log
+這是 docker 的 logging drivers 支援的清單 logging driver 可以單一容器設定，也可以全域設定 (修改 /etc/docker/daemon.json)
+下面關於 docker 的示範都是使用單一容器設定 logging driver
+直接使用 awslogs logging driver 沒有傳遞 AWS Credentials 而直接使用 awslogs logging driver 的話會有下面錯誤
+啟動容器
+docker run --name test1 \  --log-driver awslogs \  --log-opt &amp;#34;awslogs-region=us-east-1&amp;#34; \  --log-opt &amp;#34;awslogs-group=myLogGroup&amp;#34; \  --log-opt &amp;#34;awslogs-stream=myLogStream&amp;#34; \  busybox echo test1 查看一下狀態</description>
+    </item>
+    
+    <item>
+      <title>用 Miniflux 自架 RSS 服務</title>
+      <link>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</link>
+      <pubDate>Wed, 23 Dec 2020 15:52:13 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/</guid>
+      <description>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買，思考有什麼類似的服務來解決我的問題，google 搜尋 self hosted rss 有一堆工具提供選擇，最後我挑了 Miniflux 來使用
+安裝 Miniflux 我是使用 docker 來架設，官方的 repo 中有提供 basic.yml 範例當作使用，就不多贅述了
+由於伺服器的架構不同，這是我自架 miniflux 的 repo
+後記 除了使用網頁外，Miniflux 還有提供 Fever API 可以串接，搭配使用 FeedMe 及 Reeder 這兩個 App 當作跨平台的閱讀器</description>
+    </item>
+    
+    <item>
+      <title>用 KIND 搭建本地 Kubernetes Cluster</title>
+      <link>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</link>
+      <pubDate>Mon, 12 Oct 2020 22:29:18 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/</guid>
+      <description>最近在學習 Kubernetes 相關知識，需要建立 cluster 環境，開始學習時會建議使用單節點的 minikube 當作環境，但是有些功能是在單節點環境做不到，需要建立多節點環境進行測試，剛好有看到有人推薦 KIND (Kubernetes IN Docker)，這套工具可以快速建置多節點的環境
+安裝 KIND 環境中已經預設安裝 docker，接下來只要下載 KIND-cli
+brew install kind KIND-cli autocomplete cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; ~/.zshrc # kind-cli autocomplete source &amp;lt;(kind completion zsh) EOF 建置 cluster 在 KIND 的 repo 中的有提供範例 config 設定 kind-example-config.yaml ，可以快速建立四個節點 (一個 control-plane 節點, 三個 workers 節點)
+kind create cluster --name mykind --config ./kind-example-config.yaml 刪除 cluster kind delete cluster --name mykind happy using kubernetes clusters &amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>
