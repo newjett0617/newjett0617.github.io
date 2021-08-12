@@ -9,7 +9,20 @@
       <link>https://newjett0617.github.io</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 30 Jan 2021 16:00:00 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Aug 2021 15:08:32 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 中的 chattr 及 lsattr 指令</title>
+      <link>https://newjett0617.github.io/posts/20210801-linux-%E4%B8%AD%E7%9A%84-chattr-%E5%8F%8A-lsattr-%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sun, 01 Aug 2021 15:08:32 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210801-linux-%E4%B8%AD%E7%9A%84-chattr-%E5%8F%8A-lsattr-%E6%8C%87%E4%BB%A4/</guid>
+      <description>有時身為 root 使用者時，還是會有不小心誤刪檔案，以防被自己雷才有這篇 &amp;hellip;
+在 Linux 中有一個指令 chattr 可以改變檔案屬性；還有另外一個指令 lsattr 可以列出檔案屬性（檔案屬性並不是檔案權限，在 ls 中看不出來）
+attributes 屬性 總共有這些屬性，詳細請看手冊
+a: append only A: no atime updates c: compressed C: no copy on write d: no dump D: synchronous directory updates e: extent format i: immutable j: data journalling P: project hierarchy s: secure deletion S: synchronous updates t: no tail-merging T: top of directory hierarchy u: undeletable 我自己常用的屬性是 a, i
+a 屬性  只能以追加模式寫入檔案  i 屬性  不能被刪除、重新命名 不能建立 link 不能修改 metadata 不能寫入檔案  chattr 語法如下</description>
+    </item>
+    
     <item>
       <title>更新 Linux Sudo 漏洞</title>
       <link>https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/</link>

@@ -75,6 +75,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>用 Miniflux 自架 RSS 服務</h2>
+</header>
+<section class=entry-content>
+<p>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買，思考有什麼類似的服務來解決我的問題，google 搜尋 self hosted rss 有一堆工具提供選擇，最後我挑了 Miniflux 來使用
+安裝 Miniflux 我是使用 docker 來架設，官方的 repo 中有提供 basic.yml 範例當作使用，就不多贅述了
+由於伺服器的架構不同，這是我自架 miniflux 的 repo
+後記 除了使用網頁外，Miniflux 還有提供 Fever API 可以串接，搭配使用 FeedMe 及 Reeder 這兩個 App 當作跨平台的閱讀器</p>
+</section>
+<footer class=entry-footer>2020-12-23&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to 用 Miniflux 自架 RSS 服務" href=https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>DIY WinToGo</h2>
 </header>
 <section class=entry-content>
@@ -133,22 +146,6 @@ tar -x -v -f a....</p>
 </section>
 <footer class=entry-footer>2020-10-04&nbsp;·&nbsp;Jett</footer>
 <a class=entry-link aria-label="post link to Linux 中的 tar 指令" href=https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Linux 中的 sed 指令</h2>
-</header>
-<section class=entry-content>
-<p>在 Linux 的 sed 版本是 GNU，在 macOS 的 sed 版本是 BSD，兩者在使用上略有不同，踩到這個雷，紀錄一下
--i 參數的差異 最常見的就是 -i，如果沒有提供後綴，則原始文件將被覆蓋而不進行備份（in place）
-下面的指令在 macOS 中是可以執行的
-cat &lt;&lt; EOF > test.txt foo bar baz EOF sed -e 's/foo/bar/g' -i '' test.txt 但是在 Linux 中卻會噴錯 sed: can't read : No such file or directory
-在 Linux 中只需要使用 -i 即可
-sed -e 's/foo/bar/g' -i test.txt 更改 separator 另外一個技巧就是更換 separator s/regular expression/replacement/flags
-如果使用 / 當作 separator，在正規表示式中有用到 / 的地方，需要使用 \ 跳脫，這會造成很難閱讀...</p>
-</section>
-<footer class=entry-footer>2020-09-10&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to Linux 中的 sed 指令" href=https://newjett0617.github.io/posts/20200910-linux-%E4%B8%AD%E7%9A%84-sed-%E6%8C%87%E4%BB%A4/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

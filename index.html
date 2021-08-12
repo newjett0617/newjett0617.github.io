@@ -107,6 +107,20 @@ overlays 也會透過 kustomization 檔案定義要使用哪個 base，並在 ba
 </article>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Linux 中的 chattr 及 lsattr 指令</h2>
+</header>
+<section class=entry-content>
+<p>有時身為 root 使用者時，還是會有不小心誤刪檔案，以防被自己雷才有這篇 …
+在 Linux 中有一個指令 chattr 可以改變檔案屬性；還有另外一個指令 lsattr 可以列出檔案屬性（檔案屬性並不是檔案權限，在 ls 中看不出來）
+attributes 屬性 總共有這些屬性，詳細請看手冊
+a: append only A: no atime updates c: compressed C: no copy on write d: no dump D: synchronous directory updates e: extent format i: immutable j: data journalling P: project hierarchy s: secure deletion S: synchronous updates t: no tail-merging T: top of directory hierarchy u: undeletable 我自己常用的屬性是 a, i
+a 屬性 只能以追加模式寫入檔案 i 屬性 不能被刪除、重新命名 不能建立 link 不能修改 metadata 不能寫入檔案 chattr 語法如下...</p>
+</section>
+<footer class=entry-footer>2021-08-01&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to Linux 中的 chattr 及 lsattr 指令" href=https://newjett0617.github.io/posts/20210801-linux-%E4%B8%AD%E7%9A%84-chattr-%E5%8F%8A-lsattr-%E6%8C%87%E4%BB%A4/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Docker 容器日誌整合 AWS CloudWatch</h2>
 </header>
 <section class=entry-content>
@@ -150,19 +164,6 @@ https://www.sudo.ws/alerts/unescape_overflow.html </p>
 </section>
 <footer class=entry-footer>2021-01-30&nbsp;·&nbsp;Jett</footer>
 <a class=entry-link aria-label="post link to 更新 Linux Sudo 漏洞" href=https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>用 Miniflux 自架 RSS 服務</h2>
-</header>
-<section class=entry-content>
-<p>最近因為 Inoreader 的免費訂閱數量快到上限了，不想掏錢購買，思考有什麼類似的服務來解決我的問題，google 搜尋 self hosted rss 有一堆工具提供選擇，最後我挑了 Miniflux 來使用
-安裝 Miniflux 我是使用 docker 來架設，官方的 repo 中有提供 basic.yml 範例當作使用，就不多贅述了
-由於伺服器的架構不同，這是我自架 miniflux 的 repo
-後記 除了使用網頁外，Miniflux 還有提供 Fever API 可以串接，搭配使用 FeedMe 及 Reeder 這兩個 App 當作跨平台的閱讀器</p>
-</section>
-<footer class=entry-footer>2020-12-23&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to 用 Miniflux 自架 RSS 服務" href=https://newjett0617.github.io/posts/20201223-%E7%94%A8-miniflux-%E8%87%AA%E6%9E%B6-rss-%E6%9C%8D%E5%8B%99/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

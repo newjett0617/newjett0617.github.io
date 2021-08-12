@@ -75,6 +75,22 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Linux 中的 sed 指令</h2>
+</header>
+<section class=entry-content>
+<p>在 Linux 的 sed 版本是 GNU，在 macOS 的 sed 版本是 BSD，兩者在使用上略有不同，踩到這個雷，紀錄一下
+-i 參數的差異 最常見的就是 -i，如果沒有提供後綴，則原始文件將被覆蓋而不進行備份（in place）
+下面的指令在 macOS 中是可以執行的
+cat &lt;&lt; EOF > test.txt foo bar baz EOF sed -e 's/foo/bar/g' -i '' test.txt 但是在 Linux 中卻會噴錯 sed: can't read : No such file or directory
+在 Linux 中只需要使用 -i 即可
+sed -e 's/foo/bar/g' -i test.txt 更改 separator 另外一個技巧就是更換 separator s/regular expression/replacement/flags
+如果使用 / 當作 separator，在正規表示式中有用到 / 的地方，需要使用 \ 跳脫，這會造成很難閱讀...</p>
+</section>
+<footer class=entry-footer>2020-09-10&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to Linux 中的 sed 指令" href=https://newjett0617.github.io/posts/20200910-linux-%E4%B8%AD%E7%9A%84-sed-%E6%8C%87%E4%BB%A4/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Linux 中的 tee 指令</h2>
 </header>
 <section class=entry-content>

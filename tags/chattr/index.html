@@ -3,11 +3,11 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>Posts | Jett's Blog</title>
+<title>chattr | Jett's Blog</title>
 <meta name=keywords content>
 <meta name=description content="只要你懂程式 程式就會幫助你">
 <meta name=author content="Jett">
-<link rel=canonical href=https://newjett0617.github.io/posts/>
+<link rel=canonical href=https://newjett0617.github.io/tags/chattr/>
 <link crossorigin=anonymous href=/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://newjett0617.github.io/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://newjett0617.github.io/favicon-16x16.png>
@@ -17,18 +17,17 @@
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
 <meta name=generator content="Hugo 0.87.0">
-<link rel=alternate type=application/rss+xml href=https://newjett0617.github.io/posts/index.xml>
+<link rel=alternate type=application/rss+xml href=https://newjett0617.github.io/tags/chattr/index.xml>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7QV6BVFTY"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-F7QV6BVFTY',{anonymize_ip:!1})}</script>
-<meta property="og:title" content="Posts">
+<meta property="og:title" content="chattr">
 <meta property="og:description" content="只要你懂程式 程式就會幫助你">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://newjett0617.github.io/posts/"><meta property="og:image" content="https://newjett0617.github.io"><meta property="og:site_name" content="Jett's Blog">
+<meta property="og:url" content="https://newjett0617.github.io/tags/chattr/"><meta property="og:image" content="https://newjett0617.github.io"><meta property="og:site_name" content="Jett's Blog">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://newjett0617.github.io">
-<meta name=twitter:title content="Posts">
+<meta name=twitter:title content="chattr">
 <meta name=twitter:description content="只要你懂程式 程式就會幫助你">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://newjett0617.github.io/posts/"}]}</script>
 </head>
 <body class=list id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -70,28 +69,10 @@
 </nav>
 </header>
 <main class=main>
-<header class=page-header><div class=breadcrumbs><a href=https://newjett0617.github.io>Home</a></div>
-<h1>Posts</h1>
+<header class=page-header><div class=breadcrumbs><a href=https://newjett0617.github.io>Home</a>&nbsp;»&nbsp;<a href=https://newjett0617.github.io/tags/>Tags</a></div>
+<h1>chattr</h1>
 </header>
-<article class=post-entry>
-<header class=entry-header>
-<h2>用 Kustomize 對 Kubernetes 物件進行宣告式管理</h2>
-</header>
-<section class=entry-content>
-<p>在 kubernetes 官網 中有看到一個用來管理 kubernetes 的工具，叫做 Kustomize，透過 kustomization 檔案來宣告式 ( Declarative) 管理 kubernetes 物件
-安裝 Kustomize 從 kubernetes 1.14 之後就有支援 kustomization 檔案
-kubectl kustomize DIR [flags] [options] DIR 目錄下，必須有 kustomization 檔案，名稱可以為下列三個其中一個
-kustomization.yaml kustomization.yml Kustomization 但是也可以獨立安裝 kustomize-cli，其他安裝方式請看 here
-brew install kustomize Kustomize 工作原理 主要分成 base 及 overlays
-base 會透過 kustomization 檔案定義使用的哪些 kubernetes 物件
-overlays 也會透過 kustomization 檔案定義要使用哪個 base，並在 base 上新增補丁 (Patch)，如果在 base 上有該資源的話就複寫，如果沒有的話就新增
-資料夾結構如下
-. ├── base │ ├── configMap....</p>
-</section>
-<footer class=entry-footer>2021-08-11&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to 用 Kustomize 對 Kubernetes 物件進行宣告式管理" href=https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/></a>
-</article>
-<article class=post-entry>
+<article class="post-entry tag-entry">
 <header class=entry-header>
 <h2>Linux 中的 chattr 及 lsattr 指令</h2>
 </header>
@@ -105,57 +86,6 @@ a 屬性 只能以追加模式寫入檔案 i 屬性 不能被刪除、重新命�
 <footer class=entry-footer>2021-08-01&nbsp;·&nbsp;Jett</footer>
 <a class=entry-link aria-label="post link to Linux 中的 chattr 及 lsattr 指令" href=https://newjett0617.github.io/posts/20210801-linux-%E4%B8%AD%E7%9A%84-chattr-%E5%8F%8A-lsattr-%E6%8C%87%E4%BB%A4/></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Docker 容器日誌整合 AWS CloudWatch</h2>
-</header>
-<section class=entry-content>
-<p>最近有收到需求是要將容器的日誌寫入 AWS CloudWatch 中，剛好 docker 的 logging drivers 有支援，紀錄一下過程
-docker 預設的 logging driver 是 json-file，日誌檔案路徑在 /var/lib/docker/containers/&lt;CONTAINER_ID>/&lt;CONTAINER_ID>-json.log
-這是 docker 的 logging drivers 支援的清單 logging driver 可以單一容器設定，也可以全域設定 (修改 /etc/docker/daemon.json)
-下面關於 docker 的示範都是使用單一容器設定 logging driver
-直接使用 awslogs logging driver 沒有傳遞 AWS Credentials 而直接使用 awslogs logging driver 的話會有下面錯誤
-啟動容器
-docker run --name test1 \ --log-driver awslogs \ --log-opt "awslogs-region=us-east-1" \ --log-opt "awslogs-group=myLogGroup" \ --log-opt "awslogs-stream=myLogStream" \ busybox echo test1 查看一下狀態...</p>
-</section>
-<footer class=entry-footer>2021-04-29&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to Docker 容器日誌整合 AWS CloudWatch" href=https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>用 Kindle 閱讀 Kobo 電子書</h2>
-</header>
-<section class=entry-content>
-<p>準備工具 等等操作中會需要使用這些工具來完成
-Calibre Calibre 外掛程式 DeDRM Adobe Digital Editions 安裝 Calibre 由於我使用的是 macOS，因此直接透過 homebrew 套件管理工具來安裝
-brew install --cask calibre 安裝外掛程式 教學 (如何安裝外掛及載入外掛)
-安裝 DeDRM 執行下面程式，會得到 DeDRM 外掛程式
-VERSION=$(curl -fsSL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d'"' -f 4 | cut -c 2-) curl -fsSL "https://github.com/apprenticeharper/DeDRM_tools/releases/download/v${VERSION}/DeDRM_tools_${VERSION}.zip" -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝 Adobe Digital Editions brew install --cask adobe-digital-editions 準備電子書 到 kobo 下載想要放入 kindle 的電子書，會得到 URLLink.acsm 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟...</p>
-</section>
-<footer class=entry-footer>2021-03-09&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to 用 Kindle 閱讀 Kobo 電子書" href=https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>更新 Linux Sudo 漏洞</h2>
-</header>
-<section class=entry-content>
-<p>最近看到 這篇 提到 sudo 有安全性漏洞
-也看到 這篇 有提供指令可以檢查，看看是否受到此漏洞的影響
-sudoedit -s / sudoedit: /: not a regular file 自己檢測一下，發現居然是漏洞版本，看來需要更新套件了
-在 apt update 後可以看到有哪些套件是可更新的，剛好有看到 sudo 這個套件，那就來更新吧
-sudo apt update sudo apt list --upgradable | grep sudo sudo apt --only-upgrade install sudo 更新後再用指令檢查一下，結果符合預期
-usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ... 參考資料:
-https://www.sudo.ws/alerts/unescape_overflow.html </p>
-</section>
-<footer class=entry-footer>2021-01-30&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to 更新 Linux Sudo 漏洞" href=https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/></a>
-</article>
-<footer class=page-footer>
-<nav class=pagination>
-<a class=next href=https://newjett0617.github.io/posts/page/2/>Next Page »</a>
-</nav>
-</footer>
 </main>
 <footer class=footer>
 <span>&copy; 2021 <a href=https://newjett0617.github.io>Jett's Blog</a></span>
