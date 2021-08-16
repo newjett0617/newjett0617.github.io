@@ -73,6 +73,22 @@
 <main class=main>
 <article class=post-entry>
 <header class=entry-header>
+<h2>更新 Linux Sudo 漏洞</h2>
+</header>
+<section class=entry-content>
+<p>最近看到 這篇 提到 sudo 有安全性漏洞
+也看到 這篇 有提供指令可以檢查，看看是否受到此漏洞的影響
+sudoedit -s / sudoedit: /: not a regular file 自己檢測一下，發現居然是漏洞版本，看來需要更新套件了
+在 apt update 後可以看到有哪些套件是可更新的，剛好有看到 sudo 這個套件，那就來更新吧
+sudo apt update sudo apt list --upgradable | grep sudo sudo apt --only-upgrade install sudo 更新後再用指令檢查一下，結果符合預期
+usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ... 參考資料:
+https://www.sudo.ws/alerts/unescape_overflow.html </p>
+</section>
+<footer class=entry-footer>2021-01-30&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to 更新 Linux Sudo 漏洞" href=https://newjett0617.github.io/posts/20210130-%E6%9B%B4%E6%96%B0-linux-sudo-%E6%BC%8F%E6%B4%9E/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>用 Miniflux 自架 RSS 服務</h2>
 </header>
 <section class=entry-content>
@@ -128,22 +144,6 @@ kind create cluster --name mykind --config ./kind-example-config.yaml 刪除 clu
 </section>
 <footer class=entry-footer>2020-10-12&nbsp;·&nbsp;Jett</footer>
 <a class=entry-link aria-label="post link to 用 KIND 搭建本地 Kubernetes Cluster" href=https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Linux 中的 tar 指令</h2>
-</header>
-<section class=entry-content>
-<p>在 Linux 中常常看到副檔名 .tar.gz 的檔案，紀錄一下過程
-打包檔案 副檔名包含 .tar 的檔案，都是使用 tar 指令進行打包，也代表未使用壓縮的檔案
-看一下怎麼打包檔案
-tar -c -v -f a.tar /etc -c, --create: create a new ARCHIVE -f, --file=ARCHIVE: use ARCHIVE file or device ARCHIVE -v, --verbose: verbosely list files processed 壓縮檔案 副檔名 .tar.gz 的檔案，是經過 gzip 壓縮後的 tar 檔案，可以縮寫成 .tgz
-看一下怎麼壓縮檔案，多一個參數 -z
-tar -c -z -v -f a.tar.gz /etc -z, --gzip Filter the archive through gzip(1) 解壓縮檔案 看一下怎麼解壓縮檔案，使用 -x 參數
-tar -x -v -f a....</p>
-</section>
-<footer class=entry-footer>2020-10-04&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to Linux 中的 tar 指令" href=https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

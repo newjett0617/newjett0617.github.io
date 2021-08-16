@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>marginal-utility on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/tags/marginal-utility/</link>
+    <description>Recent content in marginal-utility on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 15 Aug 2021 19:52:43 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/tags/marginal-utility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>邊際效用</title>
+      <link>https://newjett0617.github.io/posts/20210815-%E9%82%8A%E9%9A%9B%E6%95%88%E7%94%A8/</link>
+      <pubDate>Sun, 15 Aug 2021 19:52:43 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210815-%E9%82%8A%E9%9A%9B%E6%95%88%E7%94%A8/</guid>
+      <description>邊際效用 Marginal Utility 假設你正在吃太妃糖，你很愛，這糖果為你帶來很大的滿足，但如果吃下更多的糖，你多吃 1 顆糖得到的歡愉就沒這麼高了
+10 顆之後還不錯，但不像第一顆這麼甜美，吃完 15 顆之後，你開始覺得厭倦，吃 20 顆可能沒有獲得其他歡愉的感覺
+因此，「邊際」指的是某種事物的「邊緣」
+從太妃糖得到的「邊緣」效用，指的是最後一顆糖果給你的效用，當消費越多，邊際效用則會遞減，稱之「邊際效用遞減法則」
+舉例 假設你有 100 元可以消費，可以買熱狗，也可以買可樂
+假設要一次消費把這筆錢花掉，那你要買幾支熱狗，幾瓶可樂？
+如果一次買 10 支熱狗，第 10 支的邊際效用將會極低 (可以說，吃了 10 支熱狗身體會不舒服)
+如果此時加 1 瓶可樂，少 1 支熱狗的話，可樂增加的邊際效用會高於熱狗 (可以解渴)
+當在多拿可樂、少拿熱狗的同時，可樂的邊際效用在降低 (因為可樂越來越多)、熱狗的邊際效用在提高 (因為熱狗越來越少)
+找出邊際效用的平衡點 此模型的關鍵因素是「稀少性」的問題，剛才的熱狗、可樂例子中並沒有考慮價格，現實生活中錢是有限的，因此，需求法則會影響結果
+ 參考資料:
+ 經濟學的 40 堂公開課  </description>
+    </item>
+    
+  </channel>
+</rss>

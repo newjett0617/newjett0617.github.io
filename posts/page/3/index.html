@@ -75,6 +75,22 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Linux 中的 tar 指令</h2>
+</header>
+<section class=entry-content>
+<p>在 Linux 中常常看到副檔名 .tar.gz 的檔案，紀錄一下過程
+打包檔案 副檔名包含 .tar 的檔案，都是使用 tar 指令進行打包，也代表未使用壓縮的檔案
+看一下怎麼打包檔案
+tar -c -v -f a.tar /etc -c, --create: create a new ARCHIVE -f, --file=ARCHIVE: use ARCHIVE file or device ARCHIVE -v, --verbose: verbosely list files processed 壓縮檔案 副檔名 .tar.gz 的檔案，是經過 gzip 壓縮後的 tar 檔案，可以縮寫成 .tgz
+看一下怎麼壓縮檔案，多一個參數 -z
+tar -c -z -v -f a.tar.gz /etc -z, --gzip Filter the archive through gzip(1) 解壓縮檔案 看一下怎麼解壓縮檔案，使用 -x 參數
+tar -x -v -f a....</p>
+</section>
+<footer class=entry-footer>2020-10-04&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to Linux 中的 tar 指令" href=https://newjett0617.github.io/posts/20201004-linux-%E4%B8%AD%E7%9A%84-tar-%E6%8C%87%E4%BB%A4/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Linux 中的 sed 指令</h2>
 </header>
 <section class=entry-content>
@@ -135,20 +151,10 @@ cut -d ':' -f 1,3-4 /etc/passwd root:0:0 daemon:1:1 bin:2:2 後記 使用 cut �
 <footer class=entry-footer>2020-06-12&nbsp;·&nbsp;Jett</footer>
 <a class=entry-link aria-label="post link to Linux 中的 cut 指令" href=https://newjett0617.github.io/posts/20200612-linux-%E4%B8%AD%E7%9A%84-cut-%E6%8C%87%E4%BB%A4/></a>
 </article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Linux 中的 scp 指令</h2>
-</header>
-<section class=entry-content>
-<p>scp 指令是在網路上主機之間複製文件的指令，使用 ssh 進行身份驗證、安全地數據傳輸檔案
-remote -> local scp user@remote_host:remote_file local_file local -> remote scp local_file user@remote_host:remote_file </p>
-</section>
-<footer class=entry-footer>2019-02-08&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to Linux 中的 scp 指令" href=https://newjett0617.github.io/posts/20190208-linux-%E4%B8%AD%E7%9A%84-scp-%E6%8C%87%E4%BB%A4/></a>
-</article>
 <footer class=page-footer>
 <nav class=pagination>
 <a class=prev href=https://newjett0617.github.io/posts/page/2/>« Prev Page</a>
+<a class=next href=https://newjett0617.github.io/posts/page/4/>Next Page »</a>
 </nav>
 </footer>
 </main>

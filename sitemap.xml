@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://newjett0617.github.io/categories/</loc>
-    <lastmod>2021-08-11T13:34:03+08:00</lastmod>
-  </url><url>
     <loc>https://newjett0617.github.io/</loc>
+    <lastmod>2021-08-15T19:52:43+08:00</lastmod>
+  </url><url>
+    <loc>https://newjett0617.github.io/tags/marginal-utility/</loc>
+    <lastmod>2021-08-15T19:52:43+08:00</lastmod>
+  </url><url>
+    <loc>https://newjett0617.github.io/posts/</loc>
+    <lastmod>2021-08-15T19:52:43+08:00</lastmod>
+  </url><url>
+    <loc>https://newjett0617.github.io/tags/</loc>
+    <lastmod>2021-08-15T19:52:43+08:00</lastmod>
+  </url><url>
+    <loc>https://newjett0617.github.io/posts/20210815-%E9%82%8A%E9%9A%9B%E6%95%88%E7%94%A8/</loc>
+    <lastmod>2021-08-15T19:52:43+08:00</lastmod>
+  </url><url>
+    <loc>https://newjett0617.github.io/categories/</loc>
     <lastmod>2021-08-11T13:34:03+08:00</lastmod>
   </url><url>
     <loc>https://newjett0617.github.io/categories/kubernetes/</loc>
     <lastmod>2021-08-11T13:34:03+08:00</lastmod>
   </url><url>
     <loc>https://newjett0617.github.io/tags/kustomize/</loc>
-    <lastmod>2021-08-11T13:34:03+08:00</lastmod>
-  </url><url>
-    <loc>https://newjett0617.github.io/posts/</loc>
-    <lastmod>2021-08-11T13:34:03+08:00</lastmod>
-  </url><url>
-    <loc>https://newjett0617.github.io/tags/</loc>
     <lastmod>2021-08-11T13:34:03+08:00</lastmod>
   </url><url>
     <loc>https://newjett0617.github.io/posts/20210811-%E7%94%A8-kustomize-%E5%B0%8D-kubernetes-%E7%89%A9%E4%BB%B6%E9%80%B2%E8%A1%8C%E5%AE%A3%E5%91%8A%E5%BC%8F%E7%AE%A1%E7%90%86/</loc>
@@ -61,9 +67,6 @@
   </url><url>
     <loc>https://newjett0617.github.io/tags/logging-driver/</loc>
     <lastmod>2021-04-29T17:24:09+08:00</lastmod>
-  </url><url>
-    <loc>https://newjett0617.github.io/categories/c1/</loc>
-    <lastmod>2021-03-09T00:55:53+08:00</lastmod>
   </url><url>
     <loc>https://newjett0617.github.io/tags/kindle/</loc>
     <lastmod>2021-03-09T00:55:53+08:00</lastmod>
