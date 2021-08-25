@@ -75,6 +75,20 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>用 Kindle 閱讀 Kobo 電子書</h2>
+</header>
+<section class=entry-content>
+<p>準備工具 等等操作中會需要使用這些工具來完成
+Calibre Calibre 外掛程式 DeDRM Adobe Digital Editions 安裝 Calibre 由於我使用的是 macOS，因此直接透過 homebrew 套件管理工具來安裝
+brew install --cask calibre 安裝外掛程式 教學 (如何安裝外掛及載入外掛)
+安裝 DeDRM 執行下面程式，會得到 DeDRM 外掛程式
+VERSION=$(curl -fsSL https://api.github.com/repos/apprenticeharper/DeDRM_tools/releases/latest | grep tag_name | cut -d'"' -f 4 | cut -c 2-) curl -fsSL "https://github.com/apprenticeharper/DeDRM_tools/releases/download/v${VERSION}/DeDRM_tools_${VERSION}.zip" -o dedrm.zip unzip dedrm.zip -d dedrm rm dedrm.zip 安裝 Adobe Digital Editions brew install --cask adobe-digital-editions 準備電子書 到 kobo 下載想要放入 kindle 的電子書，會得到 URLLink.acsm 檔案，嘗試使用 Adobe Digital Editions 執行該檔案，看檔案是否正常開啟及是否正常閱讀，沒問題的話就可以進到下一步驟...</p>
+</section>
+<footer class=entry-footer>2021-03-09&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to 用 Kindle 閱讀 Kobo 電子書" href=https://newjett0617.github.io/posts/20210309-%E7%94%A8-kindle-%E9%96%B1%E8%AE%80-kobo-%E9%9B%BB%E5%AD%90%E6%9B%B8/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>更新 Linux Sudo 漏洞</h2>
 </header>
 <section class=entry-content>
@@ -133,19 +147,6 @@ logrotate 範例 在 /etc/logrotate.conf 檔案中定義 logrotate 的預設值�
 </section>
 <footer class=entry-footer>2020-11-05&nbsp;·&nbsp;Jett</footer>
 <a class=entry-link aria-label="post link to Linux 中的 Log Rotation" href=https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>用 KIND 搭建本地 Kubernetes Cluster</h2>
-</header>
-<section class=entry-content>
-<p>最近在學習 Kubernetes 相關知識，需要建立 cluster 環境，開始學習時會建議使用單節點的 minikube 當作環境，但是有些功能是在單節點環境做不到，需要建立多節點環境進行測試，剛好有看到有人推薦 KIND (Kubernetes IN Docker)，這套工具可以快速建置多節點的環境
-安裝 KIND 環境中已經預設安裝 docker，接下來只要下載 KIND-cli
-brew install kind KIND-cli autocomplete cat &lt;&lt; EOF >> ~/.zshrc # kind-cli autocomplete source &lt;(kind completion zsh) EOF 建置 cluster 在 KIND 的 repo 中的有提供範例 config 設定 kind-example-config.yaml ，可以快速建立四個節點 (一個 control-plane 節點, 三個 workers 節點)
-kind create cluster --name mykind --config ./kind-example-config.yaml 刪除 cluster kind delete cluster --name mykind happy using kubernetes clusters …</p>
-</section>
-<footer class=entry-footer>2020-10-12&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to 用 KIND 搭建本地 Kubernetes Cluster" href=https://newjett0617.github.io/posts/20201012-%E7%94%A8-kind-%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0-kubernetes-cluster/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

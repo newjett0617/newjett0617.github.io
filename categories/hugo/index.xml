@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hugo on Jett&#39;s Blog</title>
+    <link>https://newjett0617.github.io/categories/hugo/</link>
+    <description>Recent content in hugo on Jett&#39;s Blog</description>
+    <image>
+      <url>https://newjett0617.github.io</url>
+      <link>https://newjett0617.github.io</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 留言系統</title>
+      <link>https://newjett0617.github.io/posts/20210826-hugo-%E7%95%99%E8%A8%80%E7%B3%BB%E7%B5%B1/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210826-hugo-%E7%95%99%E8%A8%80%E7%B3%BB%E7%B5%B1/</guid>
+      <description>Hugo 內建支援使用 Disqus 當作第三方留言系統，但我偏好使用 GitHub issue，於是找到 Utterances 當作第三方留言系統
+安裝 提供一個存放留言的 repo，我是使用 github page repo，所以不用建立新的 repo
+再來安裝 utterances app
+選擇 repo，查看一下要求的權限，沒問題後進行安裝
+接下來，根據使用不同主題有不同的配置方式，我的主題是 hugo-PaperMod
+新增 layouts/partials/comments.html 檔案，如果檔案或資料夾不存在的話就新增
+貼上 utterances 的 javascript 腳本
+&amp;lt;script src=&amp;#34;https://utteranc.es/client.js&amp;#34; repo=&amp;#34;[owner/repo]&amp;#34; issue-term=&amp;#34;title&amp;#34; theme=&amp;#34;github-light&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34; async&amp;gt; &amp;lt;/script&amp;gt; 大功告成，底下留言測試一下
+ 參考資料:
+ https://gohugo.io/content-management/comments/  </description>
+    </item>
+    
+  </channel>
+</rss>
