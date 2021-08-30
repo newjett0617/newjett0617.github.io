@@ -73,6 +73,21 @@
 <main class=main>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Linux 中的 man 指令</h2>
+</header>
+<section class=entry-content>
+<p>在 Linux 中常常需要執行指令，在不知道指令或是參數之前都會看手冊
+使用 man 指令時，容易因為有相同名稱檔案或指令而導致看錯手冊
+舉個例子像是 passwd
+passwd 這同時有指令 /usr/bin/passwd 的手冊，也是檔案 /etc/passwd 的手冊
+這時需要查一下有哪些 manual
+查名稱有 passwd 的手冊 man -f passwd passwd (1) - change user password passwd (1ssl) - compute password hashes passwd (5) - the password file -f, --whatis: same as whatis(1). Search for all words in expression in manual page names only. 查名稱包含 passwd 的手冊 man -k passwd chgpasswd (8) - update group passwords in batch mode chpasswd (8) - update passwords in batch mode gpasswd (1) - administer /etc/group and /etc/gshadow grub-mkpasswd-pbkdf2 (1) - generate hashed password for GRUB mkpasswd (1) - Overfeatured front end to crypt(3) openssl-passwd (1ssl) - compute password hashes pam_localuser (8) - require users to be listed in /etc/passwd passwd (1) - change user password passwd (1ssl) - compute password hashes passwd (5) - the password file update-passwd (8) - safely update /etc/passwd, /etc/shadow and /etc/group -k, --apropos: same as apropos(1)....</p>
+</section>
+<footer class=entry-footer>2020-07-27&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to Linux 中的 man 指令" href=https://newjett0617.github.io/posts/20200727-linux-%E4%B8%AD%E7%9A%84-man-%E6%8C%87%E4%BB%A4/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Linux 中的 cut 指令</h2>
 </header>
 <section class=entry-content>

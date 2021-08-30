@@ -75,6 +75,22 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Docker 容器日誌整合 AWS CloudWatch</h2>
+</header>
+<section class=entry-content>
+<p>最近有收到需求是要將容器的日誌寫入 AWS CloudWatch 中，剛好 docker 的 logging drivers 有支援，紀錄一下過程
+docker 預設的 logging driver 是 json-file，日誌檔案路徑在 /var/lib/docker/containers/&lt;CONTAINER_ID>/&lt;CONTAINER_ID>-json.log
+這是 docker 的 logging drivers 支援的清單 logging driver 可以單一容器設定，也可以全域設定 (修改 /etc/docker/daemon.json)
+下面關於 docker 的示範都是使用單一容器設定 logging driver
+直接使用 awslogs logging driver 沒有傳遞 AWS Credentials 而直接使用 awslogs logging driver 的話會有下面錯誤
+啟動容器
+docker run --name test1 \ --log-driver awslogs \ --log-opt "awslogs-region=us-east-1" \ --log-opt "awslogs-group=myLogGroup" \ --log-opt "awslogs-stream=myLogStream" \ busybox echo test1 查看一下狀態...</p>
+</section>
+<footer class=entry-footer>2021-04-29&nbsp;·&nbsp;Jett</footer>
+<a class=entry-link aria-label="post link to Docker 容器日誌整合 AWS CloudWatch" href=https://newjett0617.github.io/posts/20210429-docker-%E5%AE%B9%E5%99%A8%E6%97%A5%E8%AA%8C%E6%95%B4%E5%90%88-aws-cloudwatch/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>用 Kindle 閱讀 Kobo 電子書</h2>
 </header>
 <section class=entry-content>
@@ -132,21 +148,6 @@ https://www.sudo.ws/alerts/unescape_overflow.html </p>
 </section>
 <footer class=entry-footer>2020-11-07&nbsp;·&nbsp;Jett</footer>
 <a class=entry-link aria-label="post link to DIY WinToGo" href=https://newjett0617.github.io/posts/20201107-diy-wintogo/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Linux 中的 Log Rotation</h2>
-</header>
-<section class=entry-content>
-<p>最近在 Linux 主機中 /var/log 資料夾底下發現有許多的 xxx.log.1, xxx.log.2 的檔案，好奇去查並記錄下來
-這些檔案是 log rotate 產生的檔案，主要功能是做日誌檔案的輪替
-logrotate 設定檔 主要設定檔的路徑是在 /etc/logrotate.conf，會載入 /etc/logrotate.d/ 底下的檔案，根據設定檔進行 rotate
-執行 logrotate logrotate 預設會在每日的 crontab 中執行 (/etc/cron.daily/logrotate)，如果想要手動執行 logrotate 的話，可以直接呼叫 logrotate --force 指令，--force 是強制執行 rotate 檔案，可搭配 --debug 一起使用並觀察
-logrotate 範例 在 /etc/logrotate.conf 檔案中定義 logrotate 的預設值，範例如下
-# 設定頻率對日誌檔做 rotate (hourly, daily, weekly, monthly, yearly) (hourly 需要改變 logrotate 的頻率) # weekly [weekday] &lt;- default 0 (0 means Sunday, 1 means Monday, ... , 6 means Saturday) weekly # 日誌被 rotate 了 4 次後刪除舊日誌 rotate 4 # rotate 舊日誌文件後創建新日誌文件權限 # create [mode(octal)] [owner] [group]....</p>
-</section>
-<footer class=entry-footer>2020-11-05&nbsp;·&nbsp;Jett</footer>
-<a class=entry-link aria-label="post link to Linux 中的 Log Rotation" href=https://newjett0617.github.io/posts/20201105-linux-%E4%B8%AD%E7%9A%84-log-rotation/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -9,7 +9,28 @@
       <link>https://newjett0617.github.io</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Aug 2021 22:29:13 +0800</lastBuildDate><atom:link href="https://newjett0617.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>申請租金補貼</title>
+      <link>https://newjett0617.github.io/posts/20210829-%E7%94%B3%E8%AB%8B%E7%A7%9F%E9%87%91%E8%A3%9C%E8%B2%BC/</link>
+      <pubDate>Sun, 29 Aug 2021 22:29:13 +0800</pubDate>
+      
+      <guid>https://newjett0617.github.io/posts/20210829-%E7%94%B3%E8%AB%8B%E7%A7%9F%E9%87%91%E8%A3%9C%E8%B2%BC/</guid>
+      <description>紀錄一下最近為了申請「租金補貼」而跑一場大地遊戲的過程
+租金補貼自檢表 政府住宅補貼資格檢視 &amp;lt;- 這個網站是用來檢視是否符合申請資格，透過填寫實際參數及勾選選項就可以明白自己是否有符合申請資格
+(家庭成員人數) 申請人是我，我沒有配偶，我的家庭成員有「戶籍內直系親屬（父母）」，共三人
+(持有住宅) 我的情況是「家庭成員有持有住宅」，父母持有住宅，那棟房子在老家，不在租賃住宅所在地，申請租金補貼的條件是家庭成員不能持有住宅，因此需要辦理「同址分戶」，我要離開原本的戶籍，並成立新的戶籍，新戶籍地點則是在原本住址
+同只分戶 辦理「同址分戶」需要到「戶籍地」的「戶政事務所」進行辦理
+需要準備「戶口名簿」、「身分證」、「申請人簽名或印章」及「證件」
+「證件」這部分挺麻煩的，需要「房屋所有權狀」或「最近一期的房屋完稅稅單」，由於房子在一百多年前就蓋好了，當時有可能沒有文件證明，因此只有找到「土地權狀」沒有「房屋權狀」，家裡也好久沒有繳房屋稅了，根本沒有房屋稅單，於是就拿土地權狀去申辦，哈哈哈承辦人員當然拒絕辦理ＸＤ，不過他很好心地幫我向地政調閱資料
+其實「證件」可以拿「本人、配偶、直系血親、直系姻親所繳納最近6個月內之水、電、瓦斯費收據」，只要證明地址就行了
+於是我就成功辦理「同址分戶」了，費用花了 60 元（申請兩份戶口名簿）
+這樣「租金補貼」選項就需要更改一下，家庭成員人數變成一人，家庭成員沒有持有住宅，其他的動產、不動產、每人每月平均所得都有符合規定（默默地掉眼淚 &amp;hellip; QAQ）
+相關文件 再來就需要附上「租金補貼」的相關文件
+ 「申請書（書面 or 線上）」 「戶口名簿」 「身分證正反面」 「郵局存摺封面」 「租約」（需要有房東的身分證號碼） 「合法建物證明文件」（去租賃處的地政事務所申請「第二類建物謄本」即可，如果是給「地址」查詢的話，手續費需要 40 元，如果是給「建號」查詢的話，則需要 20 元）   參考資料:
+ https://youtu.be/sS6sBaX4wQw https://www.ris.gov.tw/documents/html/2/3/4/396.html  </description>
+    </item>
+    
     <item>
       <title>Hugo 留言系統</title>
       <link>https://newjett0617.github.io/posts/20210826-hugo-%E7%95%99%E8%A8%80%E7%B3%BB%E7%B5%B1/</link>
